@@ -91,6 +91,33 @@ def estado(d: pd.DataFrame, lado: int, sinal: pd.Series, n_saida: int, regime_ex
     return {"acao": "FORA"}, ultimo
 
 
+def trades_sistema(d, sinal, n_saida=20, regime_extra=None):
+    """Lista de operações do sistema (sem limite de vagas) para montar a carteira limitada da E2."""
+    o, l, c = d.open.values, d.low.values, d.close.values
+    s = sinal.fillna(False).values
+    if regime_extra is not None:
+        s = s & regime_extra.reindex(d.index).fillna(False).values
+    sai = d[f"lo{n_saida}"].values
+    atr = d.atr.values
+    m28 = d.mom28.values
+    out, i, n = [], 0, len(d)
+    while i < n - 1:
+        if not s[i]:
+            i += 1
+            continue
+        e = i + 1
+        stop = c[i] - K_STOP * atr[i]
+        if o[e] - stop <= o[e] * 0.003:
+            i += 1
+            continue
+        js = next((j for j in range(e, n) if l[j] <= stop or c[j] < sai[j]), None)
+        out.append({"entrada": d.index[e], "saida": None if js is None else d.index[js], "m28": float(m28[i])})
+        if js is None:
+            break
+        i = js + 1
+    return out
+
+
 def dimensionar(preco: float, stop: float, futuro: bool) -> dict:
     dist = abs(preco - stop)
     out = {"distancia_stop_pct": round(dist / preco * 100, 2)}
@@ -155,15 +182,30 @@ def main() -> None:
             candidatos.append(item)
         elif st["acao"] != "FORA":
             saida["e2"]["ativos"].append(item)
-    abertas = sum(1 for x in saida["e2"]["ativos"] if x["acao"] == "MANTER")
+    # carteira do sistema com limite de 3 vagas, igual ao laboratório (prioridade por alta em 28 dias)
+    todos = []
+    for s_ in ALTS:
+        d = D.get(s_)
+        if d is None or len(d) < 260:
+            continue
+        c = d.close
+        todos += [{**t, "sym": s_} for t in trades_sistema(d, (c > d.mm200) & (c > d.hi20), 20, btc_alta)]
+    todos.sort(key=lambda t: (t["entrada"], -t["m28"]))
+    cart = []
+    for t in todos:
+        cart = [x for x in cart if x["saida"] is None or x["saida"] >= t["entrada"]]
+        if len(cart) < MAX_ALTS:
+            cart.append(t)
+    abertas = sum(1 for x in cart if x["saida"] is None)
+    saida["e2"]["carteira_sistema"] = [x["sym"] for x in cart if x["saida"] is None]
     vagas = max(0, MAX_ALTS - abertas)
     candidatos.sort(key=lambda x: -x["mom28_pct"])
     for k, x in enumerate(candidatos):
         x["prioridade"] = k + 1
         x["dentro_do_limite"] = k < vagas
         saida["e2"]["ativos"].append(x)
-    saida["e2"]["nota"] = (f"Posições do sistema abertas: {abertas}/{MAX_ALTS}. As posições reais do Gustavo estão no Journal; "
-                           "o agente usa o Journal para contar vagas.")
+    saida["e2"]["nota"] = (f"Carteira do sistema: {abertas}/{MAX_ALTS} vagas ocupadas. As vagas REAIS vêm do Journal: "
+                           "o agente usa as posições reais; dentro_do_limite considera só a carteira do sistema.")
 
     c = btc.close
     mayer = float(c.iloc[-1] / btc.mm200.iloc[-1])

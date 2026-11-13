@@ -219,7 +219,13 @@ def detectar_v21(ticker: str, df: pd.DataFrame) -> list[dict]:
         lo = float(df["low"].iloc[idxs].min())
         hi = float(df["high"].iloc[idxs].max())
         alvo = lo + 2 * (hi - lo)
-        entrada = gat if i4 is None else max(gat, float(df["open"].iloc[i4]))
+        if i4 is not None:
+            entrada = max(gat, float(df["open"].iloc[i4]))
+        elif estado == "acionado":
+            # c3 já fechou acima do gatilho: a entrada real é a abertura do próximo pregão (proxy: fechamento de c3)
+            entrada = float(df["close"].iloc[i3])
+        else:
+            entrada = gat
         if entrada <= stop or alvo <= entrada:
             return None
         ivp = df["hv_pct"].iloc[i3]

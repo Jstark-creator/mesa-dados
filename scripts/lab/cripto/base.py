@@ -13,7 +13,7 @@ FUNDING_DIA = 0.0003  # longs pagam ~0,01%/8h; shorts: 0 (conservador)
 def carregar(sym: str) -> pd.DataFrame:
     df = pd.read_csv(DIR / f"{sym}.csv", index_col="data", parse_dates=True)
     df = df[df["close"] > 0]
-    return df
+    return df[df.index < pd.Timestamp.now(tz="UTC").normalize().tz_localize(None)]
 
 
 def rsi(c: pd.Series, n: int) -> pd.Series:

@@ -12,12 +12,15 @@ def gerar(nb=20,nt=20,k=2.0,filtro_btc=True,custo=CUSTO_SPOT,fund=False, idade=2
         b=(btc.close>btc.mm200).reindex(d.index).fillna(False)
         sig=(c>d.mm200)&(c>d[f"hi{nb}"])
         if filtro_btc: sig=sig&b
-        ts.append(rodar(d,s,"alt",1,sig,k,saida_trail_don(nt),custo,fund))
-    return pd.concat(ts).sort_values("entrada")
+        t=rodar(d,s,"alt",1,sig,k,saida_trail_don(nt),custo,fund)
+        if len(t):
+            t["m28"]=(c/c.shift(28)-1).shift(1).reindex(t.entrada).values
+        ts.append(t)
+    return pd.concat(ts).sort_values(["entrada","m28"],ascending=[True,False],kind="mergesort")
 def limitar(T,maxpos):
     abertas=[]; ok=[]
     for _,t in T.iterrows():
-        abertas=[x for x in abertas if x>t.entrada]
+        abertas=[x for x in abertas if x>=t.entrada]
         if len(abertas)<maxpos: ok.append(True); abertas.append(t.saida)
         else: ok.append(False)
     return T[ok]
