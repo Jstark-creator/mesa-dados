@@ -1,0 +1,91 @@
+name: Auditoria Codex (segunda opinião)
+
+on:
+  workflow_dispatch:
+    inputs:
+      foco:
+        description: "O que auditar (ex.: 'novo backtest em scripts/lab/cripto/c3.py')"
+        default: "Revisão geral dos backtests e do código de produção"
+  push:
+    paths:
+      - "scripts/**.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auditoria-codex
+  cancel-in-progress: true
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    outputs:
+      ativo: ${{ steps.chave.outputs.ativo }}
+    steps:
+      - name: Verificar chave da OpenAI
+        id: chave
+        env:
+          K: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$K" ]; then echo "Sem OPENAI_API_KEY nos secrets: auditoria Codex pulada."; echo "ativo=false" >> $GITHUB_OUTPUT; else echo "ativo=true" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v5
+        if: steps.chave.outputs.ativo == 'true'
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        if: steps.chave.outputs.ativo == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - if: steps.chave.outputs.ativo == 'true'
+        run: pip install -r requirements.txt
+      - name: Montar o prompt
+        if: steps.chave.outputs.ativo == 'true'
+        env:
+          FOCO_IN: ${{ github.event.inputs.foco }}
+        run: |
+          if [ -n "$FOCO_IN" ]; then FOCO="$FOCO_IN"; else FOCO="Arquivos alterados no último commit: $(git diff --name-only HEAD~1 HEAD -- scripts | tr '\n' ' ')"; fi
+          python - "$FOCO" <<'PY'
+          import sys, pathlib
+          p = pathlib.Path(".github/codex/prompts/auditoria.md")
+          pathlib.Path("/tmp/prompt.md").write_text(p.read_text().replace("{{FOCO}}", sys.argv[1]))
+          PY
+      - name: Rodar Codex
+        if: steps.chave.outputs.ativo == 'true'
+        id: codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: /tmp/prompt.md
+          output-file: /tmp/auditoria.md
+          sandbox: workspace-write
+      - uses: actions/upload-artifact@v4
+        if: steps.chave.outputs.ativo == 'true'
+        with:
+          name: auditoria
+          path: /tmp/auditoria.md
+
+  salvar:
+    needs: auditar
+    if: needs.auditar.outputs.ativo == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v4
+        with:
+          name: auditoria
+          path: /tmp/a
+      - name: Salvar relatório
+        run: |
+          mkdir -p data/auditoria
+          f="data/auditoria/codex-$(date -u +%Y-%m-%d-%H%M).md"
+          { echo "# Auditoria Codex — $(date -u +%Y-%m-%dT%H:%MZ) — commit ${GITHUB_SHA::7}"; echo; cat /tmp/a/auditoria.md; } > "$f"
+          cp "$f" data/auditoria/codex-ultima.md
+          git config user.name "mesa-bot"
+          git config user.email "mesa-bot@users.noreply.github.com"
+          git add data/auditoria
+          git commit -m "auditoria: relatório Codex $(date -u +%Y-%m-%d)"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push
