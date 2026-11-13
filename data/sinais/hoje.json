@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-13T17:35:46+00:00",
+ "gerado_em": "2026-11-13T18:53:05+00:00",
  "playbook": "M3 v2.1",
  "obs": "armado = padrão de 3 candles fechou, entrada no rompimento da abertura de c1 no próximo pregão; acionado = rompimento já ocorreu no último candle; preliminar = true quando o último candle ainda não fechou (sinal pode mudar até o fechamento)",
  "sinais": []
