@@ -169,3 +169,96 @@ def resumo(ticker: str, df: pd.DataFrame) -> dict:
 
 def sinal_dict(s: Sinal) -> dict:
     return asdict(s)
+
+
+# ---------------------------------------------------------------------------
+# M3 v2.1 (aprovada em 13/11/2026): só compras + MM200 + IFR>60 + volume +
+# Bollinger sem squeeze + stop 0,5 ATR + veículo pelo IV percentil.
+# ---------------------------------------------------------------------------
+def indicadores_v21(df: pd.DataFrame) -> pd.DataFrame:
+    out = indicadores(df)
+    c, h, l = out["close"], out["high"], out["low"]
+    out["mm200"] = c.rolling(200).mean()
+    tr = pd.concat([h - l, (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
+    out["atr14"] = tr.ewm(alpha=1 / 14, adjust=False).mean()
+    out["vol_med20"] = out["volume"].rolling(20).mean()
+    mid = c.rolling(20).mean()
+    sd = c.rolling(20).std(ddof=0)
+    largura = (4 * sd) / mid
+    out["bb_largura_pct"] = largura.rolling(120).rank(pct=True)
+    hv = np.log(c).diff().rolling(20).std() * np.sqrt(252)
+    out["hv20"] = hv
+    out["hv_pct"] = hv.rolling(252, min_periods=120).rank(pct=True)
+    return out
+
+
+def detectar_v21(ticker: str, df: pd.DataFrame) -> list[dict]:
+    """Sinais de COMPRA da M3 v2.1 terminando no último candle (df com indicadores_v21)."""
+    if len(df) < 210:
+        return []
+    n = len(df)
+    sinais = []
+
+    def filtros(i1, i2, i3):
+        r3 = df.iloc[i3]
+        if any(pd.isna(r3[k]) for k in ("mm200", "mme9", "mms20", "ifr14", "vol_med20", "atr14")):
+            return False
+        ok_tend = r3["close"] > r3["mm200"] and r3["mme9"] > r3["mms20"] and r3["close"] > r3["mms20"]
+        ok_ifr = r3["ifr14"] > 60
+        ok_pad = df["low"].iloc[i2] < df["low"].iloc[i1] and df["low"].iloc[i3] > df["low"].iloc[i2]
+        ok_vol = r3["volume"] > r3["vol_med20"]
+        bw1, bw3 = df["bb_largura_pct"].iloc[i1], df["bb_largura_pct"].iloc[i3]
+        ok_bb = not (pd.isna(bw1) or pd.isna(bw3)) and min(bw1, bw3) >= 0.25
+        return ok_tend and ok_ifr and ok_pad and ok_vol and ok_bb
+
+    def montar(i1, i2, i3, estado, i4=None):
+        c1, c2, c3 = df.iloc[i1], df.iloc[i2], df.iloc[i3]
+        gat = float(c1["open"])
+        stop = float(c2["low"] - 0.5 * c3["atr14"])
+        idxs = [i1, i2, i3] + ([i4] if i4 is not None else [])
+        lo = float(df["low"].iloc[idxs].min())
+        hi = float(df["high"].iloc[idxs].max())
+        alvo = lo + 2 * (hi - lo)
+        entrada = gat if i4 is None else max(gat, float(df["open"].iloc[i4]))
+        if entrada <= stop or alvo <= entrada:
+            return None
+        ivp = df["hv_pct"].iloc[i3]
+        return {
+            "ticker": ticker, "versao": "M3 v2.1", "direcao": "compra", "estado": estado,
+            "data": str(df.index[-1].date()), "data_c1": str(df.index[i1].date()),
+            "entrada": _r(entrada), "stop": _r(stop), "alvo": _r(alvo),
+            "alvo_provisorio": i4 is None,
+            "fechamento": _r(float(df["close"].iloc[-1])), "ifr14": _r(float(c3["ifr14"]), 2),
+            "atr14": _r(float(c3["atr14"])), "mm200": _r(float(c3["mm200"])),
+            "volume_rel": _r(float(c3["volume"] / c3["vol_med20"]), 2),
+            "hv20": _r(float(c3["hv20"]), 4), "hv_pct": _r(float(ivp), 3) if not pd.isna(ivp) else None,
+            "risco_pct": _r((entrada - stop) / entrada * 100, 2),
+            "retorno_pct": _r((alvo - entrada) / entrada * 100, 2),
+            "rr_ativo": _r((alvo - entrada) / (entrada - stop), 2),
+        }
+
+    # A: padrão termina no último candle (armado, ou acionado se c3 já fechou acima da abertura de c1)
+    i1, i2, i3 = n - 3, n - 2, n - 1
+    if filtros(i1, i2, i3):
+        est = "acionado" if df["close"].iloc[i3] > df["open"].iloc[i1] else "armado"
+        s = montar(i1, i2, i3, est)
+        if s:
+            sinais.append(s)
+    # B: padrão terminou no penúltimo candle e o último rompeu a abertura de c1
+    j1, j2, j3, j4 = n - 4, n - 3, n - 2, n - 1
+    if not sinais and filtros(j1, j2, j3) and df["close"].iloc[j3] <= df["open"].iloc[j1] \
+            and df["high"].iloc[j4] >= df["open"].iloc[j1]:
+        s = montar(j1, j2, j3, "acionado", i4=j4)
+        if s:
+            sinais.append(s)
+    return sinais
+
+
+def veiculo_por_ivp(ivp: float | None) -> str:
+    if ivp is None or (isinstance(ivp, float) and math.isnan(ivp)):
+        return "indefinido"
+    if ivp < 0.40:
+        return "call_atm"
+    if ivp <= 0.60:
+        return "fora"
+    return "trava_put_credito"

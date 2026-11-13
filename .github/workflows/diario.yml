@@ -5,6 +5,11 @@ on:
     # 22:15 UTC = 19:15 em Asunción/Brasília, depois do fechamento da B3 e de NY (seg–sex)
     - cron: "15 22 * * 1-5"
   workflow_dispatch:
+  push:
+    paths:
+      - "scripts/m3.py"
+      - "scripts/opcoes.py"
+      - "scripts/atualizar_dados.py"
 
 permissions:
   contents: write
