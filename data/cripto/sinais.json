@@ -1,0 +1,98 @@
+{
+ "gerado_em": "2026-11-13T18:06+00:00",
+ "candle": "2026-11-12",
+ "regras": "playbooks/cripto.md v1",
+ "e1": [
+  {
+   "ativo": "BTC",
+   "lado": "long",
+   "acao": "FORA",
+   "ultima_saida": {
+    "saida": "2026-10-08",
+    "motivo": "stop",
+    "entrada": 86604.375,
+    "preco_saida": 81646.83808889533
+   },
+   "preco": 71342.97,
+   "mm200": 73080.97,
+   "funding_pct_8h": null
+  },
+  {
+   "ativo": "BTC",
+   "lado": "short",
+   "acao": "ENTRAR",
+   "sinal_em": "2026-11-12",
+   "fechamento": 71342.96875,
+   "stop": 75881.89597626538,
+   "nivel_saida": 81079.7890625,
+   "ultima_saida": {
+    "saida": "2026-06-15",
+    "motivo": "canal",
+    "entrada": 75488.3125,
+    "preco_saida": 65711.109375
+   },
+   "preco": 71342.97,
+   "mm200": 73080.97,
+   "veiculo": "perpétuo OKX (até 3x)",
+   "tamanho": {
+    "distancia_stop_pct": 6.36,
+    "cheio": {
+     "quantidade": 0.088127,
+     "nocional_usd": 6287.21,
+     "margem_3x_usd": 2095.74
+    },
+    "meio": {
+     "quantidade": 0.044063,
+     "nocional_usd": 3143.6,
+     "margem_3x_usd": 1047.87
+    }
+   },
+   "funding_pct_8h": null
+  },
+  {
+   "ativo": "ETH",
+   "lado": "long",
+   "acao": "FORA",
+   "ultima_saida": {
+    "saida": "2026-10-30",
+    "motivo": "canal",
+    "entrada": 2251.4440918,
+    "preco_saida": 2249.49829102
+   },
+   "preco": 2016.83,
+   "mm200": 2149.1,
+   "funding_pct_8h": null
+  },
+  {
+   "ativo": "ETH",
+   "lado": "short",
+   "acao": "MANTER",
+   "entrada_data": "2026-11-09",
+   "entrada": 2120.98022461,
+   "stop": 2311.687684287531,
+   "fechamento": 2016.82971191,
+   "nivel_saida": 2446.04785156,
+   "resultado_R": 0.55,
+   "ultima_saida": {
+    "saida": "2026-06-16",
+    "motivo": "canal",
+    "entrada": 2179.85449219,
+    "preco_saida": 1794.93798828
+   },
+   "preco": 2016.83,
+   "mm200": 2149.1,
+   "funding_pct_8h": null
+  }
+ ],
+ "e2": {
+  "regime_btc": "desligado (BTC abaixo da MM200)",
+  "ativos": [],
+  "nota": "Posições do sistema abertas: 0/3. As posições reais do Gustavo estão no Journal; o agente usa o Journal para contar vagas."
+ },
+ "acumulo_btc": {
+  "mayer": 0.98,
+  "multiplicador_aporte": 2,
+  "fear_greed": null,
+  "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
+ }
+}
