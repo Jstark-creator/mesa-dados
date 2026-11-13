@@ -1,0 +1,93 @@
+name: Opções com cotações reais (ThetaData, etapa 1)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/opcoes_reais.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: opcoes-reais
+  cancel-in-progress: false
+
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Verificar credenciais
+        id: cred
+        env:
+          E: ${{ secrets.THETADATA_EMAIL }}
+          P: ${{ secrets.THETADATA_PASSWORD }}
+        run: |
+          if [ -z "$E" ] || [ -z "$P" ]; then echo "Faltam THETADATA_EMAIL/THETADATA_PASSWORD nos secrets."; echo "ok=false" >> $GITHUB_OUTPUT; else echo "ok=true" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v5
+        if: steps.cred.outputs.ok == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.cred.outputs.ok == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-java@v4
+        if: steps.cred.outputs.ok == 'true'
+        with:
+          distribution: temurin
+          java-version: "21"
+      - if: steps.cred.outputs.ok == 'true'
+        run: pip install -r requirements.txt scipy tabulate
+      - name: Cache dos dados brutos (não vão para o repositório)
+        if: steps.cred.outputs.ok == 'true'
+        uses: actions/cache@v4
+        with:
+          path: /tmp/td
+          key: thetadata-eod-v1-${{ github.run_id }}
+          restore-keys: thetadata-eod-v1-
+      - name: Iniciar Theta Terminal
+        if: steps.cred.outputs.ok == 'true'
+        env:
+          E: ${{ secrets.THETADATA_EMAIL }}
+          P: ${{ secrets.THETADATA_PASSWORD }}
+        run: |
+          mkdir -p ~/theta && cd ~/theta
+          curl -sSfL -o ThetaTerminalv3.jar https://downloads.thetadata.us/ThetaTerminalv3.jar
+          umask 077; printf '%s\n%s\n' "$E" "$P" > creds.txt
+          nohup java -Xmx4G -jar ThetaTerminalv3.jar --creds-file=creds.txt > terminal.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -s -o /dev/null "http://127.0.0.1:25503/v3/option/list/expirations?symbol=SPY"; then echo "terminal no ar"; break; fi
+            sleep 5
+          done
+          grep -iE "access|tier|subscription|error|fail" terminal.log | grep -viE "password" | tail -20 || true
+      - name: Baixar cadeias SPY e QQQ (desde 2023-06)
+        if: steps.cred.outputs.ok == 'true'
+        run: python scripts/lab/etf/thetadata_baixar.py --simbolos SPY,QQQ --inicio 2023-06-01 --destino /tmp/td
+      - name: Encerrar terminal e apagar credenciais
+        if: always() && steps.cred.outputs.ok == 'true'
+        run: |
+          pkill -f ThetaTerminalv3.jar || true
+          rm -f ~/theta/creds.txt
+      - name: Fechamentos não ajustados (strikes)
+        if: steps.cred.outputs.ok == 'true'
+        run: |
+          python - <<'PY'
+          import yfinance as yf, pandas as pd
+          d = yf.download(["SPY","QQQ"], start="2023-05-01", auto_adjust=False, progress=False)["Close"]
+          d.index = pd.to_datetime(d.index).tz_localize(None)
+          d.to_csv("/tmp/td/spot.csv"); print(d.tail(2))
+          PY
+      - name: Backtest com cotações reais
+        if: steps.cred.outputs.ok == 'true'
+        run: python scripts/lab/etf/matriz_real.py --dados /tmp/td --spot /tmp/td/spot.csv
+      - name: Salvar só os agregados
+        if: steps.cred.outputs.ok == 'true'
+        run: |
+          git config user.name "mesa-bot"
+          git config user.email "mesa-bot@users.noreply.github.com"
+          git add data/lab/opcoes_reais
+          git diff --cached --quiet && echo "sem mudanças" && exit 0
+          git commit -m "laboratório: matriz de opções com cotações reais (ThetaData)"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push
