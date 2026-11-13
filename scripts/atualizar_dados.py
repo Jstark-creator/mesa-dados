@@ -81,6 +81,15 @@ def baixar(simbolos: list[str], periodo: str) -> dict[str, pd.DataFrame]:
     return resultado
 
 
+def candle_parcial(mercado: str, ultima_data: str) -> bool:
+    """True se o último candle é do pregão de hoje e o mercado ainda não fechou (horário UTC)."""
+    agora = datetime.now(timezone.utc)
+    if mercado == "cripto" or ultima_data != agora.strftime("%Y-%m-%d"):
+        return False
+    fechamento_utc = {"eua": 21.25, "br": 20.5}.get(mercado, 21.25)  # NY 16h ET (+margem), B3 17h BRT
+    return agora.hour + agora.minute / 60 < fechamento_utc
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--periodo", default="2y")
@@ -102,12 +111,13 @@ def main() -> None:
         df = m3.indicadores(df)
         df.round(4).to_csv(DADOS / "precos" / f"{a['ticker']}.csv", index_label="data")
         r = m3.resumo(a["ticker"], df)
-        r.update({"mercado": a["mercado"], "tier": a["tier"]})
+        parcial = candle_parcial(a["mercado"], r["data"])
+        r.update({"mercado": a["mercado"], "tier": a["tier"], "candle_parcial": parcial})
         resumos.append(r)
         if a["mercado"] in ("eua", "br"):
             for s in m3.detectar(a["ticker"], df):
                 d = m3.sinal_dict(s)
-                d.update({"mercado": a["mercado"], "tier": a["tier"]})
+                d.update({"mercado": a["mercado"], "tier": a["tier"], "preliminar": parcial})
                 sinais.append(d)
 
     # mercado (índices, moedas, juros, commodities)
@@ -127,13 +137,13 @@ def main() -> None:
     agora = datetime.now(timezone.utc).isoformat(timespec="seconds")
     ordem = {"acionado": 0, "armado": 1}
     tiers = {"tier1": 0, "tier2": 1, "tier3": 2}
-    sinais.sort(key=lambda s: (ordem.get(s["estado"], 9), tiers.get(s["tier"], 9), -s["rr"]))
+    sinais.sort(key=lambda s: (s.get("preliminar", False), ordem.get(s["estado"], 9), tiers.get(s["tier"], 9), -s["rr"]))
 
     (DADOS / "resumo.json").write_text(json.dumps({"gerado_em": agora, "ativos": resumos}, ensure_ascii=False, indent=1), encoding="utf-8")
     (DADOS / "mercado.json").write_text(json.dumps({"gerado_em": agora, "itens": mercado}, ensure_ascii=False, indent=1), encoding="utf-8")
     (DADOS / "sinais" / "hoje.json").write_text(json.dumps({
         "gerado_em": agora, "playbook": "M3 v1.0",
-        "obs": "armado = padrão de 3 candles fechou, entrada no rompimento da abertura de c1 no próximo pregão; acionado = rompimento já ocorreu no último candle",
+        "obs": "armado = padrão de 3 candles fechou, entrada no rompimento da abertura de c1 no próximo pregão; acionado = rompimento já ocorreu no último candle; preliminar = true quando o último candle ainda não fechou (sinal pode mudar até o fechamento)",
         "sinais": sinais}, ensure_ascii=False, indent=1), encoding="utf-8")
 
     hist = DADOS / "sinais" / "historico.csv"
@@ -142,6 +152,7 @@ def main() -> None:
         if hist.exists():
             antigo = pd.read_csv(hist)
             novo = pd.concat([antigo, novo]).drop_duplicates(subset=["ticker", "direcao", "estado", "data"], keep="last")
+        novo = novo[~novo["preliminar"].fillna(False).astype(bool)] if "preliminar" in novo else novo
         novo.to_csv(hist, index=False)
 
     (DADOS / "status.json").write_text(json.dumps({
