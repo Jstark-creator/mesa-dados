@@ -16,3 +16,7 @@ Novos achados, ainda NÃO corrigidos:
 - MÉDIO: drawdown das carteiras de opções só com resultado realizado; c2_rotacao compra no fechamento da decisão; c1_grade ordena pela validação.
 Sensibilidade (call, desde 2021): IV×1,1 com slippage 2/5/10% = +0,23/+0,16/+0,05R; IV×1,3 = +0,17/+0,10/−0,01R; IV×1,5 = +0,12/+0,05/−0,05R. Put 0,30/0,15: −0,02 a +0,08R.
 Concordância com a auditoria Claude: E1/E2 positivas; vantagem da M3 em opções é hipótese, não demonstrada.
+
+## 13/11/2026 (noite) — c3_ordens_stop.py e etf/matriz.py — auditoria Claude + Codex (codex-2026-11-13-1951.md)
+Cripto por ordens stop: números reproduzidos; sem lookahead nos níveis. Dependência extrema de poucas operações (sem as 5 maiores: E1 2,0R, E2 −9,4R); sobrevivência (SOL = 33R de 79R na E2); carteira E2 deve reservar vagas no fechamento anterior (simulação correta: +1,10R, 86,1R); aquecimento duplicado corrigido pelo Codex: E2 +0,887R, 75,4R.
+ETFs: nada útil a 10% de slippage; com skew estilizado, crédito put e condor ≈ 0–0,02R; trava de débito em SPY/QQQ em tendência ~+0,05–0,10R (t≈2), efeito direcional e não de IV; execução causal não muda as médias. Precisa de cadeia real antes de playbook.
