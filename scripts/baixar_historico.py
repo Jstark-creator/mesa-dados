@@ -29,7 +29,17 @@ def main() -> None:
             continue
         df.round(4).to_csv(destino / f"{a['ticker']}.csv", index_label="data")
         ok += 1
-    print(f"histórico salvo: {ok}/{len(ativos)} ativos")
+    # índices e indicadores de mercado (para filtros de regime)
+    wl = carregar_watchlist()
+    mon = wl.get("monitorados", {})
+    dm = baixar(list(mon.values()), args.periodo)
+    for nome, sim in mon.items():
+        df = dm.get(sim)
+        if df is not None and not df.empty:
+            nomearq = sim.replace("^", "IDX_").replace("=", "_").replace(".", "_")
+            df.round(4).to_csv(destino / f"{nomearq}.csv", index_label="data")
+            ok += 1
+    print(f"histórico salvo: {ok} séries")
 
 
 if __name__ == "__main__":
