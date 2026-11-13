@@ -1,0 +1,20 @@
+$^RVX: possibly delisted; no timezone found
+
+2 Failed downloads:
+['USO']: OperationalError('database is locked')
+['^RVX']: possibly delisted; no timezone found
+SPY: 8507 dias desde 1993-01-29
+QQQ: 6965 dias desde 1999-03-10
+IWM: 6657 dias desde 2000-05-26
+GLD: 5532 dias desde 2004-11-18
+USO: sem dados
+XLE: 7017 dias desde 1998-12-22
+TLT: 6114 dias desde 2002-07-30
+VIX: 9288 dias desde 1990-01-02
+VXN: 6492 dias desde 2001-01-23
+RVX: sem dados
+GVZ: 4643 dias desde 2008-06-03
+OVX: 4911 dias desde 2007-05-10
+VIX9D: 3990 dias desde 2011-01-04
+VIX3M: 5116 dias desde 2006-07-17
+IRX: 16703 dias desde 1960-01-04
