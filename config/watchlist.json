@@ -1,0 +1,26 @@
+{
+  "eua": {
+    "tier1": ["AAOI","AAPL","AGNC","AMD","AMZN","AXP","CAT","COHR","CSCO","DAL","GLD","HD","HYG","JNJ","KWEB","LQD","LRCX","NVDA","NVO","UNG","XOP"],
+    "tier2": ["AKAM","APO","BSX","BX","CHTR","CMG","DELL","ENPH","F","GOOGL","IBKR","KTOS","MARA","NKE","PBR","PM","QQQ","QUBT","TSLA","TSM","TTD","WMB","XYZ"],
+    "tier3": ["ACHR","APP","BBAI","C","CLF","CRWD","CVNA","DKNG","FSLR","HAL","HIMS","HOOD","KEEL","KHC","LUNR","LUV","MCD","MRNA","MSTR","NCLH","NIO","OKLO","ONDS","QS","RKLB","TLRY","VRT","ZS"]
+  },
+  "br": {
+    "tier1": ["AXIA3","BEEF3","BRSR6","COGN3","EMBJ3","HYPE3","SLCE3","TAEE11","TEND3","UGPA3"],
+    "tier2": ["BBSE3","CYRE3","EQTL3","JHSF3","MGLU3","PRIO3","TIMS3","USIM5","VIVT3"],
+    "tier3": ["BPAC11","CEAB3","CSNA3","CURY3","ENEV3","IRBR3","POMO4","RDOR3","SUZB3","VIVA3"]
+  },
+  "cripto": ["BTC-USD","ETH-USD"],
+  "monitorados": {
+    "S&P 500": "^GSPC",
+    "Nasdaq 100": "^NDX",
+    "Dow Jones": "^DJI",
+    "Russell 2000": "^RUT",
+    "Ibovespa": "^BVSP",
+    "VIX": "^VIX",
+    "DXY": "DX-Y.NYB",
+    "USD/BRL": "BRL=X",
+    "Treasury 10 anos": "^TNX",
+    "Ouro": "GC=F",
+    "Petróleo WTI": "CL=F"
+  }
+}
