@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-13T22:15:47+00:00",
+ "gerado_em": "2026-11-13T22:47:31+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -99,7 +99,7 @@
    "preco": 112.06,
    "var_dia_pct": -1.05,
    "max_dia": 113.05,
-   "min_dia": 110.14
+   "min_dia": 110.15
   },
   {
    "ticker": "ENEV3",
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-13",
-   "preco": 68046.0703,
-   "var_dia_pct": -4.62,
+   "preco": 68369.5703,
+   "var_dia_pct": -4.17,
    "max_dia": 71386.0,
    "min_dia": 68052.4375
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-13",
-   "preco": 1917.96,
-   "var_dia_pct": -4.9,
+   "preco": 1930.3,
+   "var_dia_pct": -4.29,
    "max_dia": 2017.3368,
    "min_dia": 1909.1599
   },
@@ -297,7 +297,7 @@
    "preco": 356.27,
    "var_dia_pct": 0.39,
    "max_dia": 360.83,
-   "min_dia": 355.755
+   "min_dia": 355.7578
   },
   {
    "ticker": "ACHR",
@@ -513,7 +513,7 @@
    "preco": 26.07,
    "var_dia_pct": -2.65,
    "max_dia": 26.63,
-   "min_dia": 25.45
+   "min_dia": 25.42
   },
   {
    "ticker": "F",
@@ -586,15 +586,6 @@
    "var_dia_pct": -4.29,
    "max_dia": 79.96,
    "min_dia": 76.61
-  },
-  {
-   "ticker": "HYG",
-   "mercado": "eua",
-   "data": "2026-11-13",
-   "preco": 76.94,
-   "var_dia_pct": -0.05,
-   "max_dia": 77.12,
-   "min_dia": 76.92
   },
   {
    "ticker": "IBKR",
@@ -684,7 +675,7 @@
    "preco": 44.94,
    "var_dia_pct": -0.64,
    "max_dia": 45.79,
-   "min_dia": 44.83
+   "min_dia": 44.82
   },
   {
    "ticker": "MARA",
@@ -1014,8 +1005,8 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-13",
-   "preco": 5.6408,
-   "var_dia_pct": 1.05,
+   "preco": 5.6666,
+   "var_dia_pct": 1.51,
    "max_dia": 5.6718,
    "min_dia": 5.6291
   },
