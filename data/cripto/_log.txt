@@ -1,0 +1,33 @@
+
+1 Failed download:
+['APT21794-USD']: OperationalError('database is locked')
+BTC: 4441 dias desde 2014-09-17
+ETH: 3292 dias desde 2017-11-09
+SOL: 2409 dias desde 2020-04-10
+BNB: 3292 dias desde 2017-11-09
+XRP: 3292 dias desde 2017-11-09
+ADA: 3292 dias desde 2017-11-09
+DOGE: 3292 dias desde 2017-11-09
+AVAX: 2246 dias desde 2020-07-13
+LINK: 3292 dias desde 2017-11-09
+DOT: 2277 dias desde 2020-08-20
+LTC: 4441 dias desde 2014-09-17
+TRX: 3292 dias desde 2017-11-09
+NEAR: 2222 dias desde 2020-10-14
+ATOM: 2802 dias desde 2019-03-14
+UNI: 2248 dias desde 2020-09-18
+SUI: 1291 dias desde 2023-05-03
+TON: 1 dias desde 2026-11-13
+APT: sem dados
+BCH: 3292 dias desde 2017-11-09
+XLM: 3292 dias desde 2017-11-09
+fear&greed: 3204 dias
+funding BTC binance: HTTP Error 451: 
+funding BTC bybit: HTTP Error 403: Forbidden
+funding BTC: 286 registros via okx desde 2026-08-10 16:00:00
+funding ETH binance: HTTP Error 451: 
+funding ETH bybit: HTTP Error 403: Forbidden
+funding ETH: 286 registros via okx desde 2026-08-10 16:00:00
+funding SOL binance: HTTP Error 451: 
+funding SOL bybit: HTTP Error 403: Forbidden
+funding SOL: 286 registros via okx desde 2026-08-10 16:00:00
