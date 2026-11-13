@@ -1,82 +1,82 @@
 {
- "gerado_em": "2026-11-13T18:53:05+00:00",
+ "gerado_em": "2026-11-13T22:53:05+00:00",
  "itens": [
   {
    "nome": "S&P 500",
    "simbolo": "^GSPC",
    "data": "2026-11-13",
-   "ultimo": 7554.3901,
-   "var_dia_pct": -0.5
+   "ultimo": 7561.6699,
+   "var_dia_pct": -0.4
   },
   {
    "nome": "Nasdaq 100",
    "simbolo": "^NDX",
    "data": "2026-11-13",
-   "ultimo": 27911.0391,
-   "var_dia_pct": -1.34
+   "ultimo": 27943.7363,
+   "var_dia_pct": -1.22
   },
   {
    "nome": "Dow Jones",
    "simbolo": "^DJI",
    "data": "2026-11-13",
-   "ultimo": 52300.3516,
-   "var_dia_pct": 0.01
+   "ultimo": 52347.5508,
+   "var_dia_pct": 0.1
   },
   {
    "nome": "Russell 2000",
    "simbolo": "^RUT",
    "data": "2026-11-13",
-   "ultimo": 2784.1123,
-   "var_dia_pct": -0.53
+   "ultimo": 2790.4895,
+   "var_dia_pct": -0.31
   },
   {
    "nome": "Ibovespa",
    "simbolo": "^BVSP",
    "data": "2026-11-13",
-   "ultimo": 172415.7344,
-   "var_dia_pct": 0.64
+   "ultimo": 172457.7656,
+   "var_dia_pct": 0.66
   },
   {
    "nome": "VIX",
    "simbolo": "^VIX",
    "data": "2026-11-13",
-   "ultimo": 19.5,
-   "var_dia_pct": 4.28
+   "ultimo": 19.3,
+   "var_dia_pct": 3.21
   },
   {
    "nome": "DXY",
    "simbolo": "DX-Y.NYB",
    "data": "2026-11-13",
-   "ultimo": 103.378,
-   "var_dia_pct": 0.2
+   "ultimo": 103.411,
+   "var_dia_pct": 0.23
   },
   {
    "nome": "USD/BRL",
    "simbolo": "BRL=X",
    "data": "2026-11-13",
-   "ultimo": 5.6463,
-   "var_dia_pct": 1.15
+   "ultimo": 5.6666,
+   "var_dia_pct": 1.51
   },
   {
    "nome": "Treasury 10 anos",
    "simbolo": "^TNX",
    "data": "2026-11-13",
-   "ultimo": 5.141,
-   "var_dia_pct": 0.74
+   "ultimo": 5.154,
+   "var_dia_pct": 1.0
   },
   {
    "nome": "Ouro",
    "simbolo": "GC=F",
    "data": "2026-11-13",
-   "ultimo": 3884.2,
-   "var_dia_pct": -0.03
+   "ultimo": 3887.6001,
+   "var_dia_pct": 0.06
   },
   {
    "nome": "Petróleo WTI",
    "simbolo": "CL=F",
    "data": "2026-11-13",
-   "ultimo": 88.88,
-   "var_dia_pct": 0.16
+   "ultimo": 88.92,
+   "var_dia_pct": 0.2
   }
  ]
 }
