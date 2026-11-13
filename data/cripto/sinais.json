@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-13T18:07+00:00",
+ "gerado_em": "2026-11-13T18:53+00:00",
  "candle": "2026-11-12",
  "regras": "playbooks/cripto.md v1",
  "e1": [
@@ -61,7 +61,7 @@
    },
    "preco": 2016.83,
    "mm200": 2149.1,
-   "funding_pct_8h": 0.0012
+   "funding_pct_8h": 0.0024
   },
   {
    "ativo": "ETH",
@@ -81,13 +81,14 @@
    },
    "preco": 2016.83,
    "mm200": 2149.1,
-   "funding_pct_8h": 0.0012
+   "funding_pct_8h": 0.0024
   }
  ],
  "e2": {
   "regime_btc": "desligado (BTC abaixo da MM200)",
   "ativos": [],
-  "nota": "Posições do sistema abertas: 0/3. As posições reais do Gustavo estão no Journal; o agente usa o Journal para contar vagas."
+  "carteira_sistema": [],
+  "nota": "Carteira do sistema: 0/3 vagas ocupadas. As vagas REAIS vêm do Journal: o agente usa as posições reais; dentro_do_limite considera só a carteira do sistema."
  },
  "acumulo_btc": {
   "mayer": 0.98,
