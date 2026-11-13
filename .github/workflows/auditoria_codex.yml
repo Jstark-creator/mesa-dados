@@ -9,6 +9,7 @@ on:
   push:
     paths:
       - "scripts/**.py"
+      - "config/auditoria.json"
 
 permissions:
   contents: write
@@ -46,7 +47,9 @@ jobs:
         env:
           FOCO_IN: ${{ github.event.inputs.foco }}
         run: |
-          if [ -n "$FOCO_IN" ]; then FOCO="$FOCO_IN"; else FOCO="Arquivos alterados no último commit: $(git diff --name-only HEAD~1 HEAD -- scripts | tr '\n' ' ')"; fi
+          if [ -n "$FOCO_IN" ]; then FOCO="$FOCO_IN";
+          elif git diff --name-only HEAD~1 HEAD | grep -q "config/auditoria.json"; then FOCO=$(python -c "import json;print(json.load(open('config/auditoria.json'))['foco'])");
+          else FOCO="Arquivos alterados no último commit: $(git diff --name-only HEAD~1 HEAD -- scripts | tr '\n' ' ')"; fi
           python - "$FOCO" <<'PY'
           import sys, pathlib
           p = pathlib.Path(".github/codex/prompts/auditoria.md")
