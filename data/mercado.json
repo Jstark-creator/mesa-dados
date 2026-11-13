@@ -1,0 +1,82 @@
+{
+ "gerado_em": "2026-11-13T15:23:48+00:00",
+ "itens": [
+  {
+   "nome": "S&P 500",
+   "simbolo": "^GSPC",
+   "data": "2026-11-13",
+   "ultimo": 7508.4702,
+   "var_dia_pct": -1.11
+  },
+  {
+   "nome": "Nasdaq 100",
+   "simbolo": "^NDX",
+   "data": "2026-11-13",
+   "ultimo": 27685.375,
+   "var_dia_pct": -2.13
+  },
+  {
+   "nome": "Dow Jones",
+   "simbolo": "^DJI",
+   "data": "2026-11-13",
+   "ultimo": 52090.4414,
+   "var_dia_pct": -0.4
+  },
+  {
+   "nome": "Russell 2000",
+   "simbolo": "^RUT",
+   "data": "2026-11-13",
+   "ultimo": 2779.5769,
+   "var_dia_pct": -0.7
+  },
+  {
+   "nome": "Ibovespa",
+   "simbolo": "^BVSP",
+   "data": "2026-11-13",
+   "ultimo": 172462.1719,
+   "var_dia_pct": 0.66
+  },
+  {
+   "nome": "VIX",
+   "simbolo": "^VIX",
+   "data": "2026-11-13",
+   "ultimo": 19.83,
+   "var_dia_pct": 6.04
+  },
+  {
+   "nome": "DXY",
+   "simbolo": "DX-Y.NYB",
+   "data": "2026-11-13",
+   "ultimo": 103.18,
+   "var_dia_pct": 0.01
+  },
+  {
+   "nome": "USD/BRL",
+   "simbolo": "BRL=X",
+   "data": "2026-11-13",
+   "ultimo": 5.6374,
+   "var_dia_pct": 0.99
+  },
+  {
+   "nome": "Treasury 10 anos",
+   "simbolo": "^TNX",
+   "data": "2026-11-13",
+   "ultimo": 5.154,
+   "var_dia_pct": 1.0
+  },
+  {
+   "nome": "Ouro",
+   "simbolo": "GC=F",
+   "data": "2026-11-13",
+   "ultimo": 3895.6001,
+   "var_dia_pct": 0.27
+  },
+  {
+   "nome": "Petróleo WTI",
+   "simbolo": "CL=F",
+   "data": "2026-11-13",
+   "ultimo": 89.22,
+   "var_dia_pct": 0.54
+  }
+ ]
+}
