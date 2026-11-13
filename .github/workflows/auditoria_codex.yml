@@ -55,15 +55,17 @@ jobs:
           p = pathlib.Path(".github/codex/prompts/auditoria.md")
           pathlib.Path("/tmp/prompt.md").write_text(p.read_text().replace("{{FOCO}}", sys.argv[1]))
           PY
-      - name: Rodar Codex
+      - name: Rodar Codex (CLI, sandbox workspace-write)
         if: steps.chave.outputs.ativo == 'true'
-        id: codex
-        uses: openai/codex-action@v1
-        with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-          prompt-file: /tmp/prompt.md
-          output-file: /tmp/auditoria.md
-          sandbox: workspace-write
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npm i -g @openai/codex@latest
+          printenv OPENAI_API_KEY | codex login --with-api-key
+          unset OPENAI_API_KEY
+          codex exec --sandbox workspace-write --skip-git-repo-check -o /tmp/auditoria.md "$(cat /tmp/prompt.md)"
+          rm -f ~/.codex/auth.json
+          test -s /tmp/auditoria.md
       - uses: actions/upload-artifact@v4
         if: steps.chave.outputs.ativo == 'true'
         with:
