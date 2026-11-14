@@ -1,49 +1,49 @@
-# Auditoria Codex — 2026-11-14T16:53Z — commit 66ea586
+# Auditoria Codex — 2026-11-14T18:25Z — commit 2ded619
 
-Auditei o arquivo novo do commit `66ea586` e consultei o histórico anterior. **Não é possível confirmar a rentabilidade do M7 nesta cópia:** faltam as cadeias ThetaData, o `spot.csv` e os resultados desse laboratório. Não acessei a internet nem alterei o repositório.
+Auditei o commit `2ded619`, com foco em `scripts/lab/etf/thetadata_baixar.py` e consulta ao histórico anterior. Não acessei a internet nem alterei o repositório. Os testes abaixo usaram uma cópia em `/tmp`, relógio virtual e respostas sintéticas.
 
-Os números abaixo são **testes sintéticos dos mecanismos**, executados em `/tmp/auditar_m7.py`, com funções extraídas do código. Não representam desempenho histórico.
+Não encontrei novo viés de futuro diretamente no arquivo: ele coleta dados, sem calcular indicadores ou operações. Os problemas estão na integridade e na cobertura da amostra entregue ao backtest.
 
-## Achados
+### Achados
 
-1. **CRÍTICO — Saída usa a própria cotação que dispara a decisão.**  
-   [m7.py:123–135](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:123)  
-   O programa calcula o resultado pela cotação de fechamento, verifica alvo/stop e registra execução nessa mesma cotação. Falta demonstrar que seria possível observar o disparo e executar todas as pernas nesses preços. O cenário “natural” inclui spread, mas não resolve essa dependência temporal.  
-   **Teste:** straddle com alvo atingido no fechamento: **+0,583R** no original; executando na cotação disponível seguinte: **−0,510R**. É uma sensibilidade ilustrativa, não uma estimativa do impacto histórico. Corrigir exige execução posterior à decisão ou dados intradiários que sustentem o preenchimento.
+1. **MÉDIO — Parada por tempo permite publicar resultados de uma coleta incompleta.**  
+   **Arquivo:** [thetadata_baixar.py:81](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/thetadata_baixar.py:81), linhas 81–82. Integração: `.github/workflows/opcoes_reais.yml:69` e `:92–94`.
 
-2. **CRÍTICO — Operações sem saída desaparecem, e a posição deixa de bloquear novas entradas.**  
-   [m7.py:119–139](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:119)  
-   Se não encontrar saída antes do vencimento/fim dos dados, `resultado` permanece vazio e a operação é descartada. Isso ocorre também quando faltam cotações das pernas. Como `livre` só é atualizado para operações concluídas, o simulador pode aceitar outra entrada enquanto aquela posição continuaria aberta. A inclusão da operação depende, portanto, da disponibilidade futura de saída.  
-   **Teste:** uma posição termina a amostra sem disparar alvo/stop. Original: **zero operações**; reconhecendo a posição e sua marcação final: **uma posição aberta, −0,311R**. A marcação deve ser identificada separadamente de uma saída executada.
+   O novo `return` encerra o processo com sucesso, mesmo deixando meses ou símbolos pendentes. O workflow pode então executar o backtest e publicar agregados sem exigir cobertura completa. Como a coleta percorre todos os meses de SPY antes de QQQ, a amostra parcial depende da ordem dos símbolos e da velocidade das respostas.
 
-3. **MÉDIO — Treino incorpora resultados posteriores ao corte e pode contaminar a escolha P1/P2.**  
-   [m7.py:196–206](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:196)  
-   O período depende exclusivamente da entrada. Uma operação aberta até **31/03/2025**, mas encerrada em abril, contribui integralmente para a média de treino usada para selecionar P1/P2. Assim, a escolha pode utilizar preços da janela de validação.  
-   A seleção deve considerar apenas resultados conhecidos no corte e explicitar o tratamento das posições abertas. A recomendação de purga já constava no histórico de auditoria.
+   **Reprodução:** solicitei janeiro a março para SPY e QQQ, com limite virtual de um minuto. Após uma resposta de 61 segundos, o script terminou normalmente com **1 dos 6 arquivos mensais previstos**. Isso reproduz e amplia o problema de cobertura já registrado na auditoria anterior.
 
-4. **MÉDIO — Limite de carteira aplicado depois da simulação cria bloqueios por operações rejeitadas.**  
-   [m7.py:97–98](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:97), [143–154](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:143) e [195](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:195)  
-   Cada ETF é simulado isoladamente; depois são descartadas operações que excedem duas vagas no grupo. Uma operação posteriormente rejeitada já impediu novas entradas naquele ETF durante sua duração simulada.  
-   **Teste:** DIA e QQQ ocupam as vagas; SPY é rejeitado. Quando as vagas abrem, um novo candidato SPY permanece suprimido. A filtragem original aceita **duas operações**; incluindo esse candidato, aceita **três**. A carteira precisa decidir as admissões durante a simulação cronológica. O efeito na rentabilidade pode ter qualquer sinal.
+   **Correção sugerida:** salvar um manifesto com cobertura e pendências; permitir a retomada, mas impedir a publicação de conclusões enquanto a cobertura exigida estiver incompleta. Não basta registrar a interrupção no log.
 
-5. **MÉDIO — HV calculada sobre preço não ajustado pode interpretar desdobramentos como volatilidade.**  
-   [m7.py:160–177](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:160)  
-   O fluxo associado fornece fechamentos não ajustados, necessários para precificar as opções. Porém, esse mesmo preço alimenta os retornos da HV20. Desdobramentos produzem retornos artificiais; dividendos também afetam a comparação IV/HV. Isso pode mudar os sinais “barata” e “cara”.  
-   Convém separar spot nominal para precificação de uma série de retornos com tratamento explícito desses eventos. Sem o `spot.csv`, não quantifiquei ocorrências.
+2. **MÉDIO — Cache pode reutilizar uma amostra incompatível com o pedido atual.**  
+   **Arquivo:** [thetadata_baixar.py:77](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/thetadata_baixar.py:77), linhas 77–84. **Preexistente, relevante para a retomada introduzida pelo commit.**
 
-## O que está correto
+   A identidade do cache contém apenas símbolo e mês. Não registra `max_dte`, `strike_range` nem o intervalo efetivamente solicitado. Por exemplo, uma coleta iniciada em **15 de janeiro** grava `2026-01.csv.gz`; outra iniciada em **1º de janeiro** considera esse mês completo. Ampliar a faixa de strikes ou DTE também não atualiza meses fechados.
 
-- O sinal de entrada e a tendência vêm da observação anterior disponível.
-- O percentil usa somente observações anteriores como referência; não há percentil sobre a amostra inteira nem `bfill`.
-- Comissão de **US$ 0,65 por contrato por lado** e spread entram nos dois lados da operação.
-- O risco do straddle é o débito; para os créditos válidos, largura menos crédito líquido é a base apropriada.
-- Os stops registram o prejuízo observado, sem truncá-lo artificialmente no limite.
-- P1/P2 são comparados nominalmente no treino, embora o corte precise da correção acima.
+   **Reprodução:** com janeiro já presente no cache, solicitei janeiro inteiro com DTE 120 e faixa de strikes 80: **nenhuma requisição para janeiro**, apenas fevereiro e março.
 
-O pré-registro citado, `estrategias/m7-preregistro.md`, não existe nesta cópia. Logo, não consegui verificar a anterioridade dos parâmetros, universo e desempate alfabético. Também não há base para afirmar equivalência deste laboratório com produção.
+   Isso pode excluir contratos e datas silenciosamente, prejudicando comparações entre rodadas. A correção exige metadados ou uma chave de cache que represente a consulta, além de verificar cobertura.
+
+3. **BAIXO — O limite de tempo não interrompe uma requisição em andamento.**  
+   **Arquivo:** [thetadata_baixar.py:34](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/thetadata_baixar.py:34), linhas 34–48; nova checagem em `:81`.
+
+   O prazo só é verificado antes de `pedir()`. Essa função pode consumir várias tentativas e pausas sem consultar o tempo restante.
+
+   **Reprodução:** seis timeouts simulados de 300 segundos, com as pausas previstas, consumiram **31,5 minutos** antes de devolver o controle. Não é um teto absoluto: a leitura da resposta também pode prolongar a chamada.
+
+   A folga atual do workflow reduz o risco, mas o argumento não garante um encerramento dentro do prazo. Usar um prazo baseado em `time.monotonic()` dentro das tentativas tornaria o comportamento mais previsível.
+
+### O que está correto
+
+- O arquivo não calcula percentis, não usa `bfill` e não escolhe entradas ou saídas; não identifiquei nele novo lookahead de estratégia.
+- Meses anteriores já existentes são preservados, enquanto o mês corrente é solicitado novamente — comportamento adequado para atualizar dados ainda em formação.
+- A checagem ocorre entre arquivos mensais, evitando interromper deliberadamente uma gravação no meio.
+- O commit não altera cálculo de R, custos, stops, alvos ou regras de produção. Não há nova divergência demonstrada nesses pontos.
+
+Não há cadeias ThetaData locais identificadas para medir impacto histórico em R. Os números apresentados demonstram falhas operacionais sintéticas, sem estimar rentabilidade.
 
 ## Veredito
-A causalidade dos sinais está, em grande parte, correta.  
-Execução no fechamento e desaparecimento de posições comprometem a interpretação dos resultados.  
-Seleção temporal e simulação da carteira precisam ser corrigidas antes da validação.  
-**Uma eventual conclusão de rentabilidade do M7 permanece não demonstrada.**
+O commit melhora a retomada, mas ainda permite tratar uma coleta parcial como pronta para análise.  
+Mantém-se a conclusão anterior: falta evidência validada para transformar a matriz com cotações reais em playbook.  
+Nenhum resultado de rentabilidade foi confirmado ou refutado nesta auditoria.  
+Exija cobertura verificável e cache compatível antes de interpretar novos agregados.
