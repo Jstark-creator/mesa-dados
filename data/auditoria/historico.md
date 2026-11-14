@@ -25,3 +25,7 @@ ETFs: nada útil a 10% de slippage; com skew estilizado, crédito put e condor �
 Nenhum dos 12 setups (S1/S2/S3 × compra/venda, EUA e BR) aprovado: P(+1σ antes de −0,5σ) ≈ base aleatória; lift 0,8–1,3.
 Auditor Claude: código fiel ao pré-registro; base bate com passeio aleatório simulado (EUA 26,7%, BR 22,6%); barras paradas na B3 favoreciam S1 venda BR (lift treino 1,32 → 1,21). Codex: sem erro crítico; ressalvas médias que não revertem a conclusão.
 Único candidato informativo para v2: S1 compra em ETFs EUA (validação P=43%, lift 1,50, N=130; treino 1,09) — só testável ao vivo/papel.
+
+## 14/11/2026 — M5 Fase A (tendência em ETFs) — auditoria Claude (+ Codex automático)
+Reprovado e confirmado: calls lift 1,08–1,09 sobre a base (P_val 34%); puts ~1,03. Implementação fiel; base coerente com passeio aleatório (H=50: ~27%).
+Informativo: contra meses FORA do regime, calls 1,31 (treino) / 1,26 (validação), IC90% 1,02–1,60; puts sem sinal. Efeito heterogêneo por ETF (SPY/SMH/XLF/QQQ fortes; XLE/IWM fracos). Qualquer exploração exige novo pré-registro (M6) sem reaproveitar estes dados para decidir.
