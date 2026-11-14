@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-14T08:54:13+00:00",
+ "gerado_em": "2026-11-14T10:47:11+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-14",
-   "preco": 66954.3672,
-   "var_dia_pct": -1.9,
+   "preco": 67165.0391,
+   "var_dia_pct": -1.59,
    "max_dia": 68360.7109,
    "min_dia": 66535.5078
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-14",
-   "preco": 1894.37,
-   "var_dia_pct": -1.72,
+   "preco": 1906.6801,
+   "var_dia_pct": -1.08,
    "max_dia": 1933.0901,
    "min_dia": 1881.8057
   },
@@ -327,15 +327,6 @@
    "min_dia": 83.77
   },
   {
-   "ticker": "AMD",
-   "mercado": "eua",
-   "data": "2026-11-13",
-   "preco": 534.06,
-   "var_dia_pct": -8.75,
-   "max_dia": 571.14,
-   "min_dia": 520.01
-  },
-  {
    "ticker": "AMZN",
    "mercado": "eua",
    "data": "2026-11-13",
@@ -361,6 +352,15 @@
    "var_dia_pct": 3.92,
    "max_dia": 413.88,
    "min_dia": 391.49
+  },
+  {
+   "ticker": "AXP",
+   "mercado": "eua",
+   "data": "2026-11-13",
+   "preco": 320.6,
+   "var_dia_pct": 0.8,
+   "max_dia": 321.94,
+   "min_dia": 318.55
   },
   {
    "ticker": "BBAI",
