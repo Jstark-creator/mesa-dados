@@ -20,3 +20,8 @@ Concordância com a auditoria Claude: E1/E2 positivas; vantagem da M3 em opçõe
 ## 13/11/2026 (noite) — c3_ordens_stop.py e etf/matriz.py — auditoria Claude + Codex (codex-2026-11-13-1951.md)
 Cripto por ordens stop: números reproduzidos; sem lookahead nos níveis. Dependência extrema de poucas operações (sem as 5 maiores: E1 2,0R, E2 −9,4R); sobrevivência (SOL = 33R de 79R na E2); carteira E2 deve reservar vagas no fechamento anterior (simulação correta: +1,10R, 86,1R); aquecimento duplicado corrigido pelo Codex: E2 +0,887R, 75,4R.
 ETFs: nada útil a 10% de slippage; com skew estilizado, crédito put e condor ≈ 0–0,02R; trava de débito em SPY/QQQ em tendência ~+0,05–0,10R (t≈2), efeito direcional e não de IV; execução causal não muda as médias. Precisa de cadeia real antes de playbook.
+
+## 14/11/2026 — M4 Fase A (estudo de eventos pré-registrado) — auditoria Claude + Codex (codex-2026-11-14-1432.md)
+Nenhum dos 12 setups (S1/S2/S3 × compra/venda, EUA e BR) aprovado: P(+1σ antes de −0,5σ) ≈ base aleatória; lift 0,8–1,3.
+Auditor Claude: código fiel ao pré-registro; base bate com passeio aleatório simulado (EUA 26,7%, BR 22,6%); barras paradas na B3 favoreciam S1 venda BR (lift treino 1,32 → 1,21). Codex: sem erro crítico; ressalvas médias que não revertem a conclusão.
+Único candidato informativo para v2: S1 compra em ETFs EUA (validação P=43%, lift 1,50, N=130; treino 1,09) — só testável ao vivo/papel.
