@@ -14,10 +14,18 @@ import pandas as pd
 RAIZ = Path(__file__).resolve().parents[1]
 URL = "https://bvmf.bmfbovespa.com.br/InstDados/SerHist/COTAHIST_A{ano}.ZIP"
 
-def baixar(ano):
-    req = urllib.request.Request(URL.format(ano=ano), headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=600) as r:
-        return r.read()
+def baixar(ano, tentativas=4):
+    import time
+    for k in range(tentativas):
+        try:
+            req = urllib.request.Request(URL.format(ano=ano), headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=600) as r:
+                return r.read()
+        except Exception as e:
+            if k == tentativas - 1:
+                raise
+            print(f"{ano}: tentativa {k+1} falhou ({e}); repetindo")
+            time.sleep(30 * (k + 1))
 
 def p(x):  # preço com 2 casas implícitas
     return int(x) / 100
