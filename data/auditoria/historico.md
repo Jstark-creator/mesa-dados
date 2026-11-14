@@ -29,3 +29,8 @@ Auditor Claude: código fiel ao pré-registro; base bate com passeio aleatório 
 ## 14/11/2026 — M5 Fase A (tendência em ETFs) — auditoria Claude (+ Codex automático)
 Reprovado e confirmado: calls lift 1,08–1,09 sobre a base (P_val 34%); puts ~1,03. Implementação fiel; base coerente com passeio aleatório (H=50: ~27%).
 Informativo: contra meses FORA do regime, calls 1,31 (treino) / 1,26 (validação), IC90% 1,02–1,60; puts sem sinal. Efeito heterogêneo por ETF (SPY/SMH/XLF/QQQ fortes; XLE/IWM fracos). Qualquer exploração exige novo pré-registro (M6) sem reaproveitar estes dados para decidir.
+
+## 14/11/2026 — M6 Fase A (catalisador + força relativa, 155 ações) — auditoria Claude + Codex (codex-2026-11-14-1559.md)
+Nada aprovado; confirmado pelos dois auditores, sem lookahead em pivôs/ranking/filtros. Robusto a: σ até ontem, sem filtro de preço > US$20 (que usava preço AJUSTADO e cortava 31% do treino — corrigir em pré-registros futuros), e as duas mudanças juntas.
+Ressalvas: C1 call com σ até ontem chegou perto no treino (P 0,37–0,39, lift 1,32–1,37) mas caiu na validação (lift 1,10–1,13); puts sem amostra (N 6–50) — não concluem nada. Codex: separação treino/validação deveria ter purga de H dias.
+Padrões para próximos pré-registros: σ até ontem; filtros de preço com preço nominal; purga de H dias entre treino e validação.
