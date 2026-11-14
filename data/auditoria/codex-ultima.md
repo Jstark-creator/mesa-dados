@@ -1,50 +1,42 @@
-# Auditoria Codex — 2026-11-14T15:32Z — commit 18336d8
+# Auditoria Codex — 2026-11-14T15:59Z — commit e6611dc
 
-**A reprovação se mantém. Não encontrei erro CRÍTICO que explique uma rejeição injusta do regime.** Reproduzi os 5.528 registros e seus desfechos, usando apenas dados locais. Os testes ficaram em [/tmp/audit_m5.py](/tmp/audit_m5.py); não alterei arquivos do repositório nem acessei a internet.
+Reproduzi **exatamente o CSV agregado original**: nenhum perfil oficial passa no treino. Executei cinco versões em `/tmp`, sem internet e sem alterar o repositório. **Não identifiquei erro CRÍTICO que reverta a reprovação.**
 
-Os números reproduzidos foram:
+As referências abaixo são de [scripts/lab/m6/fase_a.py](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m6/fase_a.py), salvo indicação.
 
-| Direção | P treino | Lift treino | N validação | P validação | Lift validação |
-|---|---:|---:|---:|---:|---:|
-| Compra | 30,18% | 1,090 | 743 | 34,05% | 1,077 |
-| Venda | 27,90% | 1,018 | 277 | 24,91% | 1,042 |
+### Achados
 
-**Achados, em ordem de prioridade**
+1. **MÉDIO — Desfechos do treino invadem a validação — linhas 119–130.**  
+   O período é definido pela data do sinal, mas os 30 pregões seguintes podem alcançar 2019. Assim, a seleção do perfil pode incorporar resultados posteriores ao corte do treino.  
+   **Correção conservadora:** removi do treino eventos cujo horizonte completo ultrapassa 2018. C2 compra, perfil atual: **N 356 → 353; P 24,72% → 24,93%; lift 0,878 → 0,879**. Nenhum perfil passa. A validação permanece igual.
 
-1. **MÉDIO — Treino contém informação de desfechos de 2019.**  
-   [fase_a.py:44](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:44) separa períodos pela data do evento; a janela seguinte de 50 pregões pode atravessar a fronteira. Isso contamina a separação treino/validação, embora os indicadores do sinal sejam causais. Excluindo do treino eventos cuja janela alcança 2019: compras, **P 30,18% → 30,32%, lift 1,090 → 1,086**; vendas, **P 27,90% → 26,60%, lift 1,018 → 0,995**. O vazamento favorece ligeiramente a leitura original das vendas.
+2. **MÉDIO — Fechamento de referência não equivale a entrada executável — linhas 102–122 e 56.**  
+   Volume total, fechamento, médias e confirmação do rompimento só ficam conhecidos ao terminar o candle; as barreiras são ancoradas nesse mesmo fechamento. Isso é aceitável para um estudo de eventos, mas não demonstra execução naquele preço.  
+   **Sensibilidade:** mantive os sinais e σ, ancorando as barreiras na abertura seguinte. Na validação, perfil atual: C2 compra **P 25,00% → 24,03%**; C1 compra **17,71% → 16,67%**. Nenhum aprovado.
 
-2. **MÉDIO — Fechamento da decisão também é referência de entrada.**  
-   [fase_a.py:20](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:20) ancora barreiras em `close[i]`, enquanto [linha 45](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:45) depende desse fechamento para confirmar o regime. **Isso é válido como estudo de eventos observado após o fechamento**, mas não demonstra execução naquele preço. Como sensibilidade operacional, usando abertura seguinte como referência e somente janelas completas, compras na validação passam de **34,29% para 35,53%, lift 1,078 → 1,095**; vendas, **25,09% → 25,45%, lift 1,053 → 1,080**. A convenção original não está criando a reprovação.
+3. **MÉDIO — Base incondicional limita a interpretação do lift — linhas 127–137.**  
+   A base reúne todos os dias elegíveis por preço e horizonte, sem os filtros oficiais, deduplicação ou pareamento por distribuição de ativos/datas. Portanto, o lift compara o **pacote completo** contra dias genéricos; não isola a contribuição de C1/C2 dentro dos filtros. Os muitos horizontes sobrepostos também não são observações independentes.  
+   **Sensibilidade:** exigindo os mesmos filtros oficiais e espaço na base, C2 compra/atual na validação: **P_base 28,20% → 29,72%; lift 0,887 → 0,841**. Nenhum perfil passa. Essa alternativa ainda não constitui pareamento completo.
 
-3. **BAIXO — Janelas incompletas são selecionadas pelo próprio desfecho.**  
-   [fase_a.py:21](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:21) aceita eventos recentes já resolvidos e descarta os ainda abertos. Eventos com toque rápido ficam sobre-representados; o efeito sobre o regime não tem direção garantida. Exigindo 50 pregões completos, na validação:
+4. **MÉDIO — Universo retrospectivo e filtro nominal sobre preços ajustados — linhas 79–94 e 113.**  
+   [config/universo_m6.json:2](/home/runner/work/mesa-dados/mesa-dados/config/universo_m6.json:2) declara expressamente uma lista atual, com sobrevivência. Isso afeta tanto a amostra quanto o ranking histórico: não representa as ações elegíveis em cada época. Dos **157 nomes configurados, entram 155**: MMC está ausente e ROKU tem somente dois registros.  
+   Além disso, o carregamento usa `auto_adjust=True` em [atualizar_dados.py:60](/home/runner/work/mesa-dados/mesa-dados/scripts/atualizar_dados.py:60). Aplicar `close > 20` nessa série não reproduz o preço nominal histórico: ajustes posteriores podem mudar a elegibilidade passada. Não há dados locais suficientes para corrigir integralmente esses efeitos.
 
-   | Direção | N antes → depois | P antes → depois | Lift antes → depois |
-   |---|---:|---:|---:|
-   | Compra | 743 → 729 | 34,05% → 34,29% | 1,077 → 1,078 |
-   | Venda | 277 → 275 | 24,91% → 25,09% | 1,042 → 1,053 |
+5. **MÉDIO — “Empate” não é equilíbrio financeiro demonstrado — linhas 50–64 e 138.**  
+   O resultado é binário: alvo antes do stop vale 1; stop, empate intradiário e expiração sem alvo valem 0. Não existe cálculo de R realizado, saída por tempo, custos, spread ou execução dos gaps. Além disso, `b/(a+b)` corresponde às distâncias em log, não exatamente às perdas/ganhos monetários das barreiras exponenciais.  
+   Isso não invalida a métrica pré-definida, mas impede interpretar `P ≥ 1,2×empate` como rentabilidade líquida, especialmente em opções. A abertura também poderia esclarecer alguns casos em que alvo e stop aparecem no mesmo candle; o código classifica todos como fracasso, conservadoramente.
 
-4. **BAIXO — A composição por ETF explica parte do pequeno lift.**  
-   [fase_a.py:57](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:57) agrega a base por número de eventos, mas o regime tem outra distribuição entre ETFs. Reponderando a probabilidade-base de cada ETF pela quantidade de eventos daquele ETF no regime, o lift de validação cai de **1,077 para 1,050 nas compras** e de **1,042 para 1,001 nas vendas**.  
-   **A base original é justa para a pergunta pré-especificada:** regime versus todos os meses, mesma direção. Incluir os próprios eventos na base é correto nessa definição, embora comprima o lift. Comparar apenas com meses sem regime seria outra pergunta e exigiria outro critério.
+### O que está correto
 
-5. **MÉDIO — Pré-registro e independência da validação não são verificáveis.**  
-   [fase_a.py:1](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:1) referencia `estrategias/m5-preregistro.md`, ausente no repositório. O cabeçalho é datado de novembro de 2026, após quase toda a validação histórica. Não há evidência suficiente para certificar que universo, parâmetros e limites foram definidos sem consultar 2019+. Também não encontrei evidência de ajuste deliberado; a limitação é documental.
-
-6. **BAIXO — N não mede observações independentes; aprovação usa arredondamento.**  
-   A frequência mensal com horizonte de 50 pregões ([linha 37](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:37)) produz janelas sobrepostas e ETFs correlacionados. Isso limita o significado estatístico de `N≥100`, sem invalidar a frequência descritiva. Nas [linhas 58–65](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m5/fase_a.py:58), o critério usa valores já arredondados, podendo aprovar resultados marginais abaixo dos limites. Aqui estão longe deles.
-
-**O que está correto**
-
-- MM200, retorno126 e volatilidade usam somente informação disponível no fechamento do evento; não há percentil global nem `bfill`.
-- O acompanhamento começa no pregão seguinte e contém exatamente 50 pregões nas janelas completas; timeout vale fracasso.
-- Stop recebe prioridade conservadora. Encontrei **zero primeiros toques ambíguos**; priorizar a abertura nos gaps não mudou os resultados.
-- Nos 12 ETFs carregados, não encontrei datas duplicadas nem OHLC incompatíveis com abertura/fechamento.
-- Fase A mede probabilidade de toque, não R ou rentabilidade: ausência de custos e precificação de opções não é erro desse desfecho. Não encontrei produção M5 para confrontar.
+- **Pivôs, linhas 28–47:** apesar do cálculo retrospectivo dos candidatos, cada pivô só é disponibilizado em `t ≥ índice+3`. Testei todos os prefixos de uma série sintética: adicionar futuro não alterou os valores já disponíveis.
+- **Ranking, linhas 90–94:** cross-sectional por data, usando `t−126 → t−21`; não há percentil calculado sobre toda a história nem `bfill`. Empates recebem posto médio, sem prioridade arbitrária por ticker.
+- **ATR, volume médio e rompimentos:** referências anteriores corretamente deslocadas. Desfechos começam em `t+1`; os últimos 30 pregões sem horizonte completo ficam excluídos.
+- **Dedup, linhas 68–75:** causal, por ativo/setup/lado/perfil/versão; aceita índices 0, 10, 20. Não elimina sobreposição com H=30, o que exige cautela estatística.
+- **σ atual, linha 103:** disponível após o fechamento, portanto não é lookahead nessa convenção. Com σ até ontem, C1 compra/atual na validação melhora **17,71% → 30,93%**, mas continua reprovado. Nenhum perfil oficial passa nessa variante.
+- A escolha consulta somente candidatos aprovados no treino. Não encontrei produção M6 para comparar. O pré-registro externo citado no cabeçalho está ausente; a fidelidade foi confrontada com o resumo fornecido.
 
 ## Veredito
-**As conclusões de reprovação se mantêm nas correções e sensibilidades executadas.**  
-Nenhuma direção alcança conjuntamente P≥40% e lift≥1,3 nos dois períodos.  
-A base é adequada à pergunta declarada; ajustar sua composição enfraquece o pequeno lift observado.  
-O resultado não prova ausência universal de vantagem nem permite concluir rentabilidade de calls ou puts.
+A conclusão **“nada aprovado” se mantém** na reprodução e em todas as sensibilidades executadas.  
+Os pivôs e o ranking não apresentam o lookahead suspeitado; σ atual afeta bastante C1, mas sua defasagem não produz aprovação.  
+A separação treino/validação precisa de purga, e os resultados continuam sendo evidência de eventos, sem comprovação de rentabilidade executável.  
+A reprovação sustenta não avançar; não demonstra que toda reformulação futura desses setups seja inútil.
