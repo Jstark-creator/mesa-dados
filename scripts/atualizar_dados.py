@@ -72,7 +72,8 @@ def baixar(simbolos: list[str], periodo: str) -> dict[str, pd.DataFrame]:
                     df = bruto[s]
                 else:
                     df = bruto
-                df = df.rename(columns=str.lower)[["open", "high", "low", "close", "volume"]].dropna()
+                df = df.rename(columns=str.lower)[["open", "high", "low", "close", "volume"]].dropna(subset=["open", "high", "low", "close"])
+                df["volume"] = df["volume"].fillna(0)  # o Yahoo às vezes deixa o volume do último dia vazio (cripto)
                 if len(df):
                     df.index = pd.to_datetime(df.index).tz_localize(None)
                     resultado[s] = df
