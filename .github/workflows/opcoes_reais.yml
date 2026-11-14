@@ -39,9 +39,9 @@ jobs:
           java-version: "21"
       - if: steps.cred.outputs.ok == 'true'
         run: pip install -r requirements.txt scipy tabulate
-      - name: Cache dos dados brutos (não vão para o repositório)
+      - name: Restaurar cache dos dados brutos (não vão para o repositório)
         if: steps.cred.outputs.ok == 'true'
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: /tmp/td
           key: thetadata-eod-v1-${{ github.run_id }}
@@ -66,12 +66,18 @@ jobs:
         run: |
           SIMB=$(python -c "import json;print(json.load(open('config/opcoes_reais.json'))['simbolos'])")
           INI=$(python -c "import json;print(json.load(open('config/opcoes_reais.json'))['inicio'])")
-          python scripts/lab/etf/thetadata_baixar.py --simbolos "$SIMB" --inicio "$INI" --destino /tmp/td
+          python scripts/lab/etf/thetadata_baixar.py --simbolos "$SIMB" --inicio "$INI" --destino /tmp/td --limite_min 270
       - name: Encerrar terminal e apagar credenciais
         if: always() && steps.cred.outputs.ok == 'true'
         run: |
           pkill -f ThetaTerminalv3.jar || true
           rm -f ~/theta/creds.txt
+      - name: Salvar cache dos dados brutos (sempre, mesmo se algo falhar)
+        if: always() && steps.cred.outputs.ok == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: /tmp/td
+          key: thetadata-eod-v1-${{ github.run_id }}
       - name: Fechamentos não ajustados (strikes)
         if: steps.cred.outputs.ok == 'true'
         run: |

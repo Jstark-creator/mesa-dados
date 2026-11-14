@@ -64,10 +64,12 @@ def main():
     ap.add_argument("--max_dte", type=int, default=75)
     ap.add_argument("--strike_range", type=int, default=40)
     ap.add_argument("--pausa", type=float, default=3.3)  # ~18 req/min
+    ap.add_argument("--limite_min", type=float, default=280, help="para com folga antes do timeout do job; a próxima rodada continua do cache")
     a = ap.parse_args()
     if not esperar_terminal():
         raise SystemExit("Theta Terminal não respondeu na porta 25503")
     hoje = date.today()
+    t0 = time.time()
     for sym in a.simbolos.split(","):
         pasta = Path(a.destino) / sym
         pasta.mkdir(parents=True, exist_ok=True)
@@ -76,6 +78,8 @@ def main():
             mes_fechado = (fim.year, fim.month) < (hoje.year, hoje.month)
             if arq.exists() and mes_fechado:
                 continue  # cache
+            if (time.time() - t0) / 60 > a.limite_min:
+                print(f"limite de {a.limite_min} min atingido: parando; a próxima rodada continua do cache"); return
             url = (f"{BASE}/option/history/eod?symbol={sym}&expiration=*&start_date={ini:%Y%m%d}&end_date={fim:%Y%m%d}"
                    f"&max_dte={a.max_dte}&strike_range={a.strike_range}&format=csv")
             txt = pedir(url)
