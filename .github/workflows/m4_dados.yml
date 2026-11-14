@@ -1,0 +1,42 @@
+name: Dados do método M4 (histórico EUA/BR + COTAHIST B3)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/universo_m4.json"
+      - "scripts/baixar_historico_m4.py"
+      - "scripts/baixar_cotahist.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coleta
+  cancel-in-progress: false
+
+jobs:
+  dados:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/baixar_historico_m4.py 2>&1 | tee /tmp/hist.log
+      - run: |
+          mkdir -p data/b3
+          python scripts/baixar_cotahist.py 2012 2>&1 | tee data/b3/_log.txt
+      - name: Salvar
+        run: |
+          cp /tmp/hist.log data/b3/_log_historico.txt
+          git config user.name "mesa-bot"
+          git config user.email "mesa-bot@users.noreply.github.com"
+          git add data/historico data/b3
+          git diff --cached --quiet && echo "sem mudanças" && exit 0
+          git commit -m "dados: universo M4 e COTAHIST B3 $(date -u +%Y-%m-%d)"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push

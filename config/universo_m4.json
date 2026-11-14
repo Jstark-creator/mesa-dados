@@ -1,0 +1,8 @@
+{
+ "descricao": "Universo do método M4 (opções líquidas). Versão 1, pré-registrada em 14/11/2026. BR será refinado pelo volume real de opções no COTAHIST.",
+ "eua": ["SPY","QQQ","IWM","DIA","XLF","XLE","XLK","SMH","GLD","TLT","EEM","XBI",
+         "AAPL","MSFT","NVDA","AMZN","META","GOOGL","TSLA","AMD","NFLX","AVGO","JPM","BAC","XOM","CVX",
+         "BA","DIS","INTC","MU","CRM","ORCL","UBER","COIN","PLTR","WMT","COST","UNH","LLY","CAT"],
+ "br": ["PETR4","VALE3","BOVA11","ITUB4","BBAS3","BBDC4","ABEV3","B3SA3","PRIO3","MGLU3","SUZB3",
+        "WEGE3","GGBR4","CSNA3","USIM5","BBSE3","ITSA4","RENT3","LREN3","CMIG4","AXIA3","EMBJ3","CPLE3","HYPE3","JBSS3"]
+}
