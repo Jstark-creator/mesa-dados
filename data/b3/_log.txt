@@ -1,15 +1,1 @@
-2012: 70290 linhas de opções, 4422 de ações
-2013: 109120 linhas de opções, 4664 de ações
-2014: 146766 linhas de opções, 4960 de ações
-2015: 162188 linhas de opções, 5047 de ações
-2016: 192884 linhas de opções, 5228 de ações
-2017: 184660 linhas de opções, 5198 de ações
-2018: 230057 linhas de opções, 5579 de ações
-2019: 322321 linhas de opções, 5704 de ações
-2020: 518343 linhas de opções, 5727 de ações
-2021: 688563 linhas de opções, 5681 de ações
-2022: 847302 linhas de opções, 5750 de ações
-2023: 898262 linhas de opções, 5704 de ações
-2024: 1084563 linhas de opções, 5773 de ações
-2025: 1345322 linhas de opções, 5680 de ações
-2026: falhou (IncompleteRead(90607967 bytes read, 1469162 more expected))
+2026: 1577498 linhas de opções, 5208 de ações
