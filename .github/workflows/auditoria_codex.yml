@@ -8,7 +8,10 @@ on:
         default: "Revisão geral dos backtests e do código de produção"
   push:
     paths:
-      - "scripts/**.py"
+      - "scripts/lab/**.py"
+      - "scripts/m3.py"
+      - "scripts/opcoes.py"
+      - "scripts/cripto.py"
       - "config/auditoria.json"
 
 permissions:
