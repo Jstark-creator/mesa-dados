@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-14T10:47:11+00:00",
+ "gerado_em": "2026-11-14T12:52:59+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-14",
-   "preco": 67165.0391,
-   "var_dia_pct": -1.59,
+   "preco": 67019.2188,
+   "var_dia_pct": -1.8,
    "max_dia": 68360.7109,
    "min_dia": 66535.5078
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-14",
-   "preco": 1906.6801,
-   "var_dia_pct": -1.08,
+   "preco": 1898.0601,
+   "var_dia_pct": -1.53,
    "max_dia": 1933.0901,
    "min_dia": 1881.8057
   },
@@ -309,15 +309,6 @@
    "min_dia": 4.02
   },
   {
-   "ticker": "AGNC",
-   "mercado": "eua",
-   "data": "2026-11-13",
-   "preco": 8.23,
-   "var_dia_pct": 0.37,
-   "max_dia": 8.29,
-   "min_dia": 8.04
-  },
-  {
    "ticker": "AKAM",
    "mercado": "eua",
    "data": "2026-11-13",
@@ -325,6 +316,15 @@
    "var_dia_pct": -1.34,
    "max_dia": 87.09,
    "min_dia": 83.77
+  },
+  {
+   "ticker": "AMD",
+   "mercado": "eua",
+   "data": "2026-11-13",
+   "preco": 534.06,
+   "var_dia_pct": -8.75,
+   "max_dia": 571.14,
+   "min_dia": 520.01
   },
   {
    "ticker": "AMZN",
