@@ -1,47 +1,65 @@
-# Auditoria Codex — 2026-11-13T20:19Z — commit 223506f
+# Auditoria Codex — 2026-11-14T14:03Z — commit e9fffa6
 
-Auditei o commit `223506f`, com foco nos dois arquivos solicitados e consulta ao histórico anterior. **Não há cadeias ThetaData nem agregados de `opcoes_reais` disponíveis localmente.** Não acessei a internet nem alterei arquivos do repositório.
+O commit `e9fffa6` adiciona coletores, sem mudar regras de entrada, saída ou cálculo de R. Encontrei problemas de cobertura e consistência dos dados que precisam ser resolvidos antes de validar o M4. Usei apenas arquivos locais e testes em `/tmp`, sem acesso à rede nem alterações no repositório.
 
-Os números abaixo são testes sintéticos em cópias em `/tmp`, não estimativas de impacto histórico. Como falta SciPy no ambiente, fixei as pernas das estruturas nesses testes, verificando apenas execução e contabilização.
+### 1. Universo atual aplicado retrospectivamente — MÉDIO
 
-### Achados
+**Arquivos:** `scripts/baixar_historico_m4.py:9–12`; `scripts/baixar_cotahist.py:35–37,52–55`.
 
-1. **CRÍTICO — Decide e executa usando o mesmo fechamento.**  
-   **Arquivo:** `scripts/lab/etf/matriz_real.py:155–168`; seleção das pernas em `:127–128` e `:91`.  
-   O código observa a cotação final, verifica alvo/stop e registra a saída nessa mesma cotação. Também escolhe strikes com spot e bid/ask finais e simula execução nesses preços. Esses valores só ficam definitivamente conhecidos depois do fechamento; faltam snapshots anteriores ou execução posterior à decisão.  
-   **Teste sintético:** uma call comprada a US$ 10, com closes posteriores de US$ 21 e US$ 5, gera **+1,098R** no original; decidindo no primeiro fechamento e executando no seguinte, **−0,501R**, com comissões. Isso demonstra a sensibilidade, sem quantificar o viés histórico.
+Os dois coletores partem da lista atual de ativos e buscam seu passado. Isso permite estudar uma carteira fixa escolhida hoje, mas não demonstra o desempenho histórico de uma estratégia que selecionaria “opções líquidas” em cada época. Empresas excluídas, deslistadas e antigos integrantes não entram; a liquidez histórica também não é verificada.
 
-2. **CRÍTICO — Operações sem saída desaparecem da amostra.**  
-   **Arquivo:** `scripts/lab/etf/matriz_real.py:68`, `:153–157`, `:169–170`.  
-   Cotações com bid zero são eliminadas, inclusive quando uma opção comprada praticamente perdeu todo o valor. Sem todas as pernas cotadas, a gestão pula o dia; chegando ao vencimento ou ao fim dos dados sem saída, a operação inteira é descartada. Isso pode excluir perdas e condiciona a inclusão à disponibilidade futura de cotações.  
-   **Teste sintético:** uma entrada válida sem cotação posterior da perna produz **zero operações registradas**. É necessário distinguir posições abertas no fim da amostra de falhas de dados e manter ambas contabilizadas com tratamento explícito.
+A descrição “pré-registrada em 14/11/2026” protege testes prospectivos, mas não torna retrospectivos os critérios de seleção. Refinar o universo usando volume de todo o COTAHIST acrescentaria informação futura se essa seleção fosse aplicada aos primeiros anos.
 
-3. **MÉDIO — Estrutura de crédito pode virar débito e interromper toda a execução.**  
-   **Arquivo:** `scripts/lab/etf/matriz_real.py:139–143`, `:162`.  
-   A classificação depende do custo depois do spread e das comissões. Uma trava de crédito com spreads largos pode exigir pagamento líquido; o código então procura `alvo` na configuração da trava de crédito, onde essa chave não existe.  
-   **Teste sintético:** put vendida com bid/ask **1/3** e comprada com **0,9/2,9** resulta em desembolso natural de **US$ 1,913 por ação**, incluindo comissão, e termina em **`KeyError: 'alvo'`**. Deve rejeitar a montagem incompatível antes de simular.
+**Correção:** definir integrantes e elegibilidade por data, com liquidez calculada apenas sobre pregões anteriores. Não há dados locais suficientes para quantificar o efeito em R.
 
-4. **MÉDIO — Comparação Black-Scholes não controla período nem operações.**  
-   **Arquivo:** `scripts/lab/etf/matriz_real.py:189`, `:212–217`.  
-   O modelo BS recebe toda a base após o início, sem limitar ao último dia da cadeia real. Meses ausentes também continuam no BS. Além disso, usa entrada no fechamento do sinal e vencimento sintético de 45 dias; o teste real entra depois e escolhe vencimento listado. Portanto, diferenças de média não isolam erro de precificação ou slippage.
+### 2. Filtro por raiz perde códigos históricos e não identifica integralmente o objeto — MÉDIO
 
-5. **MÉDIO — Sobreposição sem controle de capital.**  
-   **Arquivo:** `scripts/lab/etf/matriz_real.py:173`.  
-   Autoriza nova entrada após cinco datas disponíveis, mesmo com a anterior aberta. Isso pode ser uma política válida, mas faltam limite de posições, margem e capital reservado. A média por operação é descritiva; `total_R` não representa retorno de uma carteira executável, e operações simultâneas são dependentes.
+**Arquivo:** `scripts/baixar_cotahist.py:34–37,44–47`.
 
-6. **MÉDIO — Downloads incompletos podem gerar relatório sem alerta de cobertura.**  
-   **Arquivo:** `scripts/lab/etf/thetadata_baixar.py:76–88`; consumo em `matriz_real.py:117–121`.  
-   Falhas e respostas vazias apenas imprimem mensagem e seguem. O backtest aceita os meses restantes e chama de “ontem” a data anterior com dados de opções, mesmo que existam pregões intermediários. Isso altera o sinal efetivamente utilizado. Falta validar cobertura e usar o pregão anterior da base de mercado.
+A seleção exige que as quatro primeiras letras do código pertençam ao universo atual. Mudanças de código não recebem tratamento: registros sob uma raiz antiga são descartados. Além disso, `ativo=raiz` não identifica a classe da ação subjacente; não é seguro associar automaticamente toda opção dessa raiz ao único ticker configurado.
+
+Em teste sintético representando uma mudança de raiz, o parser reteve **1 de 2 registros**; incluindo explicitamente a raiz anterior, reteve **2 de 2**. Isso demonstra a perda pelo filtro, não mede a perda histórica efetiva.
+
+**Correção:** cadastro temporal de códigos e identificação do subjacente por contrato. Guardar os campos de identificação disponíveis no registro ajuda a reconciliar séries.
+
+### 3. Histórico ajustado e opções nominais exigem reconciliação — MÉDIO
+
+**Arquivo:** `scripts/baixar_historico_m4.py:6,12,17`; dependência em `scripts/atualizar_dados.py:59–60`.
+
+O histórico de ações usa `auto_adjust=True`, enquanto o COTAHIST fornece preços e strikes históricos nominais. Combinar diretamente esses arquivos para moneyness, IV, delta ou exercício mistura escalas, especialmente antes de dividendos e eventos societários.
+
+**Não encontrei um consumidor M4 fazendo essa combinação**, portanto este é um risco concreto da interface dos dados, ainda não uma distorção de resultado demonstrada.
+
+**Correção:** guardar OHLC sem ajuste para casar com contratos reais e, separadamente, séries ajustadas para indicadores, com tratamento explícito dos eventos. Sem COTAHIST local, não cabe apresentar impacto numérico.
+
+### 4. Cache congela cobertura e pode deixar ações ausentes — MÉDIO
+
+**Arquivo:** `scripts/baixar_cotahist.py:59–61`.
+
+Basta existir `opcoes_<ano>.csv.gz` de um ano encerrado para pular todo o processamento. O código não verifica se o universo mudou nem se `acoes_<ano>.csv.gz` existe. Assim, ampliar o universo pode produzir cobertura diferente por período, silenciosamente.
+
+**Teste isolado:** com opções de 2020 em cache e ações ausentes, o ano **não foi reprocessado** e o arquivo de ações **continuou ausente**.
+
+**Correção:** validar ambos os arquivos e registrar versão do parser e universo usado; idealmente, preservar o arquivo bruto e refazer a extração quando o filtro mudar.
+
+### 5. Falhas permitem uma base incompleta sem erro final — BAIXO
+
+**Arquivos:** `scripts/baixar_cotahist.py:62–65`; `scripts/baixar_historico_m4.py:14–17`.
+
+Falhas de download ou ausência de dados apenas imprimem mensagens e continuam. Arquivos antigos também permanecem no destino. Um consumidor pode confundir uma mistura de séries antigas, novas e ausentes com uma coleta completa.
+
+No teste com download substituído por uma função que falha, o coletor COTAHIST encerrou normalmente apesar das falhas. Recomendo manifesto de cobertura e retorno de erro quando houver lacunas obrigatórias.
 
 ### O que está correto
 
-- Sinal e faixa de IV usam uma data anterior à entrada; não encontrei `bfill` nem percentil calculado sobre toda a amostra nesse fluxo. O percentil herdado é móvel.
-- Os lados de compra/venda estão corretos na entrada e na recompra/liquidação; há comissão nas duas pontas para as quantidades atuais, todas unitárias.
-- Não há resolução intradiária favorável entre stop e alvo: a gestão usa apenas fechamentos e registra o preço observado, sem limitar artificialmente a perda ao stop.
-- Não identifiquei nova divergência com produção: estes arquivos implementam um experimento separado, sem demonstrar equivalência operacional com `opcoes.py`.
+- Não há indicadores, percentis globais, `bfill` ou decisões de trading nesses dois arquivos.
+- Não há resolução favorável de stop/alvo, cálculo de R ou cobrança de custos a auditar aqui.
+- O parser separa calls e puts pelo mercado e preserva datas de negociação e vencimento.
+- O ano corrente é reprocessado, permitindo atualizar sua cobertura.
+- Não há divergência nova entre laboratório e produção demonstrada por este commit.
 
 ## Veredito
-Mantém-se a conclusão anterior: ainda falta evidência para transformar essa matriz em playbook.  
-O uso de bid/ask reais melhora o modelo, mas não resolve execução causal nem descarte de operações sem saída.  
-Sem as cadeias locais, nenhuma rentabilidade histórica nova pôde ser confirmada.  
-Resultados positivos precisam ser reavaliados após essas correções e a validação da cobertura.
+As conclusões anteriores sobre E1/E2 não são alteradas por estes coletores.
+O commit não demonstra vantagem econômica do M4 nem resolve as ressalvas anteriores sobre opções.
+A base proposta precisa de universo temporal, identificação dos contratos e reconciliação de preços.
+Sem COTAHIST local, não foi possível medir impacto real em R ou validar integralmente o layout.
