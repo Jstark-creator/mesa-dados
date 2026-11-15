@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-15T16:46:18+00:00",
+ "gerado_em": "2026-11-15T18:48:40+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-15",
-   "preco": 64646.7617,
-   "var_dia_pct": 0.81,
+   "preco": 64584.6797,
+   "var_dia_pct": 0.71,
    "max_dia": 65889.2344,
    "min_dia": 62093.5156
   },
@@ -276,10 +276,19 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-15",
-   "preco": 1814.25,
-   "var_dia_pct": 2.55,
+   "preco": 1812.77,
+   "var_dia_pct": 2.47,
    "max_dia": 1837.7209,
    "min_dia": 1714.293
+  },
+  {
+   "ticker": "AAOI",
+   "mercado": "eua",
+   "data": "2026-11-13",
+   "preco": 49.89,
+   "var_dia_pct": -5.6,
+   "max_dia": 53.5,
+   "min_dia": 47.275
   },
   {
    "ticker": "AAPL",
@@ -1004,11 +1013,11 @@
   {
    "ticker": "USD/BRL",
    "mercado": "mercado",
-   "data": "2026-11-13",
-   "preco": 5.6407,
-   "var_dia_pct": 1.05,
-   "max_dia": 5.6669,
-   "min_dia": 5.6263
+   "data": "2026-11-15",
+   "preco": 5.6408,
+   "var_dia_pct": 0.0,
+   "max_dia": 5.6666,
+   "min_dia": 5.6408
   },
   {
    "ticker": "VIX",
