@@ -137,7 +137,9 @@ def simular(sym, cad, spot, base, sinal, nome_e, f, espaco=5):
         if abs(meio) > 0:
             spreads.append(abs(nat - meio) / abs(meio))
         custo = sum(q * preco_exec(b, a, q, f) for q, b, a in q0) + COMISSAO * len(q0)
-        debito = custo > 0
+        debito = "cap" not in est  # o tipo vem da estrutura, não do sinal do custo
+        if debito and custo <= 0:
+            continue
         if debito:
             risco = custo
             maxg = abs(pernas[0][2] - pernas[1][2]) - custo if len(pernas) == 2 else None
