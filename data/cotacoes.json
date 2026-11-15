@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-15T02:53:37+00:00",
+ "gerado_em": "2026-11-15T04:57:59+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,18 +267,18 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-15",
-   "preco": 64750.3281,
-   "var_dia_pct": -5.13,
-   "max_dia": 64797.2305,
+   "preco": 64926.6016,
+   "var_dia_pct": -4.87,
+   "max_dia": 65289.0078,
    "min_dia": 62093.5156
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-15",
-   "preco": 1812.8,
-   "var_dia_pct": -5.96,
-   "max_dia": 1810.6964,
+   "preco": 1811.71,
+   "var_dia_pct": -6.01,
+   "max_dia": 1825.3112,
    "min_dia": 1714.293
   },
   {
@@ -442,15 +442,6 @@
    "var_dia_pct": 0.31,
    "max_dia": 35.51,
    "min_dia": 34.83
-  },
-  {
-   "ticker": "COHR",
-   "mercado": "eua",
-   "data": "2026-11-13",
-   "preco": 218.15,
-   "var_dia_pct": -6.0,
-   "max_dia": 233.68,
-   "min_dia": 207.69
   },
   {
    "ticker": "CRWD",
