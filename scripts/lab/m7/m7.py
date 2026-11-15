@@ -161,7 +161,9 @@ def main():
     irx = pd.read_csv(RAIZ / "data" / "etf" / "IRX.csv", index_col="data", parse_dates=True).close / 100
     out = RAIZ / "data" / "lab" / "m7"; out.mkdir(parents=True, exist_ok=True)
     medidas = []; ops = []
-    for sym in ETFS:
+    completos = [s_ for s_ in ETFS if len(list((Path(a.dados) / s_).glob("*.csv.gz"))) >= 41]
+    print(f"ETFs com cadeia completa (>= 41 meses): {completos}")
+    for sym in completos:
         try:
             cad = carregar_cadeia(Path(a.dados), sym)
         except SystemExit:
@@ -212,7 +214,7 @@ def main():
     D = pd.DataFrame(dec)
     sinais = M.groupby("etf")[["barata", "cara"]].sum() if not M.empty else pd.DataFrame()
     with open(out / "resultado.md", "w") as fh:
-        fh.write("# M7 — Preço da volatilidade (gerado automaticamente; cotações reais ThetaData)\n\n## Decisão pré-registrada\n\n")
+        fh.write(f"# M7 — Preço da volatilidade (gerado automaticamente; cotações reais ThetaData)\n\nETFs incluídos (cadeia completa): {completos}\n\n## Decisão pré-registrada\n\n")
         fh.write(D.to_markdown(index=False) + f"\n\nPerfil do Módulo 1 escolhido no treino: {perfil}\n\n## Resumo por estrutura, execução e período\n\n")
         fh.write(resumo.to_markdown(index=False) + "\n\n## Dias de sinal por ETF\n\n" + sinais.to_markdown())
         if not M.empty:
