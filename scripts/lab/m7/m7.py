@@ -22,6 +22,23 @@ def escolher_exp(ch, dia):
     return min(ok, key=lambda e: abs((e - alvo).days)) if ok else None
 
 
+def spot_paridade(ch, S_ref, dia, r, q):
+    """Preço do ativo implícito pela paridade put-call no vencimento ~45d e no strike com |C−P| mínimo.
+    Usa os mesmos strikes negociados na época (resolve desdobramentos do yfinance)."""
+    exp = escolher_exp(ch, dia)
+    if exp is None:
+        return np.nan
+    T = (exp - dia).days / 365; c = ch[ch.exp == exp]
+    m = c.assign(mid=(c.bid + c.ask) / 2).pivot_table(index="strike", columns="tipo", values="mid")
+    if not {"c", "p"} <= set(m.columns):
+        return np.nan
+    m = m.dropna()
+    if m.empty:
+        return np.nan
+    k = (m.c - m.p).abs().idxmin()
+    return float((m.loc[k, "c"] - m.loc[k, "p"] + k * math.exp(-r * T)) * math.exp(q * T))
+
+
 def iv45(ch, S, dia, r, q):
     exp = escolher_exp(ch, dia)
     if exp is None:
@@ -170,13 +187,26 @@ def main():
             print(f"{sym}: sem cadeia"); continue
         if sym not in spot_all:
             continue
-        spot = spot_all[sym].dropna(); grupos = cad.groupby("dia")
-        dias = [d for d in sorted(grupos.groups) if d in spot.index]
-        hv = (np.log(spot).diff().rolling(20).std() * math.sqrt(252))
-        r_ser = irx.reindex(spot.index).ffill().fillna(.04)
+        spot_yf = spot_all[sym].dropna(); grupos = cad.groupby("dia")
+        dias = [d for d in sorted(grupos.groups) if d in spot_yf.index]
+        r_ser = irx.reindex(spot_yf.index).ffill().fillna(.04)
+        # preço para precificar = paridade put-call (mesma base dos strikes); HV = retornos AJUSTADOS (sem saltos de desdobramento)
+        spot = pd.Series({d: spot_paridade(grupos.get_group(d), float(spot_yf[d]), d, float(r_ser[d]), Q[sym]) for d in dias}).dropna()
+        dias = [d for d in dias if d in spot.index]
+        adj_hist = pd.read_csv(RAIZ / "data" / "historico" / f"{sym}.csv", index_col="data", parse_dates=True).close
+        hv = (np.log(adj_hist).diff().rolling(20).std() * math.sqrt(252)).reindex(spot.index)
         iv = pd.Series({d: iv45(grupos.get_group(d), float(spot[d]), d, float(r_ser[d]), Q[sym]) for d in dias})
-        pct = iv.expanding(min_periods=127).apply(lambda x: (x[:-1][-252:] < x[-1]).mean(), raw=True)
+        def _pct(x):
+            x = x[~np.isnan(x)]
+            if len(x) < 127 or np.isnan(x[-1]):
+                return np.nan
+            ant = x[:-1][-252:]
+            return (ant < x[-1]).mean()
+        iv = iv.astype(float)
+        pct = iv.expanding(min_periods=1).apply(_pct, raw=True)
+        pct[iv.isna()] = np.nan
         razao = iv / hv.reindex(iv.index)
+        print(f"{sym}: paridade vs yfinance (mediana da razão) = {float((spot / spot_yf.reindex(spot.index)).median()):.3f}")
         adj = pd.read_csv(RAIZ / "data" / "historico" / f"{sym}.csv", index_col="data", parse_dates=True).close
         tend = (adj > adj.rolling(200).mean()).reindex(iv.index).fillna(True)
         barata = ((razao < 0.9) & (pct <= 1 / 3)).fillna(False)
