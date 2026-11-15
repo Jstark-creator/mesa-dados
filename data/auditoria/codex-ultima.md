@@ -1,45 +1,58 @@
-# Auditoria Codex — 2026-11-15T02:59Z — commit b97c635
+# Auditoria Codex — 2026-11-15T08:00Z — commit bf9159a
 
-Auditei `b97c635`, com foco em `scripts/lab/m7/m7.py`, e consultei o histórico. **Não alterei o repositório nem acessei a internet.** As cadeias ThetaData e `/tmp/td/spot.csv` não estão disponíveis: conferi os agregados locais e executei funções do simulador com dados sintéticos em `/tmp`. Os números sintéticos abaixo demonstram mecanismos, não estimam o impacto histórico.
+Auditei `bf9159a`, com foco em `scripts/lab/etf/matriz_real.py` e leitura do histórico anterior. **A correção do commit está correta, mas não resolve limitações relevantes do simulador.**
+
+Não há cadeias brutas da ThetaData nem resultados de `opcoes_reais` disponíveis neste ambiente. Portanto, não reproduzi médias históricas. Os números abaixo são **testes sintéticos de lógica**, executados sobre cópias em `/tmp`. Nenhum arquivo do repositório foi alterado; não acessei a internet.
 
 ### Achados
 
-1. **CRÍTICO — decisão e execução da saída na mesma cotação final.**  
-   **Arquivo:** `scripts/lab/m7/m7.py:140–152`.  
-   O código observa o bid/ask de fechamento, calcula se atingiu stop/alvo e executa exatamente nessa cotação. Isso pressupõe conseguir negociar depois de conhecer o fechamento definitivo. Também seleciona os strikes usando os preços finais da própria entrada (`:118–125`), sem representar a latência.  
-   **Teste em `/tmp`:** um straddle entra com cada perna a US$5; ambas passam a US$8 e depois a US$2. O simulador registra **+0,597R**; uma cópia que executa na próxima cotação registra **−0,602R**, incluindo comissões. O impacto histórico pode ter qualquer direção. É necessário usar observações anteriores ao horário de execução ou executar posteriormente.
+**1. CRÍTICO — A cotação de fechamento determina a saída e também seu preço de execução.**  
+Arquivo: [matriz_real.py:160](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/matriz_real.py:160), condições nas linhas 165–170.
 
-2. **CRÍTICO — operações sem saída observável desaparecem, liberando capital retroativamente.**  
-   **Arquivo:** `scripts/lab/m7/m7.py:138–154`, com efeito em `:156`.  
-   Sem cotação completa das pernas, o simulador pula o dia, inclusive quando já deveria encerrar por prazo. Se não encontra saída antes do vencimento/fim da amostra, elimina a operação inteira. Como `livre` só é atualizado nas operações concluídas, pode aceitar novas entradas enquanto a posição eliminada estaria aberta. A seleção depende da disponibilidade futura de dados.  
-   **Teste sintético:** entrada válida seguida de ausência das pernas de saída produz **zero operações registradas**. Falta registrar posições pendentes, reservar capital e estabelecer tratamento explícito para vencimento/cotações ausentes. O histórico anterior já apontava o descarte; o problema permanece.
+O simulador observa o valor final da estrutura, verifica alvo/stop e registra a liquidação nessa mesma cotação. Isso pressupõe conseguir negociar depois de conhecer a informação que dispara a decisão. Cotações diárias finais não demonstram essa possibilidade; seriam necessários dados anteriores ao encerramento ou execução posterior.
 
-3. **MÉDIO — paridade é uma aproximação sem controle de qualidade.**  
-   **Arquivo:** `scripts/lab/m7/m7.py:25–39` e `:194`.  
-   A mudança corrige a incompatibilidade de escala dos desdobramentos, mas passa a substituir todo spot pela paridade europeia com dividend yield fixo. Para opções americanas de ETFs, exercício antecipado e dividendos discretos podem produzir diferenças. Além disso, escolhe o menor `|C−P|` sem limitar spreads ou validar a consistência entre strikes; `S_ref` é recebido e ignorado.  
-   Uma cotação problemática pode contaminar simultaneamente spot, IV, percentil e escolha de strikes. Recomendo verificar dispersão da paridade entre pares líquidos e confrontar com spot nominal ajustado apenas pelos eventos societários pertinentes. **Impacto histórico não quantificável aqui.**
+Em exemplo sintético, uma call entra por US$1,00, alcança US$2,20 no fechamento seguinte e depois cai para US$0,40. Com comissões:
 
-4. **MÉDIO — limite de grupo aplicado depois da simulação distorce a carteira.**  
-   **Arquivo:** `scripts/lab/m7/m7.py:110–156`, `:160–171` e `:227`.  
-   Primeiro cada ETF ocupa sua agenda individual; depois o filtro rejeita operações pelo limite de grupo. Uma operação rejeitada já impediu entradas posteriores daquele ETF durante a simulação, embora nunca tenha integrado a carteira final. Isso não equivale a simular as vagas cronologicamente.  
-   Nos empates, a prioridade é alfabética (`etf`), sem justificativa econômica documentada no arquivo. O efeito pode ser positivo ou negativo; exige repetir a simulação com controle conjunto das posições.
+- Código atual: **+1,179R**.
+- Cópia com execução no fechamento seguinte à decisão: **−0,609R**.
 
-5. **MÉDIO — universo condicionado à cobertura futura e resultados ainda anteriores à correção.**  
-   **Arquivo:** `scripts/lab/m7/m7.py:181`; referência ao pré-registro em `:1`.  
-   Exigir 41 arquivos mensais para incluir um ETF usa cobertura conhecida somente no fim da amostra; tampouco garante integridade diária. A ressalva é menor se o universo e esse filtro foram realmente fixados antes da análise, mas o pré-registro referenciado **não existe neste checkout**, impedindo essa confirmação.  
-   Os resultados locais também não foram regenerados no último commit: ainda exibem XLK com quartil superior de IV/HV de **14,41**, compatível com o problema anterior. Portanto, não comprovam o desempenho da versão corrigida.
+Isso demonstra sensibilidade à sequência temporal, não estima o impacto histórico. A montagem por delta com o spot e a cadeia do próprio fechamento também pressupõe seleção e execução simultâneas, nas linhas 127–132.
+
+**2. MÉDIO — Operações executadas podem desaparecer por falta de cotação de saída.**  
+Arquivo: [matriz_real.py:155](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/matriz_real.py:155), linhas 157–172.
+
+Sem cotação de alguma perna, o código pula o dia. Se não encontrar saída antes do vencimento ou do fim da amostra, descarta a operação inteira. Não registra posição aberta, pendência de dados ou liquidação no vencimento.
+
+O filtro `bid > 0`, na linha 68, agrava o problema: uma opção comprada praticamente sem valor pode justamente perder sua cotação válida. A seleção da amostra passa a depender do que aconteceu depois da entrada; o sentido líquido do viés exige os dados brutos.
+
+Teste sintético: **uma entrada executada, nenhuma saída cotada → zero operações reportadas**. Essa pendência já constava no histórico para M7 e também existe neste simulador.
+
+**3. MÉDIO — Cinco pregões entre entradas não impedem posições sobrepostas.**  
+Arquivo: [matriz_real.py:175](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/matriz_real.py:175).
+
+`prox` depende da entrada anterior, sem considerar sua saída. Logo, o mesmo ativo e a mesma estratégia podem acumular posições enquanto as anteriores continuam abertas.
+
+Em teste sintético com preços constantes: **seis operações encerradas, até quatro simultâneas**. Na cópia que também aguarda a saída anterior: **duas operações, máximo de uma simultânea**.
+
+Sobreposição pode ser uma escolha válida, mas exige capital e limite de exposição explícitos. A soma de R reportada não representa retorno de uma carteira com capital fixo, e as operações não são observações independentes.
+
+**4. MÉDIO — A comparação Black-Scholes não garante o “mesmo período”.**  
+Arquivo: [matriz_real.py:215](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/matriz_real.py:215), linhas 216–219.
+
+O comparador recebe toda a `base` e é filtrado apenas por `entrada >= inicio`. Não há corte no último dia disponível da cadeia real. Se o cache de opções terminar antes dos preços locais, o modelo inclui um período adicional.
+
+Além disso, `M.simular` executa no dia do sinal, enquanto a matriz real usa o sinal anterior; os vencimentos também diferem: prazo sintético fixo versus vencimento listado. A diferença entre médias mistura execução, datas e contratos com o efeito do modelo de preços.
 
 ### O que está correto
 
-- O percentil revisado exclui NaNs do denominador e compara a IV atual somente com observações anteriores; não usa a amostra inteira nem `bfill`.
-- Sinal e tendência usados na entrada vêm da observação anterior. HV com fechamento do dia do sinal é causal nesse fluxo.
-- A HV agora usa retornos ajustados, evitando saltos artificiais de desdobramento.
-- Há spreads e comissões nos dois lados. As fórmulas básicas de débito, crédito e risco máximo são coerentes; o menor risco registrado é **US$150,80**, sem denominador quase zero nos CSVs.
-- P1/P2 é escolhido pelo treino. Embora a separação use apenas a entrada, encontrei **zero operações cruzando o corte** nos resultados salvos.
-- Não há sobreposição por ETF dentro de cada cenário salvo; os cenários são alternativas.
+- **O commit acerta ao identificar débito/crédito pela estrutura**, evitando tratar crédito líquido negativo após custos como uma compra.
+- Sinais e faixa de IV usam a observação anterior à entrada. O percentil herdado é móvel e retrospectivo; não encontrei percentil calculado sobre toda a amostra nem `bfill`.
+- Compra no ask/venda no bid e operações inversas na saída estão coerentes no cenário natural.
+- Há comissão na entrada e na saída; o resultado desconta ambas.
+- Stops são avaliados pelo preço observado, sem limitar artificialmente a perda ao gatilho. Não há desempate intradiário entre stop e alvo favorecendo o resultado.
 
 ## Veredito
-Mantém-se a conclusão prudente: **M7 ainda não demonstrou vantagem operacional**.  
-Os agregados anteriores reprovam todas as estruturas, mas não validam a versão corrigida.  
-Execução no mesmo fechamento e descarte de posições impedem confiar nas médias como desempenho negociável.  
-A correção do percentil é adequada; a eficácia da nova base por paridade permanece sem confirmação histórica independente.
+A correção pontual do commit se mantém e melhora a classificação das estruturas.  
+A matriz ainda não demonstra vantagem executável: temporalidade das saídas e descarte de posições comprometem essa interpretação.  
+Não há dados brutos locais para quantificar quanto as médias históricas mudariam.  
+A conclusão anterior de “vantagem não demonstrada” permanece; a alteração auditada não modifica o simulador próprio da M7.
