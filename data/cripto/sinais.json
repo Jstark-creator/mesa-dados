@@ -1,6 +1,6 @@
 {
- "gerado_em": "2026-11-15T01:30+00:00",
- "candle": "2026-11-13",
+ "gerado_em": "2026-11-16T01:48+00:00",
+ "candle": "2026-11-14",
  "regras": "playbooks/cripto.md v1",
  "e1": [
   {
@@ -13,9 +13,9 @@
     "entrada": 86604.375,
     "preco_saida": 81646.83808889533
    },
-   "preco": 68249.27,
-   "mm200": 73035.39,
-   "funding_pct_8h": -0.0023
+   "preco": 64128.05,
+   "mm200": 72974.27,
+   "funding_pct_8h": -0.0034
   },
   {
    "ativo": "BTC",
@@ -24,18 +24,18 @@
    "entrada_data": "2026-11-13",
    "entrada": 71342.96875,
    "stop": 75881.89597626538,
-   "fechamento": 68249.2734375,
+   "fechamento": 64128.05078125,
    "nivel_saida": 81079.7890625,
-   "resultado_R": 0.68,
+   "resultado_R": 1.59,
    "ultima_saida": {
     "saida": "2026-06-15",
     "motivo": "canal",
     "entrada": 75488.3125,
     "preco_saida": 65711.109375
    },
-   "preco": 68249.27,
-   "mm200": 73035.39,
-   "funding_pct_8h": -0.0023
+   "preco": 64128.05,
+   "mm200": 72974.27,
+   "funding_pct_8h": -0.0034
   },
   {
    "ativo": "ETH",
@@ -47,9 +47,9 @@
     "entrada": 2251.444091796875,
     "preco_saida": 2249.498291015625
    },
-   "preco": 1927.59,
-   "mm200": 2147.23,
-   "funding_pct_8h": -0.0069
+   "preco": 1769.12,
+   "mm200": 2144.62,
+   "funding_pct_8h": -0.0024
   },
   {
    "ativo": "ETH",
@@ -58,18 +58,18 @@
    "entrada_data": "2026-11-09",
    "entrada": 2120.980224609375,
    "stop": 2311.687684286703,
-   "fechamento": 1927.5888671875,
+   "fechamento": 1769.1204833984375,
    "nivel_saida": 2446.0478515625,
-   "resultado_R": 1.01,
+   "resultado_R": 1.85,
    "ultima_saida": {
     "saida": "2026-06-16",
     "motivo": "canal",
     "entrada": 2179.8544921875,
     "preco_saida": 1794.93798828125
    },
-   "preco": 1927.59,
-   "mm200": 2147.23,
-   "funding_pct_8h": -0.0069
+   "preco": 1769.12,
+   "mm200": 2144.62,
+   "funding_pct_8h": -0.0024
   }
  ],
  "e2": {
@@ -79,7 +79,7 @@
   "nota": "Carteira do sistema: 0/3 vagas ocupadas. As vagas REAIS vêm do Journal: o agente usa as posições reais; dentro_do_limite considera só a carteira do sistema."
  },
  "acumulo_btc": {
-  "mayer": 0.93,
+  "mayer": 0.88,
   "multiplicador_aporte": 2,
   "fear_greed": 10,
   "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
