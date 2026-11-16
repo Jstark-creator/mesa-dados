@@ -1,7 +1,9 @@
 {
- "gerado_em": "2026-11-14T15:23:08+00:00",
- "ativos_ok": 103,
+ "gerado_em": "2026-11-16T22:56:32+00:00",
+ "ativos_ok": 102,
  "ativos_total": 103,
- "falhas": [],
- "sinais": 0
+ "falhas": [
+  "UNG"
+ ],
+ "sinais": 2
 }
