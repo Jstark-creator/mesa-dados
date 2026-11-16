@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-16T08:46:29+00:00",
+ "gerado_em": "2026-11-16T11:28:06+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,19 +267,19 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-16",
-   "preco": 64521.1406,
-   "var_dia_pct": -1.2,
+   "preco": 64577.1914,
+   "var_dia_pct": -1.11,
    "max_dia": 65363.4375,
-   "min_dia": 64254.1133
+   "min_dia": 64146.6758
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-16",
-   "preco": 1807.2,
-   "var_dia_pct": -1.54,
+   "preco": 1807.47,
+   "var_dia_pct": -1.53,
    "max_dia": 1837.1619,
-   "min_dia": 1804.7687
+   "min_dia": 1793.4614
   },
   {
    "ticker": "AAOI",
@@ -933,10 +933,10 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 103.44,
-   "var_dia_pct": 0.03,
-   "max_dia": 103.486,
-   "min_dia": 103.364
+   "preco": 103.552,
+   "var_dia_pct": 0.14,
+   "max_dia": 103.563,
+   "min_dia": 103.331
   },
   {
    "ticker": "Dow Jones",
@@ -969,8 +969,8 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 3861.8999,
-   "var_dia_pct": -0.63,
+   "preco": 3878.2,
+   "var_dia_pct": -0.21,
    "max_dia": 3904.3,
    "min_dia": 3835.2
   },
@@ -978,8 +978,8 @@
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 88.87,
-   "var_dia_pct": 0.35,
+   "preco": 88.16,
+   "var_dia_pct": -0.45,
    "max_dia": 89.49,
    "min_dia": 87.59
   },
@@ -1014,8 +1014,8 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 5.6666,
-   "var_dia_pct": 0.46,
+   "preco": 5.6408,
+   "var_dia_pct": 0.0,
    "max_dia": 5.6666,
    "min_dia": 5.6408
   },
@@ -1023,10 +1023,10 @@
    "ticker": "VIX",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 20.1,
-   "var_dia_pct": 4.15,
-   "max_dia": 20.1,
-   "min_dia": 19.92
+   "preco": 20.03,
+   "var_dia_pct": 3.78,
+   "max_dia": 20.16,
+   "min_dia": 19.84
   }
  ]
 }
