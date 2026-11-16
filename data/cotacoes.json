@@ -1,22 +1,22 @@
 {
- "gerado_em": "2026-11-16T17:18:40+00:00",
+ "gerado_em": "2026-11-16T17:57:05+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
    "ticker": "AXIA3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 47.53,
-   "var_dia_pct": -1.8,
+   "preco": 47.39,
+   "var_dia_pct": -2.09,
    "max_dia": 48.4,
-   "min_dia": 47.4
+   "min_dia": 47.28
   },
   {
    "ticker": "BBSE3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 37.01,
-   "var_dia_pct": -0.86,
+   "preco": 37.02,
+   "var_dia_pct": -0.83,
    "max_dia": 37.5,
    "min_dia": 36.94
   },
@@ -33,17 +33,17 @@
    "ticker": "BPAC11",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 52.82,
-   "var_dia_pct": -2.19,
+   "preco": 52.69,
+   "var_dia_pct": -2.43,
    "max_dia": 53.98,
-   "min_dia": 52.68
+   "min_dia": 52.63
   },
   {
    "ticker": "BRSR6",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 12.58,
-   "var_dia_pct": -1.41,
+   "preco": 12.56,
+   "var_dia_pct": -1.57,
    "max_dia": 12.82,
    "min_dia": 12.51
   },
@@ -60,8 +60,8 @@
    "ticker": "COGN3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 1.58,
-   "var_dia_pct": 0.64,
+   "preco": 1.59,
+   "var_dia_pct": 1.27,
    "max_dia": 1.6,
    "min_dia": 1.54
   },
@@ -69,17 +69,17 @@
    "ticker": "CSNA3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 3.65,
-   "var_dia_pct": -1.88,
+   "preco": 3.62,
+   "var_dia_pct": -2.69,
    "max_dia": 3.78,
-   "min_dia": 3.63
+   "min_dia": 3.62
   },
   {
    "ticker": "CURY3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 27.8,
-   "var_dia_pct": -1.25,
+   "preco": 27.66,
+   "var_dia_pct": -1.74,
    "max_dia": 28.13,
    "min_dia": 27.53
   },
@@ -87,26 +87,26 @@
    "ticker": "CYRE3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 19.44,
-   "var_dia_pct": -1.52,
+   "preco": 19.36,
+   "var_dia_pct": -1.93,
    "max_dia": 19.78,
-   "min_dia": 19.35
+   "min_dia": 19.31
   },
   {
    "ticker": "EMBJ3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 110.98,
-   "var_dia_pct": -0.96,
+   "preco": 110.12,
+   "var_dia_pct": -1.73,
    "max_dia": 112.83,
-   "min_dia": 110.04
+   "min_dia": 110.05
   },
   {
    "ticker": "ENEV3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 26.49,
-   "var_dia_pct": -1.19,
+   "preco": 26.47,
+   "var_dia_pct": -1.27,
    "max_dia": 26.9,
    "min_dia": 26.27
   },
@@ -114,26 +114,26 @@
    "ticker": "EQTL3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 33.84,
-   "var_dia_pct": -1.46,
+   "preco": 33.8,
+   "var_dia_pct": -1.57,
    "max_dia": 34.27,
-   "min_dia": 33.71
+   "min_dia": 33.7
   },
   {
    "ticker": "HYPE3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 22.09,
-   "var_dia_pct": -1.69,
+   "preco": 22.07,
+   "var_dia_pct": -1.78,
    "max_dia": 22.5,
-   "min_dia": 22.06
+   "min_dia": 22.04
   },
   {
    "ticker": "IRBR3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 59.55,
-   "var_dia_pct": -1.29,
+   "preco": 59.23,
+   "var_dia_pct": -1.82,
    "max_dia": 61.21,
    "min_dia": 58.48
   },
@@ -141,8 +141,8 @@
    "ticker": "JHSF3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 10.02,
-   "var_dia_pct": 2.45,
+   "preco": 9.99,
+   "var_dia_pct": 2.15,
    "max_dia": 10.09,
    "min_dia": 9.7
   },
@@ -150,8 +150,8 @@
    "ticker": "MGLU3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 7.37,
-   "var_dia_pct": -5.63,
+   "preco": 7.44,
+   "var_dia_pct": -4.74,
    "max_dia": 7.7,
    "min_dia": 7.22
   },
@@ -159,17 +159,17 @@
    "ticker": "POMO4",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 3.78,
-   "var_dia_pct": 0.8,
-   "max_dia": 3.78,
+   "preco": 3.79,
+   "var_dia_pct": 1.07,
+   "max_dia": 3.8,
    "min_dia": 3.69
   },
   {
    "ticker": "PRIO3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 62.31,
-   "var_dia_pct": -1.56,
+   "preco": 62.59,
+   "var_dia_pct": -1.12,
    "max_dia": 63.47,
    "min_dia": 62.31
   },
@@ -177,8 +177,8 @@
    "ticker": "RDOR3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 34.94,
-   "var_dia_pct": -0.48,
+   "preco": 35.04,
+   "var_dia_pct": -0.2,
    "max_dia": 35.27,
    "min_dia": 34.46
   },
@@ -195,28 +195,28 @@
    "ticker": "SUZB3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 55.31,
-   "var_dia_pct": 0.99,
-   "max_dia": 55.36,
+   "preco": 55.55,
+   "var_dia_pct": 1.42,
+   "max_dia": 55.66,
    "min_dia": 54.5
   },
   {
    "ticker": "TAEE11",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 41.81,
-   "var_dia_pct": -0.67,
-   "max_dia": 42.11,
-   "min_dia": 41.39
+   "preco": 41.79,
+   "var_dia_pct": -0.71,
+   "max_dia": 42.09,
+   "min_dia": 41.47
   },
   {
    "ticker": "TEND3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 16.53,
-   "var_dia_pct": -4.06,
+   "preco": 16.41,
+   "var_dia_pct": -4.76,
    "max_dia": 17.19,
-   "min_dia": 16.47
+   "min_dia": 16.4
   },
   {
    "ticker": "TIMS3",
@@ -231,8 +231,8 @@
    "ticker": "UGPA3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 31.85,
-   "var_dia_pct": -2.81,
+   "preco": 32.08,
+   "var_dia_pct": -2.11,
    "max_dia": 32.84,
    "min_dia": 31.79
   },
@@ -240,8 +240,8 @@
    "ticker": "USIM5",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 4.79,
-   "var_dia_pct": 0.21,
+   "preco": 4.81,
+   "var_dia_pct": 0.63,
    "max_dia": 4.86,
    "min_dia": 4.66
   },
@@ -249,17 +249,17 @@
    "ticker": "VIVA3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 16.55,
-   "var_dia_pct": -1.84,
+   "preco": 16.56,
+   "var_dia_pct": -1.78,
    "max_dia": 16.93,
-   "min_dia": 16.53
+   "min_dia": 16.51
   },
   {
    "ticker": "VIVT3",
    "mercado": "br",
    "data": "2026-11-16",
-   "preco": 34.35,
-   "var_dia_pct": 0.91,
+   "preco": 34.27,
+   "var_dia_pct": 0.68,
    "max_dia": 34.96,
    "min_dia": 34.25
   },
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-16",
-   "preco": 65041.7891,
-   "var_dia_pct": -0.4,
+   "preco": 64886.4805,
+   "var_dia_pct": -0.64,
    "max_dia": 65363.4375,
    "min_dia": 63845.9258
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-16",
-   "preco": 1832.36,
-   "var_dia_pct": -0.17,
+   "preco": 1820.62,
+   "var_dia_pct": -0.81,
    "max_dia": 1856.0261,
    "min_dia": 1785.6818
   },
@@ -285,8 +285,8 @@
    "ticker": "AAOI",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 46.2,
-   "var_dia_pct": -7.4,
+   "preco": 45.8301,
+   "var_dia_pct": -8.14,
    "max_dia": 47.88,
    "min_dia": 44.881
   },
@@ -294,17 +294,17 @@
    "ticker": "AAPL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 353.53,
-   "var_dia_pct": -0.77,
+   "preco": 353.575,
+   "var_dia_pct": -0.76,
    "max_dia": 357.1,
-   "min_dia": 353.02
+   "min_dia": 352.8
   },
   {
    "ticker": "ACHR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 3.785,
-   "var_dia_pct": -6.08,
+   "preco": 3.735,
+   "var_dia_pct": -7.32,
    "max_dia": 3.89,
    "min_dia": 3.625
   },
@@ -315,14 +315,14 @@
    "preco": 8.105,
    "var_dia_pct": -1.52,
    "max_dia": 8.255,
-   "min_dia": 8.1
+   "min_dia": 8.09
   },
   {
    "ticker": "AKAM",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 85.055,
-   "var_dia_pct": -0.4,
+   "preco": 84.885,
+   "var_dia_pct": -0.6,
    "max_dia": 86.55,
    "min_dia": 83.5162
   },
@@ -330,35 +330,35 @@
    "ticker": "AMD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 508.41,
-   "var_dia_pct": -4.8,
-   "max_dia": 526.19,
+   "preco": 508.1,
+   "var_dia_pct": -4.86,
+   "max_dia": 526.1999,
    "min_dia": 502.22
   },
   {
    "ticker": "AMZN",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 258.715,
-   "var_dia_pct": -2.98,
+   "preco": 258.69,
+   "var_dia_pct": -2.99,
    "max_dia": 262.92,
-   "min_dia": 258.7
+   "min_dia": 257.81
   },
   {
    "ticker": "APO",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 120.99,
-   "var_dia_pct": -2.01,
+   "preco": 120.655,
+   "var_dia_pct": -2.28,
    "max_dia": 123.99,
-   "min_dia": 120.8
+   "min_dia": 120.53
   },
   {
    "ticker": "APP",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 417.96,
-   "var_dia_pct": 2.17,
+   "preco": 416.08,
+   "var_dia_pct": 1.71,
    "max_dia": 418.7665,
    "min_dia": 404.78
   },
@@ -366,8 +366,8 @@
    "ticker": "AXP",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 319.4,
-   "var_dia_pct": -0.37,
+   "preco": 319.315,
+   "var_dia_pct": -0.4,
    "max_dia": 321.035,
    "min_dia": 317.221
   },
@@ -375,17 +375,17 @@
    "ticker": "BBAI",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 1.865,
-   "var_dia_pct": -2.36,
-   "max_dia": 1.91,
+   "preco": 1.8323,
+   "var_dia_pct": -4.07,
+   "max_dia": 1.9057,
    "min_dia": 1.8
   },
   {
    "ticker": "BSX",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 44.07,
-   "var_dia_pct": -0.61,
+   "preco": 44.025,
+   "var_dia_pct": -0.71,
    "max_dia": 44.86,
    "min_dia": 43.86
   },
@@ -393,44 +393,44 @@
    "ticker": "BX",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 116.79,
-   "var_dia_pct": -2.83,
+   "preco": 117.01,
+   "var_dia_pct": -2.65,
    "max_dia": 120.2532,
-   "min_dia": 116.62
+   "min_dia": 116.475
   },
   {
    "ticker": "C",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 121.82,
-   "var_dia_pct": -1.77,
+   "preco": 121.76,
+   "var_dia_pct": -1.81,
    "max_dia": 123.87,
-   "min_dia": 121.75
+   "min_dia": 121.56
   },
   {
    "ticker": "CAT",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 578.47,
-   "var_dia_pct": -3.62,
+   "preco": 576.635,
+   "var_dia_pct": -3.93,
    "max_dia": 591.99,
-   "min_dia": 578.0
+   "min_dia": 576.36
   },
   {
    "ticker": "CHTR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 139.1575,
-   "var_dia_pct": 0.55,
-   "max_dia": 139.68,
+   "preco": 139.205,
+   "var_dia_pct": 0.59,
+   "max_dia": 139.74,
    "min_dia": 134.61
   },
   {
    "ticker": "CLF",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 12.335,
-   "var_dia_pct": -2.49,
+   "preco": 12.24,
+   "var_dia_pct": -3.24,
    "max_dia": 12.765,
    "min_dia": 12.1089
   },
@@ -438,8 +438,8 @@
    "ticker": "CMG",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 35.92,
-   "var_dia_pct": 1.81,
+   "preco": 35.85,
+   "var_dia_pct": 1.62,
    "max_dia": 36.36,
    "min_dia": 35.28
   },
@@ -447,8 +447,8 @@
    "ticker": "COHR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 205.2925,
-   "var_dia_pct": -5.89,
+   "preco": 204.99,
+   "var_dia_pct": -6.03,
    "max_dia": 208.15,
    "min_dia": 196.12
   },
@@ -456,8 +456,8 @@
    "ticker": "CRWD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 220.74,
-   "var_dia_pct": -2.59,
+   "preco": 219.66,
+   "var_dia_pct": -3.07,
    "max_dia": 223.8,
    "min_dia": 218.422
   },
@@ -465,8 +465,8 @@
    "ticker": "CSCO",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 94.365,
-   "var_dia_pct": -1.33,
+   "preco": 94.55,
+   "var_dia_pct": -1.14,
    "max_dia": 96.21,
    "min_dia": 93.895
   },
@@ -474,8 +474,8 @@
    "ticker": "CVNA",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 70.59,
-   "var_dia_pct": -2.46,
+   "preco": 70.39,
+   "var_dia_pct": -2.74,
    "max_dia": 72.27,
    "min_dia": 69.84
   },
@@ -483,8 +483,8 @@
    "ticker": "DAL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 86.815,
-   "var_dia_pct": 0.66,
+   "preco": 86.58,
+   "var_dia_pct": 0.38,
    "max_dia": 88.1,
    "min_dia": 85.6238
   },
@@ -492,17 +492,17 @@
    "ticker": "DELL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 323.41,
-   "var_dia_pct": -6.13,
+   "preco": 321.43,
+   "var_dia_pct": -6.7,
    "max_dia": 332.3586,
-   "min_dia": 321.16
+   "min_dia": 320.9
   },
   {
    "ticker": "DKNG",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 18.29,
-   "var_dia_pct": -3.18,
+   "preco": 18.205,
+   "var_dia_pct": -3.63,
    "max_dia": 18.9672,
    "min_dia": 17.83
   },
@@ -510,8 +510,8 @@
    "ticker": "ENPH",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 24.955,
-   "var_dia_pct": -4.28,
+   "preco": 24.885,
+   "var_dia_pct": -4.55,
    "max_dia": 25.36,
    "min_dia": 24.8
   },
@@ -519,17 +519,17 @@
    "ticker": "F",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 11.705,
-   "var_dia_pct": -1.72,
+   "preco": 11.665,
+   "var_dia_pct": -2.06,
    "max_dia": 11.92,
-   "min_dia": 11.69
+   "min_dia": 11.66
   },
   {
    "ticker": "FSLR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 165.76,
-   "var_dia_pct": -3.28,
+   "preco": 165.44,
+   "var_dia_pct": -3.47,
    "max_dia": 168.67,
    "min_dia": 163.17
   },
@@ -537,17 +537,17 @@
    "ticker": "GLD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 354.49,
-   "var_dia_pct": -0.27,
+   "preco": 353.2908,
+   "var_dia_pct": -0.61,
    "max_dia": 356.29,
-   "min_dia": 353.305
+   "min_dia": 353.21
   },
   {
    "ticker": "GOOGL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 287.635,
-   "var_dia_pct": -2.75,
+   "preco": 287.0,
+   "var_dia_pct": -2.97,
    "max_dia": 294.13,
    "min_dia": 285.455
   },
@@ -555,8 +555,8 @@
    "ticker": "HAL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 33.16,
-   "var_dia_pct": -1.84,
+   "preco": 32.945,
+   "var_dia_pct": -2.47,
    "max_dia": 33.48,
    "min_dia": 32.755
   },
@@ -564,8 +564,8 @@
    "ticker": "HD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 347.935,
-   "var_dia_pct": -0.22,
+   "preco": 348.03,
+   "var_dia_pct": -0.19,
    "max_dia": 349.725,
    "min_dia": 346.21
   },
@@ -573,8 +573,8 @@
    "ticker": "HIMS",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 18.95,
-   "var_dia_pct": -3.95,
+   "preco": 18.8801,
+   "var_dia_pct": -4.31,
    "max_dia": 19.165,
    "min_dia": 18.645
   },
@@ -582,35 +582,35 @@
    "ticker": "HOOD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 72.72,
-   "var_dia_pct": -6.6,
+   "preco": 72.26,
+   "var_dia_pct": -7.19,
    "max_dia": 75.55,
-   "min_dia": 72.65
+   "min_dia": 72.24
   },
   {
    "ticker": "HYG",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 76.84,
-   "var_dia_pct": -0.13,
+   "preco": 76.82,
+   "var_dia_pct": -0.16,
    "max_dia": 76.95,
-   "min_dia": 76.83
+   "min_dia": 76.8
   },
   {
    "ticker": "IBKR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 79.12,
-   "var_dia_pct": -3.26,
+   "preco": 78.73,
+   "var_dia_pct": -3.74,
    "max_dia": 80.82,
-   "min_dia": 78.06
+   "min_dia": 78.07
   },
   {
    "ticker": "JNJ",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 284.585,
-   "var_dia_pct": -0.41,
+   "preco": 285.245,
+   "var_dia_pct": -0.18,
    "max_dia": 290.2495,
    "min_dia": 284.18
   },
@@ -618,8 +618,8 @@
    "ticker": "KEEL",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 1.7315,
-   "var_dia_pct": -6.91,
+   "preco": 1.73,
+   "var_dia_pct": -6.99,
    "max_dia": 1.8,
    "min_dia": 1.7
   },
@@ -627,8 +627,8 @@
    "ticker": "KHC",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 25.35,
-   "var_dia_pct": 0.96,
+   "preco": 25.499,
+   "var_dia_pct": 1.55,
    "max_dia": 25.745,
    "min_dia": 25.165
   },
@@ -636,26 +636,26 @@
    "ticker": "KTOS",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 32.425,
-   "var_dia_pct": -4.38,
+   "preco": 32.0925,
+   "var_dia_pct": -5.36,
    "max_dia": 33.675,
-   "min_dia": 32.3
+   "min_dia": 32.085
   },
   {
    "ticker": "KWEB",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 22.74,
-   "var_dia_pct": -0.83,
+   "preco": 22.7299,
+   "var_dia_pct": -0.87,
    "max_dia": 23.01,
-   "min_dia": 22.725
+   "min_dia": 22.715
   },
   {
    "ticker": "LQD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 102.855,
-   "var_dia_pct": 0.04,
+   "preco": 102.87,
+   "var_dia_pct": 0.06,
    "max_dia": 103.0972,
    "min_dia": 102.795
   },
@@ -663,8 +663,8 @@
    "ticker": "LRCX",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 213.9,
-   "var_dia_pct": -5.32,
+   "preco": 212.79,
+   "var_dia_pct": -5.81,
    "max_dia": 216.83,
    "min_dia": 210.17
   },
@@ -672,17 +672,17 @@
    "ticker": "LUNR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 11.915,
-   "var_dia_pct": -8.35,
+   "preco": 11.81,
+   "var_dia_pct": -9.15,
    "max_dia": 12.6,
-   "min_dia": 11.91
+   "min_dia": 11.77
   },
   {
    "ticker": "LUV",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 46.07,
-   "var_dia_pct": 2.51,
+   "preco": 45.995,
+   "var_dia_pct": 2.35,
    "max_dia": 46.82,
    "min_dia": 44.95
   },
@@ -690,17 +690,17 @@
    "ticker": "MARA",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 6.555,
-   "var_dia_pct": -6.22,
+   "preco": 6.5594,
+   "var_dia_pct": -6.16,
    "max_dia": 6.83,
-   "min_dia": 6.405
+   "min_dia": 6.4005
   },
   {
    "ticker": "MCD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 275.725,
-   "var_dia_pct": 1.38,
+   "preco": 276.26,
+   "var_dia_pct": 1.58,
    "max_dia": 277.95,
    "min_dia": 274.87
   },
@@ -708,8 +708,8 @@
    "ticker": "MRNA",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 219.04,
-   "var_dia_pct": -1.94,
+   "preco": 217.28,
+   "var_dia_pct": -2.73,
    "max_dia": 220.5914,
    "min_dia": 212.5
   },
@@ -717,8 +717,8 @@
    "ticker": "MSTR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 103.77,
-   "var_dia_pct": -7.03,
+   "preco": 103.229,
+   "var_dia_pct": -7.52,
    "max_dia": 105.79,
    "min_dia": 101.7
   },
@@ -726,8 +726,8 @@
    "ticker": "NCLH",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 17.8555,
-   "var_dia_pct": -0.58,
+   "preco": 17.765,
+   "var_dia_pct": -1.09,
    "max_dia": 18.055,
    "min_dia": 17.641
   },
@@ -735,17 +735,17 @@
    "ticker": "NIO",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 2.7824,
-   "var_dia_pct": -4.06,
+   "preco": 2.7618,
+   "var_dia_pct": -4.77,
    "max_dia": 2.87,
-   "min_dia": 2.77
+   "min_dia": 2.76
   },
   {
    "ticker": "NKE",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 37.935,
-   "var_dia_pct": -0.14,
+   "preco": 37.875,
+   "var_dia_pct": -0.3,
    "max_dia": 38.71,
    "min_dia": 37.82
   },
@@ -753,17 +753,17 @@
    "ticker": "NVDA",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 157.9693,
-   "var_dia_pct": -3.0,
+   "preco": 156.57,
+   "var_dia_pct": -3.86,
    "max_dia": 163.0,
-   "min_dia": 157.6701
+   "min_dia": 156.42
   },
   {
    "ticker": "NVO",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 41.7536,
-   "var_dia_pct": 0.3,
+   "preco": 41.9061,
+   "var_dia_pct": 0.66,
    "max_dia": 42.3,
    "min_dia": 41.7
   },
@@ -771,8 +771,8 @@
    "ticker": "OKLO",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 23.16,
-   "var_dia_pct": -3.18,
+   "preco": 23.02,
+   "var_dia_pct": -3.76,
    "max_dia": 24.1356,
    "min_dia": 22.54
   },
@@ -780,8 +780,8 @@
    "ticker": "ONDS",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 4.815,
-   "var_dia_pct": -6.69,
+   "preco": 4.8199,
+   "var_dia_pct": -6.59,
    "max_dia": 4.88,
    "min_dia": 4.73
   },
@@ -789,17 +789,17 @@
    "ticker": "PBR",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 17.4201,
-   "var_dia_pct": -5.02,
+   "preco": 17.345,
+   "var_dia_pct": -5.43,
    "max_dia": 17.97,
-   "min_dia": 17.365
+   "min_dia": 17.325
   },
   {
    "ticker": "PM",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 196.085,
-   "var_dia_pct": -1.45,
+   "preco": 196.37,
+   "var_dia_pct": -1.3,
    "max_dia": 200.7485,
    "min_dia": 195.49
   },
@@ -807,8 +807,8 @@
    "ticker": "QQQ",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 666.58,
-   "var_dia_pct": -1.96,
+   "preco": 665.13,
+   "var_dia_pct": -2.17,
    "max_dia": 672.14,
    "min_dia": 663.0701
   },
@@ -816,8 +816,8 @@
    "ticker": "QS",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 3.495,
-   "var_dia_pct": -5.03,
+   "preco": 3.47,
+   "var_dia_pct": -5.71,
    "max_dia": 3.595,
    "min_dia": 3.445
   },
@@ -825,8 +825,8 @@
    "ticker": "QUBT",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 5.26,
-   "var_dia_pct": -5.4,
+   "preco": 5.25,
+   "var_dia_pct": -5.58,
    "max_dia": 5.42,
    "min_dia": 5.185
   },
@@ -834,17 +834,17 @@
    "ticker": "RKLB",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 58.6499,
-   "var_dia_pct": -4.68,
+   "preco": 57.805,
+   "var_dia_pct": -6.05,
    "max_dia": 61.895,
-   "min_dia": 58.51
+   "min_dia": 57.735
   },
   {
    "ticker": "TLRY",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 2.355,
-   "var_dia_pct": -3.09,
+   "preco": 2.35,
+   "var_dia_pct": -3.29,
    "max_dia": 2.4,
    "min_dia": 2.325
   },
@@ -852,7 +852,7 @@
    "ticker": "TSLA",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 379.85,
+   "preco": 379.84,
    "var_dia_pct": -2.66,
    "max_dia": 389.7983,
    "min_dia": 376.18
@@ -861,35 +861,35 @@
    "ticker": "TSM",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 377.5199,
-   "var_dia_pct": -5.32,
+   "preco": 376.8245,
+   "var_dia_pct": -5.49,
    "max_dia": 385.469,
-   "min_dia": 372.46
+   "min_dia": 372.5
   },
   {
    "ticker": "TTD",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 14.9897,
-   "var_dia_pct": -4.4,
+   "preco": 15.02,
+   "var_dia_pct": -4.21,
    "max_dia": 15.585,
-   "min_dia": 14.8
+   "min_dia": 14.79
   },
   {
    "ticker": "UNG",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 9.815,
-   "var_dia_pct": -3.3,
+   "preco": 9.805,
+   "var_dia_pct": -3.4,
    "max_dia": 9.91,
-   "min_dia": 9.795
+   "min_dia": 9.78
   },
   {
    "ticker": "VRT",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 189.7239,
-   "var_dia_pct": -6.11,
+   "preco": 188.45,
+   "var_dia_pct": -6.74,
    "max_dia": 193.77,
    "min_dia": 188.26
   },
@@ -897,8 +897,8 @@
    "ticker": "WMB",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 67.78,
-   "var_dia_pct": -1.9,
+   "preco": 67.67,
+   "var_dia_pct": -2.06,
    "max_dia": 68.795,
    "min_dia": 67.2
   },
@@ -906,8 +906,8 @@
    "ticker": "XOP",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 181.685,
-   "var_dia_pct": -1.69,
+   "preco": 181.175,
+   "var_dia_pct": -1.96,
    "max_dia": 182.84,
    "min_dia": 180.115
   },
@@ -915,8 +915,8 @@
    "ticker": "XYZ",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 83.63,
-   "var_dia_pct": -1.12,
+   "preco": 83.525,
+   "var_dia_pct": -1.25,
    "max_dia": 84.135,
    "min_dia": 82.6813
   },
@@ -924,8 +924,8 @@
    "ticker": "ZS",
    "mercado": "eua",
    "data": "2026-11-16",
-   "preco": 190.38,
-   "var_dia_pct": -1.09,
+   "preco": 190.2651,
+   "var_dia_pct": -1.15,
    "max_dia": 194.206,
    "min_dia": 186.505
   },
@@ -933,8 +933,8 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 103.562,
-   "var_dia_pct": 0.15,
+   "preco": 103.518,
+   "var_dia_pct": 0.1,
    "max_dia": 103.597,
    "min_dia": 103.331
   },
@@ -942,26 +942,26 @@
    "ticker": "Dow Jones",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 51931.0391,
-   "var_dia_pct": -0.8,
+   "preco": 51889.5586,
+   "var_dia_pct": -0.87,
    "max_dia": 52324.0,
-   "min_dia": 51901.1406
+   "min_dia": 51853.8281
   },
   {
    "ticker": "Ibovespa",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 169452.875,
-   "var_dia_pct": -1.74,
+   "preco": 169299.0469,
+   "var_dia_pct": -1.83,
    "max_dia": 172457.5625,
-   "min_dia": 169374.5625
+   "min_dia": 169232.9844
   },
   {
    "ticker": "Nasdaq 100",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 27397.291,
-   "var_dia_pct": -1.96,
+   "preco": 27334.6426,
+   "var_dia_pct": -2.18,
    "max_dia": 27621.6406,
    "min_dia": 27256.8359
   },
@@ -969,8 +969,8 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 3870.2,
-   "var_dia_pct": -0.41,
+   "preco": 3863.7,
+   "var_dia_pct": -0.58,
    "max_dia": 3904.3,
    "min_dia": 3835.2
   },
@@ -978,17 +978,17 @@
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 86.36,
-   "var_dia_pct": -2.48,
+   "preco": 86.1,
+   "var_dia_pct": -2.78,
    "max_dia": 89.49,
-   "min_dia": 86.26
+   "min_dia": 86.09
   },
   {
    "ticker": "Russell 2000",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 2758.9968,
-   "var_dia_pct": -1.13,
+   "preco": 2756.1289,
+   "var_dia_pct": -1.23,
    "max_dia": 2777.405,
    "min_dia": 2754.6453
   },
@@ -996,17 +996,17 @@
    "ticker": "S&P 500",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 7463.3301,
-   "var_dia_pct": -1.3,
+   "preco": 7450.8999,
+   "var_dia_pct": -1.46,
    "max_dia": 7515.6001,
-   "min_dia": 7451.7998
+   "min_dia": 7446.6899
   },
   {
    "ticker": "Treasury 10 anos",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 5.141,
-   "var_dia_pct": -0.25,
+   "preco": 5.139,
+   "var_dia_pct": -0.29,
    "max_dia": 5.149,
    "min_dia": 5.109
   },
@@ -1014,8 +1014,8 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 5.7807,
-   "var_dia_pct": 2.48,
+   "preco": 5.7784,
+   "var_dia_pct": 2.44,
    "max_dia": 5.7847,
    "min_dia": 5.6408
   },
@@ -1023,8 +1023,8 @@
    "ticker": "VIX",
    "mercado": "mercado",
    "data": "2026-11-16",
-   "preco": 21.09,
-   "var_dia_pct": 9.27,
+   "preco": 21.61,
+   "var_dia_pct": 11.97,
    "max_dia": 21.79,
    "min_dia": 19.84
   }
