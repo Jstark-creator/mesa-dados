@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-15T22:43:57+00:00",
+ "gerado_em": "2026-11-16T01:26:45+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -266,20 +266,20 @@
   {
    "ticker": "BTC",
    "mercado": "cripto",
-   "data": "2026-11-15",
-   "preco": 65123.4492,
-   "var_dia_pct": 1.55,
-   "max_dia": 65889.2344,
-   "min_dia": 62093.5156
+   "data": "2026-11-16",
+   "preco": 64716.4805,
+   "var_dia_pct": 0.92,
+   "max_dia": 65363.4375,
+   "min_dia": 64693.6172
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
-   "data": "2026-11-15",
-   "preco": 1827.1899,
-   "var_dia_pct": 3.28,
-   "max_dia": 1837.7209,
-   "min_dia": 1714.293
+   "data": "2026-11-16",
+   "preco": 1808.64,
+   "var_dia_pct": 2.23,
+   "max_dia": 1837.1619,
+   "min_dia": 1806.5963
   },
   {
    "ticker": "AAOI",
@@ -933,10 +933,10 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-15",
-   "preco": 103.411,
-   "var_dia_pct": 0.0,
-   "max_dia": 103.436,
-   "min_dia": 103.056
+   "preco": 103.433,
+   "var_dia_pct": 0.02,
+   "max_dia": 103.441,
+   "min_dia": 103.368
   },
   {
    "ticker": "Dow Jones",
@@ -968,20 +968,20 @@
   {
    "ticker": "Ouro",
    "mercado": "mercado",
-   "data": "2026-11-13",
-   "preco": 3886.3,
-   "var_dia_pct": 0.03,
-   "max_dia": 3927.2,
-   "min_dia": 3871.1001
+   "data": "2026-11-15",
+   "preco": 3875.8,
+   "var_dia_pct": -0.27,
+   "max_dia": 3904.3,
+   "min_dia": 3862.7
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
-   "data": "2026-11-13",
-   "preco": 88.56,
-   "var_dia_pct": -0.2,
-   "max_dia": 89.64,
-   "min_dia": 87.8
+   "data": "2026-11-15",
+   "preco": 88.23,
+   "var_dia_pct": -0.37,
+   "max_dia": 88.83,
+   "min_dia": 88.15
   },
   {
    "ticker": "Russell 2000",
@@ -1013,7 +1013,7 @@
   {
    "ticker": "USD/BRL",
    "mercado": "mercado",
-   "data": "2026-11-15",
+   "data": "2026-11-16",
    "preco": 5.6666,
    "var_dia_pct": 0.46,
    "max_dia": 5.6666,
