@@ -1,0 +1,25 @@
+
+===== custo 1x =====
+L long   treino n= 17 med=15.401 | valid n= 14 med=0.525 ac=28.6 tot=7.3 dd=-3.8 dias=83.9
+L short  treino n= 11 med=-0.119 | valid n= 14 med=-0.146 ac=35.7 tot=-2.0 dd=-4.0 dias=73.8
+M long   treino n= 27 med=8.179 | valid n= 30 med=1.139 ac=46.7 tot=34.2 dd=-3.3 dias=37.3
+M short  treino n= 31 med=0.275 | valid n= 34 med=0.371 ac=47.1 tot=12.6 dd=-6.1 dias=20.0
+camada M valid: tot=46.8 dd=-6.8
+camada L valid: tot=5.3 dd=-6.3
+M+L valid: tot=52.1 dd=-9.8  (soma dos dd isolados = -13.1)
+
+===== custo 2x =====
+L long   treino n= 17 med=15.343 | valid n= 14 med=0.492 ac=28.6 tot=6.9 dd=-3.9 dias=83.9
+L short  treino n= 11 med=-0.13 | valid n= 14 med=-0.157 ac=35.7 tot=-2.2 dd=-4.1 dias=73.8
+M long   treino n= 27 med=8.122 | valid n= 30 med=1.089 ac=46.7 tot=32.7 dd=-3.7 dias=37.3
+M short  treino n= 31 med=0.255 | valid n= 34 med=0.353 ac=47.1 tot=12.0 dd=-6.3 dias=20.0
+camada M valid: tot=44.6 dd=-7.0
+camada L valid: tot=4.7 dd=-6.4
+M+L valid: tot=49.3 dd=-10.3  (soma dos dd isolados = -13.4)
+sist  L long  L short  M long  M short
+ano                                   
+2022     NaN     -0.3    -1.1      7.3
+2023    10.0     -1.0    21.8     -4.8
+2024     1.4     -0.1     9.6     -2.4
+2025    -2.4      1.2     1.7      0.3
+2026    -2.1     -1.9     0.7     11.6
