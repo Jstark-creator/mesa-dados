@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-17T05:02:08+00:00",
+ "gerado_em": "2026-11-17T07:21:20+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,18 +267,18 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-17",
-   "preco": 64807.3711,
-   "var_dia_pct": -0.76,
-   "max_dia": 64996.7383,
-   "min_dia": 64363.2031
+   "preco": 64572.0,
+   "var_dia_pct": -0.44,
+   "max_dia": 64998.2461,
+   "min_dia": 64274.8555
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-17",
-   "preco": 1828.5601,
-   "var_dia_pct": -0.38,
-   "max_dia": 1832.5498,
+   "preco": 1828.17,
+   "var_dia_pct": 0.49,
+   "max_dia": 1839.7104,
    "min_dia": 1811.6503
   },
   {
@@ -759,6 +759,15 @@
    "min_dia": 155.01
   },
   {
+   "ticker": "NVO",
+   "mercado": "eua",
+   "data": "2026-11-16",
+   "preco": 41.6,
+   "var_dia_pct": -0.07,
+   "max_dia": 42.3,
+   "min_dia": 41.44
+  },
+  {
    "ticker": "OKLO",
    "mercado": "eua",
    "data": "2026-11-16",
@@ -923,11 +932,11 @@
   {
    "ticker": "DXY",
    "mercado": "mercado",
-   "data": "2026-11-16",
-   "preco": 103.55,
-   "var_dia_pct": 0.14,
-   "max_dia": 103.64,
-   "min_dia": 103.33
+   "data": "2026-11-17",
+   "preco": 103.512,
+   "var_dia_pct": -0.04,
+   "max_dia": 103.698,
+   "min_dia": 103.435
   },
   {
    "ticker": "Dow Jones",
@@ -959,20 +968,20 @@
   {
    "ticker": "Ouro",
    "mercado": "mercado",
-   "data": "2026-11-16",
-   "preco": 3853.0,
-   "var_dia_pct": -0.86,
-   "max_dia": 3904.3,
-   "min_dia": 3835.2
+   "data": "2026-11-17",
+   "preco": 3880.3999,
+   "var_dia_pct": 0.71,
+   "max_dia": 3889.6001,
+   "min_dia": 3845.8999
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
-   "data": "2026-11-16",
-   "preco": 85.72,
-   "var_dia_pct": -3.21,
-   "max_dia": 89.49,
-   "min_dia": 85.02
+   "data": "2026-11-17",
+   "preco": 84.78,
+   "var_dia_pct": -1.1,
+   "max_dia": 85.59,
+   "min_dia": 84.68
   },
   {
    "ticker": "Russell 2000",
@@ -1005,7 +1014,7 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 5.784,
+   "preco": 5.7838,
    "var_dia_pct": 2.1,
    "max_dia": 5.7858,
    "min_dia": 5.7838
