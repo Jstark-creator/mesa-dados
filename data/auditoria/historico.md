@@ -43,3 +43,9 @@ Bugs corrigidos antes da rodada oficial com 12 ETFs (regras inalteradas): (1) pe
 NADA APROVADO. Validação meio_50: straddle −0,32R, condor −0,19R, crédito −0,15R (a mercado: −0,43 / −0,26 / −0,24).
 O ganho no cenário "meio" (condor +0,26R; XLF +0,79R) é artefato: cotações de fechamento largas/velhas em XLF, XLE, XBI, EEM, SMH, XLK (spread de 25–100% do prêmio; condor XLF com crédito ~95% da largura, impossível). Só ETFs líquidos (SPY, QQQ, IWM, GLD, TLT, DIA): condor +0,06 meio / −0,01 meio_50 / −0,07 natural; crédito −0,02/−0,03/−0,03; straddle −0,18/−0,22/−0,31.
 Correções (percentil sem NaN; spot por paridade; HV ajustada) confirmadas como corretas. Para próximos testes com cotações reais: filtro de qualidade (spread relativo por perna < 10% do meio), amostra pareada entre cenários, registrar operações sem cotação em vez de descartar.
+
+## 17/11/2026 — Cripto v2, camada L (100/50, 3 ATR) — auditoria Claude + Codex (codex-2026-11-17-1801.md)
+L long passa na letra do critério (valid. 14 ops, +0,49R, +6,9R), mas é concentrada (top-3 +15,8R, resto −8,9R; 2025–26 negativo); o bootstrap tem ~27% de médias ≤0. L short REPROVADA (treino −0,13R).
+DECISÃO: L long só EM PAPEL (bloco camada_l_papel em sinais.json); reavaliar após 10 operações novas. A tendência (45%) opera só a camada M em BTC+ETH.
+Achados Codex a corrigir em base.py: (1) operações abertas tratadas como fechadas (M short validação 34→32 ops, +12,0→+10,6R); (2) encerramento oculto após 400 candles; (3) saída no fechamento do sinal vs abertura seguinte na produção (impacto ~0); (4) drawdown deve ser marcado a mercado (camada M: −19R, não −7R).
+Padrão novo: drawdown sempre marcado a mercado diariamente, e "diversificação" medida sob orçamento de risco comum.
