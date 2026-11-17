@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-17T11:06:25+00:00",
+ "gerado_em": "2026-11-17T12:56:53+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-17",
-   "preco": 64150.1914,
-   "var_dia_pct": -1.09,
+   "preco": 64919.6094,
+   "var_dia_pct": 0.1,
    "max_dia": 64998.2461,
    "min_dia": 64030.5703
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-17",
-   "preco": 1790.92,
-   "var_dia_pct": -1.56,
+   "preco": 1820.6,
+   "var_dia_pct": 0.07,
    "max_dia": 1839.7104,
    "min_dia": 1786.8644
   },
@@ -586,6 +586,15 @@
    "var_dia_pct": -7.45,
    "max_dia": 75.55,
    "min_dia": 70.83
+  },
+  {
+   "ticker": "HYG",
+   "mercado": "eua",
+   "data": "2026-11-16",
+   "preco": 76.73,
+   "var_dia_pct": -0.27,
+   "max_dia": 76.95,
+   "min_dia": 76.73
   },
   {
    "ticker": "IBKR",
@@ -924,8 +933,8 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 103.6,
-   "var_dia_pct": 0.05,
+   "preco": 103.586,
+   "var_dia_pct": 0.03,
    "max_dia": 103.698,
    "min_dia": 103.435
   },
@@ -960,18 +969,18 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 3856.0,
-   "var_dia_pct": 0.08,
-   "max_dia": 3889.6001,
+   "preco": 3859.5,
+   "var_dia_pct": 0.17,
+   "max_dia": 3889.5,
    "min_dia": 3845.8999
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 86.05,
-   "var_dia_pct": 0.38,
-   "max_dia": 86.13,
+   "preco": 86.38,
+   "var_dia_pct": 0.77,
+   "max_dia": 86.49,
    "min_dia": 84.68
   },
   {
@@ -1005,19 +1014,19 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 5.7858,
-   "var_dia_pct": 2.14,
-   "max_dia": 5.7934,
-   "min_dia": 5.7765
+   "preco": 5.7793,
+   "var_dia_pct": 2.02,
+   "max_dia": 5.7972,
+   "min_dia": 5.764
   },
   {
    "ticker": "VIX",
    "mercado": "mercado",
    "data": "2026-11-17",
-   "preco": 23.66,
-   "var_dia_pct": 3.27,
+   "preco": 22.78,
+   "var_dia_pct": -0.57,
    "max_dia": 24.19,
-   "min_dia": 23.0
+   "min_dia": 22.36
   }
  ]
 }
