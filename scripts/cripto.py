@@ -41,14 +41,15 @@ def preparar(df: pd.DataFrame) -> pd.DataFrame:
     pc = c.shift()
     tr = pd.concat([d.high - d.low, (d.high - pc).abs(), (d.low - pc).abs()], axis=1).max(axis=1)
     d["atr"] = tr.ewm(alpha=1 / 14, adjust=False).mean()
-    for n in (10, 20):
+    for n in (10, 20, 50, 100):
         d[f"hi{n}"] = d.high.rolling(n).max().shift()
         d[f"lo{n}"] = d.low.rolling(n).min().shift()
     d["mom28"] = c / c.shift(28) - 1
     return d
 
 
-def estado(d: pd.DataFrame, lado: int, sinal: pd.Series, n_saida: int, regime_extra: pd.Series | None = None):
+def estado(d: pd.DataFrame, lado: int, sinal: pd.Series, n_saida: int, regime_extra: pd.Series | None = None,
+           k_stop: float = K_STOP):
     """Percorre o histórico com as regras e devolve a posição do sistema no último candle fechado."""
     o, h, l, c = d.open.values, d.high.values, d.low.values, d.close.values
     s = sinal.fillna(False).values
@@ -64,9 +65,9 @@ def estado(d: pd.DataFrame, lado: int, sinal: pd.Series, n_saida: int, regime_ex
         if pos is None:
             if s[i] and i == n - 1:
                 return {"acao": "ENTRAR", "sinal_em": str(d.index[i].date()), "fechamento": float(c[i]),
-                        "stop": float(c[i] - lado * K_STOP * atr[i]), "nivel_saida": float(sai[i]) if np.isfinite(sai[i]) else None}, ultimo
+                        "stop": float(c[i] - lado * k_stop * atr[i]), "nivel_saida": float(sai[i]) if np.isfinite(sai[i]) else None}, ultimo
             if s[i]:
-                pos = {"i": i + 1, "entrada": float(o[i + 1]), "stop": float(c[i] - lado * K_STOP * atr[i])}
+                pos = {"i": i + 1, "entrada": float(o[i + 1]), "stop": float(c[i] - lado * k_stop * atr[i])}
             i += 1
             continue
         j = i
@@ -217,6 +218,18 @@ def main() -> None:
         pass
     saida["acumulo_btc"] = {"mayer": round(mayer, 2), "multiplicador_aporte": mult, "fear_greed": fg,
                             "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"}
+    # Acúmulo ETH (mesma régua de Mayer) e camada L long em PAPEL (auditoria 17/11: só acompanhamento, sem capital)
+    saida["acumulo"] = {"BTC": saida["acumulo_btc"]}
+    saida["camada_l_papel"] = []
+    for nome in E1:
+        d = D[nome]
+        my = float(d.close.iloc[-1] / d.mm200.iloc[-1])
+        if nome != "BTC":
+            saida["acumulo"][nome] = {"mayer": round(my, 2),
+                                      "multiplicador_aporte": 3 if my < 0.8 else 2 if my < 1.0 else 1 if my < 1.5 else 0.5 if my < 2.4 else 0}
+        st, ult = estado(d, 1, (d.close > d.mm200) & (d.close > d.hi100), 50, k_stop=3.0)
+        saida["camada_l_papel"].append({"ativo": nome, "lado": "long", **st, "ultima_saida": ult,
+                                        "nota": "PAPEL: registrar no relatório; não propor operação real."})
     (DEST / "sinais.json").write_text(json.dumps(saida, ensure_ascii=False, indent=1, default=float))
     print(json.dumps(saida, ensure_ascii=False, indent=1, default=float)[:3000])
 
