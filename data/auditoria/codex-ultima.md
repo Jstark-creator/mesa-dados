@@ -1,65 +1,60 @@
-# Auditoria Codex — 2026-11-15T08:13Z — commit ea46aef
+# Auditoria Codex — 2026-11-17T18:01Z — commit 419ad40
 
-A reprovação permanece sustentada, mas **a vantagem no “meio” está contaminada por risco minúsculo, spreads e amostras diferentes entre cenários**. Recalculei os agregados de `operacoes.csv` com [script em `/tmp`](/tmp/auditar_m7.py), sem alterar o repositório.
-
-**Limitação:** faltam as cadeias brutas usadas na rodada (`/tmp/td`), e o CSV não contém strikes, bid/ask ou horários. Portanto, não é possível comprovar cotações velhas nem recalcular exatamente um filtro por perna. O pré-registro referenciado pelo código também não está disponível.
+Reproduzi **exatamente as 178 operações do CSV**, usando apenas dados locais. Os testes ficaram em [cópia de auditoria](/tmp/audit_c4.py); nenhum arquivo do repositório foi alterado.
 
 ### O que está correto
 
-- **Percentil:** [m7.py:199](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:199) exclui NaN, compara o valor atual apenas com observações anteriores e mascara dias sem IV. Usa até **252 observações válidas**, com mínimo de 126 anteriores; isso não equivale necessariamente a 252 pregões consecutivos.
-- **Causalidade dos sinais:** [m7.py:116](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:116) consulta o sinal anterior. HV e tendência podem incluir aquele fechamento, pois a entrada acontece depois. Não encontrei percentil calculado sobre a amostra inteira nem `bfill`.
-- **HV:** [m7.py:196](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:196) usa retornos logarítmicos do histórico ajustado, coerentemente com o gerador desses dados. Isso evita saltos artificiais de splits.
-- **Custos e R:** comissão de US$ 0,65 por contrato em cada ponta está incluída; débito usa prêmio pago como risco, crédito usa largura menos crédito líquido. As perdas efetivas podem ultrapassar o stop: o código não garante artificialmente execução no limiar.
+- **Canais sem look-ahead:** `hi100`, `lo100`, `hi50` e `lo50` usam `rolling(...).shift()` em [c4_camadas.py:10](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/c4_camadas.py:10).
+- **Entrada causal:** sinal no fechamento de *t*, execução na abertura de *t+1* ([base.py:81](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:81)). MM200 e ATR podem incluir *t*, pois já estão disponíveis nessa decisão. Não encontrei `bfill` nem percentis globais nesse caminho.
+- **Stop e R corretos:** stop inicial fixo em fechamento do sinal ±3 ATR14; denominador usa a distância entre **entrada efetiva** e stop. Conferência numérica sem diferenças. Há piso de risco de 0,3%; o menor risco observado foi 1,62%.
+- **Custos 2x aplicados nas duas pontas:** 0,30% por lado no long spot e 0,16% no short, sobre os respectivos preços de entrada e saída ([base.py:104](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:104)). Stops posteriores à entrada respeitam gaps adversos; não há alvo concorrente resolvido favoravelmente.
 
 ### Achados
 
-**1. CRÍTICO — R minúsculo infla o condor no “meio”.**  
-[m7.py:132](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:132) aceita qualquer risco positivo, sem verificar consistência econômica das cotações. XLF, entrada **25/08/2025**, registra risco **US$ 1,60**, lucro US$ 32,80 e **+20,50R**.
+**1. MÉDIO — Operações abertas não são excluídas corretamente.**  
+[base.py:100](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:100) transforma posições sem saída em operações encerradas no último fechamento. Depois, [c4_camadas.py:31](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/c4_camadas.py:31) compara essa data com o relógio, não com o estado da posição.
 
-Retirando apenas essa observação:
+Os dados terminam em **13/11/2026**, mas a execução ocorre em 17/11. Dois shorts M ainda abertos entram como realizados: BTC **+0,501R**, ETH **+0,931R**. Excluindo-os explicitamente:
 
-| Condor, meio | Original | Sem operação |
+| Validação, custo 2x | Publicado | Corrigido |
 |---|---:|---:|
-| Média total | +0,261R | +0,111R |
-| Validação | +0,357R | +0,037R |
-| XLF | +0,792R | +0,112R |
+| M short | 34 operações; +11,99R | 32; +10,55R |
+| M+L | +49,35R | +47,91R |
+| L long | 14; +6,89R | **inalterado** |
 
-Exigir retrospectivamente risco ≥US$ 50 reduz a média total a **+0,071R**, mas é apenas sensibilidade; esse piso não constitui filtro validado.
+A correção exige um campo explícito de motivo/estado da saída.
 
-**2. CRÍTICO — Cotações sem controle de qualidade distorcem também as perdas.**  
-[matriz_real.py:68](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/etf/matriz_real.py:68) exige somente bid positivo e ask ≥ bid; [m7.py:143](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:143) liquida pernas independentemente, sem limites econômicos do pacote.
+**2. MÉDIO — Encerramento oculto após 400 candles.**  
+[base.py:67](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:67) limita a duração; [base.py:101](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:101) liquida no fechamento. Essa regra não consta do playbook fornecido.
 
-Existem **23 operações abaixo de −1R**, chegando a **−3,47R** no crédito. Pagar spreads excessivos pode produzir essas perdas simuladas, mas não representa o risco máximo do payoff contratado; comissões de saída tampouco explicam tamanha diferença. Isso pode **prejudicar** as estruturas. Como sensibilidade, limitar perdas a −1R elevaria o `meio_50` de −0,193 para **−0,178R** no condor e de −0,186 para **−0,144R** no crédito: continuam negativos. Esse truncamento não substitui reprecificação.
+O long ETH iniciado em 23/07/2020 realiza artificialmente **+122,29R** em 26/08/2021. Sem o limite, termina por regra em 06/01/2022, com **+136,01R**, eliminando também reentradas intermediárias. Treino L long: **17 operações, média +15,34R → 15, média +18,44R**. A validação L permanece igual. A versão corrigida exige cuidado adicional com operações que atravessam a fronteira treino/validação.
 
-**3. MÉDIO — A diferença entre cenários mistura spread e seleção.**  
-[m7.py:110](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:110) simula cada cenário separadamente: custos alteram entradas aceitas, saídas e oportunidades posteriores. Há **136 contra 119** condors em meio/meio_50.
+**3. MÉDIO — Saída executada no fechamento que gera o sinal.**  
+[c1_sistemas.py:19](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/c1_sistemas.py:19) observa o fechamento abaixo do canal e vende nesse mesmo preço. Esse preço só é confirmado quando o candle termina. A produção usa abertura seguinte ([cripto.py:83](/home/runner/work/mesa-dados/mesa-dados/scripts/cripto.py:83)).
 
-Nas **88 entradas coincidentes**, as médias são **+0,121R/−0,187R**. O arrasto mediano de entrada, dividido pelo risco no meio, é **13,2% em XLF**, **14,5% em XLE**, contra **0,2% em SPY**. Isso sustenta forte sensibilidade à liquidez; não prova envelhecimento das cotações.
+Simulando abertura seguinte e excluindo abertas, L long passa de **+0,4923R para +0,4904R/operação**, total **+6,89R → +6,87R**. A inconsistência existe, mas seu impacto local é pequeno.
 
-**Filtro proposto:** exigir por perna `(ask−bid)/mid ≤20%`, bid positivo, horário recente e sincronizado, além de consistência dos preços do pacote com seus limites econômicos. Aplicar na entrada; na saída, prever execução conservadora quando falhar, sem descartar a operação.
+**4. MÉDIO — Drawdown e “diversificação” superinterpretados.**  
+[base.py:57](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/base.py:57) acumula operações na ordem recebida, agrupada por ativo. Ordenando cronologicamente e incluindo capital inicial zero, DD realizado da L long muda de **−3,9R para −4,5R**.
 
-O CSV permite apenas uma aproximação: nas entradas pareadas, exigir  
-`(risco_meio50−risco_meio)/risco_meio ≤10%`.
+A função de carteira ordena corretamente ([c4_camadas.py:24](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/c4_camadas.py:24)), mas considera apenas resultados realizados. Marcando posições diariamente pelo fechamento, com risco inicial unitário por operação:
 
-| Validação filtrada | N | Meio | Meio_50 |
-|---|---:|---:|---:|
-| Condor | 26 | +0,041R | −0,048R |
-| Crédito | 58 | −0,010R | −0,095R |
+| Carteira | DD realizado | DD marcado a mercado |
+|---|---:|---:|
+| M | −7,0R | **−19,1R** |
+| L | −6,4R | **−17,1R** |
+| M+L | −10,3R | **−33,0R** |
 
-São subconjuntos retrospectivos, sem reconstrução da carteira. **Não mudam a reprovação.**
+Comparar −10,3 com a **soma** −13,4 não demonstra melhoria frente a M. Há até quatro posições simultâneas; é necessário comparar sob orçamento de risco comum. Além disso, essa carteira inclui **L short reprovada**.
 
-**4. MÉDIO — Saída decidida e executada pela mesma cotação.**  
-[m7.py:143](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:143) observa o fechamento, verifica alvo/stop e presume execução naquele preço. Falta testar execução posterior à decisão. Sem dados intradiários, não quantifico o efeito.
+**5. MÉDIO — Aprovação estatística da L long não demonstrada.**  
+A concentração foi confirmada: top-3 **+15,78R**, demais **−8,89R**. Bootstrap IID, 300 mil reamostragens, semente fixa: **IC95% da média aproximadamente [−0,77R; +2,11R]**; cerca de **27%** das médias reamostradas são não positivas. Isso não é probabilidade posterior de prejuízo. Reamostragem por ano, preservando agrupamento BTC/ETH, também inclui zero; há somente cinco blocos anuais.
 
-**5. MÉDIO — Paridade resolve a escala, mas permanece aproximação.**  
-[m7.py:25](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:25) implementa corretamente a fórmula europeia. ETFs têm opções americanas e dividendos discretos; yields fixos e mids ruins afetam spot, IV e deltas. A correção de splits é coerente, mas não transforma o spot inferido em preço observado.
-
-**6. MÉDIO — Descarte e carteira podem selecionar resultados.**  
-[m7.py:153](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:153) apaga operações sem saída cotada. [m7.py:227](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/m7/m7.py:227) limita o grupo depois da simulação: operações rejeitadas já bloquearam oportunidades posteriores do ETF. O desempate alfabético também é arbitrário.
+**6. MÉDIO — Pré-registro indisponível e produção ainda v1.**  
+O arquivo citado em [c4_camadas.py:1](/home/runner/work/mesa-dados/mesa-dados/scripts/lab/cripto/c4_camadas.py:1) não existe neste checkout: não pude verificar critérios nem anterioridade das escolhas. A produção mantém 20/20, 20/10 e 2 ATR; L não está implementada. Long sem funding corresponde a **spot**; perpétuos exigem outro teste.
 
 ## Veredito
-
-As conclusões de **não aprovação** se mantêm nas sensibilidades calculáveis.  
-O ganho no “meio”, especialmente em XLF, não demonstra vantagem executável.  
-As correções de percentil e HV estão corretas; a paridade melhora a escala, com limitações.  
-O efeito exato de um filtro por perna exige as cadeias brutas e nova simulação causal.
+L long mantém +6,9R na validação; L short continua reprovada.  
+Aprovação por eventual regra mecânica não equivale a evidência estatística convincente.  
+Eu manteria L long apenas em papel ou tamanho reduzido, aguardando dados novos.  
+A alegação de diversificação precisa ser refeita com marcação diária e risco comparável.
