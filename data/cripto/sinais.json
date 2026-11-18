@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-17T18:07+00:00",
+ "gerado_em": "2026-11-18T01:42+00:00",
  "candle": "2026-11-16",
  "regras": "playbooks/cripto.md v1",
  "e1": [
@@ -15,7 +15,7 @@
    },
    "preco": 64855.84,
    "mm200": 72864.67,
-   "funding_pct_8h": 0.0017
+   "funding_pct_8h": -0.0
   },
   {
    "ativo": "BTC",
@@ -35,7 +35,7 @@
    },
    "preco": 64855.84,
    "mm200": 72864.67,
-   "funding_pct_8h": 0.0017
+   "funding_pct_8h": -0.0
   },
   {
    "ativo": "ETH",
@@ -49,7 +49,7 @@
    },
    "preco": 1819.28,
    "mm200": 2140.35,
-   "funding_pct_8h": -0.0085
+   "funding_pct_8h": 0.0042
   },
   {
    "ativo": "ETH",
@@ -69,7 +69,7 @@
    },
    "preco": 1819.28,
    "mm200": 2140.35,
-   "funding_pct_8h": -0.0085
+   "funding_pct_8h": 0.0042
   }
  ],
  "e2": {
@@ -81,14 +81,14 @@
  "acumulo_btc": {
   "mayer": 0.89,
   "multiplicador_aporte": 2,
-  "fear_greed": 12,
+  "fear_greed": 11,
   "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
  },
  "acumulo": {
   "BTC": {
    "mayer": 0.89,
    "multiplicador_aporte": 2,
-   "fear_greed": 12,
+   "fear_greed": 11,
    "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
   },
   "ETH": {
