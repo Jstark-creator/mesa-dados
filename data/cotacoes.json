@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-18T21:49:25+00:00",
+ "gerado_em": "2026-11-18T22:56:45+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -53,7 +53,7 @@
    "data": "2026-11-18",
    "preco": 7.88,
    "var_dia_pct": 0.0,
-   "max_dia": 8.09,
+   "max_dia": 8.08,
    "min_dia": 7.71
   },
   {
@@ -90,7 +90,7 @@
    "preco": 19.1,
    "var_dia_pct": -2.55,
    "max_dia": 19.65,
-   "min_dia": 19.01
+   "min_dia": 19.02
   },
   {
    "ticker": "EMBJ3",
@@ -251,7 +251,7 @@
    "data": "2026-11-18",
    "preco": 16.55,
    "var_dia_pct": 0.85,
-   "max_dia": 16.78,
+   "max_dia": 16.76,
    "min_dia": 16.21
   },
   {
@@ -267,17 +267,17 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-18",
-   "preco": 62335.8789,
-   "var_dia_pct": -3.94,
+   "preco": 62140.9805,
+   "var_dia_pct": -4.24,
    "max_dia": 64884.8086,
-   "min_dia": 62281.1211
+   "min_dia": 62227.7461
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-18",
-   "preco": 1763.5699,
-   "var_dia_pct": -3.26,
+   "preco": 1752.9,
+   "var_dia_pct": -3.84,
    "max_dia": 1823.0618,
    "min_dia": 1735.4569
   },
@@ -315,7 +315,7 @@
    "preco": 7.835,
    "var_dia_pct": -0.7,
    "max_dia": 7.95,
-   "min_dia": 7.75
+   "min_dia": 7.755
   },
   {
    "ticker": "AKAM",
@@ -629,7 +629,7 @@
    "data": "2026-11-18",
    "preco": 25.44,
    "var_dia_pct": 1.31,
-   "max_dia": 25.615,
+   "max_dia": 25.61,
    "min_dia": 24.8301
   },
   {
@@ -810,7 +810,7 @@
    "preco": 659.51,
    "var_dia_pct": 0.39,
    "max_dia": 662.7987,
-   "min_dia": 653.06
+   "min_dia": 653.08
   },
   {
    "ticker": "QS",
@@ -933,8 +933,8 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-18",
-   "preco": 103.803,
-   "var_dia_pct": 0.3,
+   "preco": 103.781,
+   "var_dia_pct": 0.28,
    "max_dia": 103.911,
    "min_dia": 103.586
   },
@@ -969,17 +969,17 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-18",
-   "preco": 3727.0,
-   "var_dia_pct": -3.55,
+   "preco": 3727.8,
+   "var_dia_pct": -3.53,
    "max_dia": 3859.3,
-   "min_dia": 3722.1001
+   "min_dia": 3721.8
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-18",
-   "preco": 82.07,
-   "var_dia_pct": -4.58,
+   "preco": 81.89,
+   "var_dia_pct": -4.79,
    "max_dia": 84.77,
    "min_dia": 81.2
   },
