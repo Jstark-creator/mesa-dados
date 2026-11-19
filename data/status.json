@@ -1,9 +1,7 @@
 {
- "gerado_em": "2026-11-18T23:00:16+00:00",
- "ativos_ok": 102,
+ "gerado_em": "2026-11-19T22:58:21+00:00",
+ "ativos_ok": 103,
  "ativos_total": 103,
- "falhas": [
-  "AGNC"
- ],
+ "falhas": [],
  "sinais": 0
 }
