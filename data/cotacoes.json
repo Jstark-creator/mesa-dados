@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-22T20:49:35+00:00",
+ "gerado_em": "2026-11-22T22:48:19+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 60641.3906,
-   "var_dia_pct": 0.91,
+   "preco": 60746.1484,
+   "var_dia_pct": 1.09,
    "max_dia": 61328.9453,
    "min_dia": 58680.2148
   },
@@ -276,9 +276,9 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 1714.75,
-   "var_dia_pct": 1.93,
-   "max_dia": 1720.8531,
+   "preco": 1712.21,
+   "var_dia_pct": 1.78,
+   "max_dia": 1723.0487,
    "min_dia": 1645.7455
   },
   {
@@ -325,15 +325,6 @@
    "var_dia_pct": -7.2,
    "max_dia": 91.43,
    "min_dia": 84.9
-  },
-  {
-   "ticker": "AMD",
-   "mercado": "eua",
-   "data": "2026-11-20",
-   "preco": 424.39,
-   "var_dia_pct": -13.25,
-   "max_dia": 474.79,
-   "min_dia": 418.76
   },
   {
    "ticker": "AMZN",
@@ -932,11 +923,11 @@
   {
    "ticker": "DXY",
    "mercado": "mercado",
-   "data": "2026-11-20",
-   "preco": 103.81,
-   "var_dia_pct": -0.09,
-   "max_dia": 103.95,
-   "min_dia": 103.58
+   "data": "2026-11-22",
+   "preco": 103.84,
+   "var_dia_pct": 0.03,
+   "max_dia": 103.953,
+   "min_dia": 103.582
   },
   {
    "ticker": "Dow Jones",
@@ -1013,9 +1004,9 @@
   {
    "ticker": "USD/BRL",
    "mercado": "mercado",
-   "data": "2026-11-22",
-   "preco": 5.9488,
-   "var_dia_pct": 0.26,
+   "data": "2026-11-23",
+   "preco": 5.9074,
+   "var_dia_pct": -0.44,
    "max_dia": 5.9488,
    "min_dia": 5.9074
   },
