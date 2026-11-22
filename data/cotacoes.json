@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-22T18:51:54+00:00",
+ "gerado_em": "2026-11-22T20:49:35+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 60633.5312,
-   "var_dia_pct": 0.9,
+   "preco": 60641.3906,
+   "var_dia_pct": 0.91,
    "max_dia": 61328.9453,
    "min_dia": 58680.2148
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 1713.53,
-   "var_dia_pct": 1.86,
+   "preco": 1714.75,
+   "var_dia_pct": 1.93,
    "max_dia": 1720.8531,
    "min_dia": 1645.7455
   },
@@ -604,6 +604,15 @@
    "var_dia_pct": -5.9,
    "max_dia": 75.37,
    "min_dia": 70.79
+  },
+  {
+   "ticker": "JNJ",
+   "mercado": "eua",
+   "data": "2026-11-20",
+   "preco": 270.47,
+   "var_dia_pct": 1.25,
+   "max_dia": 272.5,
+   "min_dia": 269.47
   },
   {
    "ticker": "KEEL",
