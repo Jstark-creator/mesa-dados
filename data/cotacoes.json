@@ -1,60 +1,60 @@
 {
- "gerado_em": "2026-11-22T10:50:20+00:00",
+ "gerado_em": "2026-11-22T12:57:04+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
    "ticker": "AXIA3",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 46.0,
-   "var_dia_pct": -0.65,
-   "max_dia": 46.66,
-   "min_dia": 45.84
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "BBSE3",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 36.99,
-   "var_dia_pct": 0.9,
-   "max_dia": 37.04,
-   "min_dia": 36.37
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "BEEF3",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 3.73,
-   "var_dia_pct": 0.54,
-   "max_dia": 3.99,
-   "min_dia": 3.69
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "BPAC11",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 49.69,
-   "var_dia_pct": -0.84,
-   "max_dia": 51.31,
-   "min_dia": 49.53
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "BRSR6",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 12.46,
-   "var_dia_pct": -0.95,
-   "max_dia": 12.73,
-   "min_dia": 12.39
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "CEAB3",
    "mercado": "br",
-   "data": "2026-11-19",
+   "data": "2026-11-22",
    "preco": 7.5,
-   "var_dia_pct": -4.82,
-   "max_dia": 7.97,
-   "min_dia": 7.4
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "COGN3",
@@ -267,18 +267,18 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 60719.1211,
-   "var_dia_pct": 1.04,
-   "max_dia": 61094.2734,
+   "preco": 60730.0586,
+   "var_dia_pct": 1.06,
+   "max_dia": 61328.9453,
    "min_dia": 58680.2148
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-22",
-   "preco": 1706.52,
-   "var_dia_pct": 1.45,
-   "max_dia": 1714.786,
+   "preco": 1704.33,
+   "var_dia_pct": 1.32,
+   "max_dia": 1719.8298,
    "min_dia": 1645.7455
   },
   {
@@ -950,11 +950,11 @@
   {
    "ticker": "Ibovespa",
    "mercado": "mercado",
-   "data": "2026-11-19",
-   "preco": 166376.0,
-   "var_dia_pct": -0.69,
-   "max_dia": 168498.0,
-   "min_dia": 165833.0
+   "data": "2026-11-22",
+   "preco": 166376.4375,
+   "var_dia_pct": 0.0,
+   "max_dia": 0.0,
+   "min_dia": 0.0
   },
   {
    "ticker": "Nasdaq 100",
