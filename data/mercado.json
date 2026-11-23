@@ -1,82 +1,82 @@
 {
- "gerado_em": "2026-11-20T22:57:06+00:00",
+ "gerado_em": "2026-11-23T23:01:47+00:00",
  "itens": [
   {
    "nome": "S&P 500",
    "simbolo": "^GSPC",
-   "data": "2026-11-20",
-   "ultimo": 6910.3901,
-   "var_dia_pct": -3.7
+   "data": "2026-11-23",
+   "ultimo": 7237.1699,
+   "var_dia_pct": 4.73
   },
   {
    "nome": "Nasdaq 100",
    "simbolo": "^NDX",
-   "data": "2026-11-20",
-   "ultimo": 25028.9824,
-   "var_dia_pct": -5.61
+   "data": "2026-11-23",
+   "ultimo": 26746.0957,
+   "var_dia_pct": 6.86
   },
   {
    "nome": "Dow Jones",
    "simbolo": "^DJI",
-   "data": "2026-11-20",
-   "ultimo": 48147.3281,
-   "var_dia_pct": -1.93
+   "data": "2026-11-23",
+   "ultimo": 49595.3086,
+   "var_dia_pct": 3.01
   },
   {
    "nome": "Russell 2000",
    "simbolo": "^RUT",
-   "data": "2026-11-20",
-   "ultimo": 2581.7896,
-   "var_dia_pct": -2.76
+   "data": "2026-11-23",
+   "ultimo": 2669.655,
+   "var_dia_pct": 3.4
   },
   {
    "nome": "Ibovespa",
    "simbolo": "^BVSP",
-   "data": "2026-11-19",
-   "ultimo": 166376.0,
-   "var_dia_pct": -0.69
+   "data": "2026-11-23",
+   "ultimo": 164796.0469,
+   "var_dia_pct": -0.95
   },
   {
    "nome": "VIX",
    "simbolo": "^VIX",
-   "data": "2026-11-20",
-   "ultimo": 35.89,
-   "var_dia_pct": 26.2
+   "data": "2026-11-23",
+   "ultimo": 26.62,
+   "var_dia_pct": -25.83
   },
   {
    "nome": "DXY",
    "simbolo": "DX-Y.NYB",
-   "data": "2026-11-20",
-   "ultimo": 103.84,
-   "var_dia_pct": -0.06
+   "data": "2026-11-23",
+   "ultimo": 104.338,
+   "var_dia_pct": 0.51
   },
   {
    "nome": "USD/BRL",
    "simbolo": "BRL=X",
-   "data": "2026-11-20",
-   "ultimo": 5.9488,
-   "var_dia_pct": 1.14
+   "data": "2026-11-24",
+   "ultimo": 5.9239,
+   "var_dia_pct": -0.16
   },
   {
    "nome": "Treasury 10 anos",
    "simbolo": "^TNX",
-   "data": "2026-11-20",
-   "ultimo": 4.912,
-   "var_dia_pct": -2.77
+   "data": "2026-11-23",
+   "ultimo": 4.918,
+   "var_dia_pct": 0.12
   },
   {
    "nome": "Ouro",
    "simbolo": "GC=F",
-   "data": "2026-11-20",
-   "ultimo": 3539.0,
-   "var_dia_pct": -3.98
+   "data": "2026-11-23",
+   "ultimo": 3634.3999,
+   "var_dia_pct": 3.39
   },
   {
    "nome": "Petróleo WTI",
    "simbolo": "CL=F",
-   "data": "2026-11-20",
-   "ultimo": 83.62,
-   "var_dia_pct": 0.49
+   "data": "2026-11-23",
+   "ultimo": 80.25,
+   "var_dia_pct": -4.44
   }
  ]
 }
