@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-24T05:12:45+00:00",
+ "gerado_em": "2026-11-24T07:22:25+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-24",
-   "preco": 60490.2305,
-   "var_dia_pct": -1.1,
+   "preco": 60302.6992,
+   "var_dia_pct": -1.48,
    "max_dia": 61502.6641,
    "min_dia": 59587.1836
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-24",
-   "preco": 1702.1899,
-   "var_dia_pct": -1.1,
+   "preco": 1694.03,
+   "var_dia_pct": -0.87,
    "max_dia": 1718.7853,
    "min_dia": 1672.3823
   },
@@ -289,6 +289,15 @@
    "var_dia_pct": 17.52,
    "max_dia": 42.27,
    "min_dia": 37.97
+  },
+  {
+   "ticker": "AAPL",
+   "mercado": "eua",
+   "data": "2026-11-23",
+   "preco": 349.08,
+   "var_dia_pct": 1.9,
+   "max_dia": 352.6,
+   "min_dia": 345.44
   },
   {
    "ticker": "ACHR",
@@ -867,15 +876,6 @@
    "min_dia": 13.41
   },
   {
-   "ticker": "UNG",
-   "mercado": "eua",
-   "data": "2026-11-23",
-   "preco": 9.86,
-   "var_dia_pct": -6.63,
-   "max_dia": 9.93,
-   "min_dia": 9.65
-  },
-  {
    "ticker": "VRT",
    "mercado": "eua",
    "data": "2026-11-23",
@@ -924,9 +924,9 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-24",
-   "preco": 104.278,
-   "var_dia_pct": -0.04,
-   "max_dia": 104.318,
+   "preco": 104.355,
+   "var_dia_pct": 0.03,
+   "max_dia": 104.403,
    "min_dia": 104.183
   },
   {
@@ -960,19 +960,19 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-24",
-   "preco": 3638.0,
-   "var_dia_pct": -0.37,
+   "preco": 3621.3999,
+   "var_dia_pct": -0.82,
    "max_dia": 3676.7,
-   "min_dia": 3618.5
+   "min_dia": 3612.7
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-24",
-   "preco": 79.56,
-   "var_dia_pct": -0.76,
+   "preco": 79.83,
+   "var_dia_pct": -0.42,
    "max_dia": 80.61,
-   "min_dia": 79.55
+   "min_dia": 79.2
   },
   {
    "ticker": "Russell 2000",
