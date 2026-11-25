@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-25T05:14:34+00:00",
+ "gerado_em": "2026-11-25T07:25:14+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-25",
-   "preco": 59060.7383,
-   "var_dia_pct": -3.51,
+   "preco": 58994.3008,
+   "var_dia_pct": -1.26,
    "max_dia": 59745.6523,
    "min_dia": 58902.6836
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-25",
-   "preco": 1656.41,
-   "var_dia_pct": -3.07,
+   "preco": 1652.83,
+   "var_dia_pct": -1.48,
    "max_dia": 1677.6505,
    "min_dia": 1649.8911
   },
@@ -933,9 +933,9 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-25",
-   "preco": 104.0,
-   "var_dia_pct": 0.18,
-   "max_dia": 104.001,
+   "preco": 104.046,
+   "var_dia_pct": 0.23,
+   "max_dia": 104.101,
    "min_dia": 103.806
   },
   {
@@ -969,19 +969,19 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-25",
-   "preco": 3546.3999,
-   "var_dia_pct": -0.44,
-   "max_dia": 3573.8,
-   "min_dia": 3532.3999
+   "preco": 3517.8999,
+   "var_dia_pct": -1.24,
+   "max_dia": 3573.8999,
+   "min_dia": 3511.3
   },
   {
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-25",
-   "preco": 80.68,
-   "var_dia_pct": -1.67,
+   "preco": 80.65,
+   "var_dia_pct": -1.71,
    "max_dia": 81.86,
-   "min_dia": 80.64
+   "min_dia": 80.34
   },
   {
    "ticker": "Russell 2000",
