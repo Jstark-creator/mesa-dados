@@ -1,6 +1,6 @@
 {
- "gerado_em": "2026-11-24T01:39+00:00",
- "candle": "2026-11-22",
+ "gerado_em": "2026-11-25T01:43+00:00",
+ "candle": "2026-11-23",
  "regras": "playbooks/cripto.md v1",
  "e1": [
   {
@@ -13,9 +13,9 @@
     "entrada": 86604.375,
     "preco_saida": 81646.83808889533
    },
-   "preco": 61161.91,
-   "mm200": 72326.08,
-   "funding_pct_8h": 0.0055
+   "preco": 61210.98,
+   "mm200": 72232.08,
+   "funding_pct_8h": 0.0039
   },
   {
    "ativo": "BTC",
@@ -24,18 +24,18 @@
    "entrada_data": "2026-11-13",
    "entrada": 71342.96875,
    "stop": 75881.89597626538,
-   "fechamento": 61161.91015625,
-   "nivel_saida": 74115.21875,
-   "resultado_R": 2.24,
+   "fechamento": 61210.984375,
+   "nivel_saida": 71428.53125,
+   "resultado_R": 2.23,
    "ultima_saida": {
     "saida": "2026-06-15",
     "motivo": "canal",
     "entrada": 75488.3125,
     "preco_saida": 65711.109375
    },
-   "preco": 61161.91,
-   "mm200": 72326.08,
-   "funding_pct_8h": 0.0055
+   "preco": 61210.98,
+   "mm200": 72232.08,
+   "funding_pct_8h": 0.0039
   },
   {
    "ativo": "ETH",
@@ -47,9 +47,9 @@
     "entrada": 2251.444091796875,
     "preco_saida": 2249.498291015625
    },
-   "preco": 1721.08,
-   "mm200": 2122.27,
-   "funding_pct_8h": -0.0039
+   "preco": 1708.85,
+   "mm200": 2119.36,
+   "funding_pct_8h": 0.0087
   },
   {
    "ativo": "ETH",
@@ -58,18 +58,18 @@
    "entrada_data": "2026-11-09",
    "entrada": 2120.980224609375,
    "stop": 2311.687684286703,
-   "fechamento": 1721.07568359375,
-   "nivel_saida": 2063.39404296875,
-   "resultado_R": 2.1,
+   "fechamento": 1708.851318359375,
+   "nivel_saida": 2018.650390625,
+   "resultado_R": 2.16,
    "ultima_saida": {
     "saida": "2026-06-16",
     "motivo": "canal",
     "entrada": 2179.8544921875,
     "preco_saida": 1794.93798828125
    },
-   "preco": 1721.08,
-   "mm200": 2122.27,
-   "funding_pct_8h": -0.0039
+   "preco": 1708.85,
+   "mm200": 2119.36,
+   "funding_pct_8h": 0.0087
   }
  ],
  "e2": {
@@ -81,14 +81,14 @@
  "acumulo_btc": {
   "mayer": 0.85,
   "multiplicador_aporte": 2,
-  "fear_greed": 11,
+  "fear_greed": 13,
   "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
  },
  "acumulo": {
   "BTC": {
    "mayer": 0.85,
    "multiplicador_aporte": 2,
-   "fear_greed": 11,
+   "fear_greed": 13,
    "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
   },
   "ETH": {
