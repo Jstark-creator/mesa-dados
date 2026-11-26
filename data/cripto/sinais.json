@@ -1,6 +1,6 @@
 {
- "gerado_em": "2026-11-25T01:43+00:00",
- "candle": "2026-11-23",
+ "gerado_em": "2026-11-26T01:43+00:00",
+ "candle": "2026-11-24",
  "regras": "playbooks/cripto.md v1",
  "e1": [
   {
@@ -13,9 +13,9 @@
     "entrada": 86604.375,
     "preco_saida": 81646.83808889533
    },
-   "preco": 61210.98,
-   "mm200": 72232.08,
-   "funding_pct_8h": 0.0039
+   "preco": 59747.77,
+   "mm200": 72129.89,
+   "funding_pct_8h": 0.01
   },
   {
    "ativo": "BTC",
@@ -24,18 +24,18 @@
    "entrada_data": "2026-11-13",
    "entrada": 71342.96875,
    "stop": 75881.89597626538,
-   "fechamento": 61210.984375,
-   "nivel_saida": 71428.53125,
-   "resultado_R": 2.23,
+   "fechamento": 59747.765625,
+   "nivel_saida": 68377.5390625,
+   "resultado_R": 2.55,
    "ultima_saida": {
     "saida": "2026-06-15",
     "motivo": "canal",
     "entrada": 75488.3125,
     "preco_saida": 65711.109375
    },
-   "preco": 61210.98,
-   "mm200": 72232.08,
-   "funding_pct_8h": 0.0039
+   "preco": 59747.77,
+   "mm200": 72129.89,
+   "funding_pct_8h": 0.01
   },
   {
    "ativo": "ETH",
@@ -47,9 +47,9 @@
     "entrada": 2251.444091796875,
     "preco_saida": 2249.498291015625
    },
-   "preco": 1708.85,
-   "mm200": 2119.36,
-   "funding_pct_8h": 0.0087
+   "preco": 1677.69,
+   "mm200": 2116.21,
+   "funding_pct_8h": 0.008
   },
   {
    "ativo": "ETH",
@@ -58,18 +58,18 @@
    "entrada_data": "2026-11-09",
    "entrada": 2120.980224609375,
    "stop": 2311.687684286703,
-   "fechamento": 1708.851318359375,
-   "nivel_saida": 2018.650390625,
-   "resultado_R": 2.16,
+   "fechamento": 1677.69482421875,
+   "nivel_saida": 1933.9482421875,
+   "resultado_R": 2.32,
    "ultima_saida": {
     "saida": "2026-06-16",
     "motivo": "canal",
     "entrada": 2179.8544921875,
     "preco_saida": 1794.93798828125
    },
-   "preco": 1708.85,
-   "mm200": 2119.36,
-   "funding_pct_8h": 0.0087
+   "preco": 1677.69,
+   "mm200": 2116.21,
+   "funding_pct_8h": 0.008
   }
  ],
  "e2": {
@@ -79,21 +79,21 @@
   "nota": "Carteira do sistema: 0/3 vagas ocupadas. As vagas REAIS vêm do Journal: o agente usa as posições reais; dentro_do_limite considera só a carteira do sistema."
  },
  "acumulo_btc": {
-  "mayer": 0.85,
+  "mayer": 0.83,
   "multiplicador_aporte": 2,
-  "fear_greed": 13,
+  "fear_greed": 11,
   "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
  },
  "acumulo": {
   "BTC": {
-   "mayer": 0.85,
+   "mayer": 0.83,
    "multiplicador_aporte": 2,
-   "fear_greed": 13,
+   "fear_greed": 11,
    "regra": "<0,8 → 3x · 0,8–1,0 → 2x · 1,0–1,5 → 1x · 1,5–2,4 → 0,5x · >2,4 → pausa (sobra vai pra reserva)"
   },
   "ETH": {
-   "mayer": 0.81,
-   "multiplicador_aporte": 2
+   "mayer": 0.79,
+   "multiplicador_aporte": 3
   }
  },
  "camada_l_papel": [
