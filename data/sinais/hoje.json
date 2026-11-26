@@ -1,6 +1,49 @@
 {
- "gerado_em": "2026-11-25T23:04:40+00:00",
+ "gerado_em": "2026-11-26T23:07:49+00:00",
  "playbook": "M3 v2.1",
  "obs": "armado = padrão de 3 candles fechou, entrada no rompimento da abertura de c1 no próximo pregão; acionado = rompimento já ocorreu no último candle; preliminar = true quando o último candle ainda não fechou (sinal pode mudar até o fechamento)",
- "sinais": []
+ "sinais": [
+  {
+   "ticker": "RDOR3",
+   "versao": "M3 v2.1",
+   "direcao": "compra",
+   "estado": "acionado",
+   "data": "2026-11-26",
+   "data_c1": "2026-11-24",
+   "entrada": 39.16,
+   "stop": 35.5276,
+   "alvo": 42.03,
+   "alvo_provisorio": true,
+   "fechamento": 39.16,
+   "ifr14": 62.97,
+   "atr14": 1.5248,
+   "mm200": 36.8158,
+   "volume_rel": 1.1,
+   "hv20": 0.3935,
+   "hv_pct": 0.746,
+   "risco_pct": 9.28,
+   "retorno_pct": 7.33,
+   "rr_ativo": 0.79,
+   "mercado": "br",
+   "tier": "tier3",
+   "preliminar": false,
+   "iv_percentil": 0.746,
+   "iv_fonte": "aproximação pela volatilidade realizada",
+   "veiculo": "trava_put_credito",
+   "opcao": {
+    "vencimento_dias": 35,
+    "vol_usada": 0.433,
+    "obs": "teórico: confirmar strikes, prêmios e liquidez na Genial",
+    "estrutura": "Trava de alta com put (crédito)",
+    "vende_put": 37.0,
+    "compra_put": 35.0,
+    "credito_teorico": 0.52,
+    "rr": 0.351,
+    "pop": 0.706,
+    "aprovada_regras": true,
+    "qtd_cheio": 1300,
+    "qtd_meio": 600
+   }
+  }
+ ]
 }
