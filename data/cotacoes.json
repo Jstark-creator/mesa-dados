@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-26T21:50:20+00:00",
+ "gerado_em": "2026-11-26T23:02:15+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -53,7 +53,7 @@
    "data": "2026-11-26",
    "preco": 8.47,
    "var_dia_pct": 11.74,
-   "max_dia": 8.52,
+   "max_dia": 8.51,
    "min_dia": 7.89
   },
   {
@@ -80,7 +80,7 @@
    "data": "2026-11-26",
    "preco": 28.42,
    "var_dia_pct": 7.69,
-   "max_dia": 28.89,
+   "max_dia": 28.88,
    "min_dia": 26.78
   },
   {
@@ -197,7 +197,7 @@
    "data": "2026-11-26",
    "preco": 54.87,
    "var_dia_pct": -0.96,
-   "max_dia": 55.98,
+   "max_dia": 55.86,
    "min_dia": 53.04
   },
   {
@@ -224,7 +224,7 @@
    "data": "2026-11-26",
    "preco": 22.99,
    "var_dia_pct": 5.31,
-   "max_dia": 23.03,
+   "max_dia": 23.0,
    "min_dia": 21.97
   },
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-26",
-   "preco": 60866.3281,
-   "var_dia_pct": 0.81,
+   "preco": 60397.4609,
+   "var_dia_pct": 0.03,
    "max_dia": 61040.9453,
    "min_dia": 60040.082
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-26",
-   "preco": 1707.76,
-   "var_dia_pct": 1.0,
+   "preco": 1688.21,
+   "var_dia_pct": -0.15,
    "max_dia": 1708.4446,
    "min_dia": 1672.7664
   },
@@ -462,15 +462,6 @@
    "min_dia": 194.7
   },
   {
-   "ticker": "CSCO",
-   "mercado": "eua",
-   "data": "2026-11-25",
-   "preco": 94.2,
-   "var_dia_pct": 0.22,
-   "max_dia": 94.46,
-   "min_dia": 91.03
-  },
-  {
    "ticker": "CVNA",
    "mercado": "eua",
    "data": "2026-11-25",
@@ -640,6 +631,15 @@
    "var_dia_pct": 2.62,
    "max_dia": 29.35,
    "min_dia": 26.83
+  },
+  {
+   "ticker": "KWEB",
+   "mercado": "eua",
+   "data": "2026-11-25",
+   "preco": 21.17,
+   "var_dia_pct": 0.09,
+   "max_dia": 21.22,
+   "min_dia": 20.44
   },
   {
    "ticker": "LQD",
@@ -924,8 +924,8 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-26",
-   "preco": 103.784,
-   "var_dia_pct": 0.11,
+   "preco": 103.751,
+   "var_dia_pct": 0.08,
    "max_dia": 103.84,
    "min_dia": 103.625
   },
@@ -971,7 +971,7 @@
    "data": "2026-11-26",
    "preco": 84.91,
    "var_dia_pct": 1.47,
-   "max_dia": 85.23,
+   "max_dia": 85.21,
    "min_dia": 83.16
   },
   {
