@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-27T22:30:00+00:00",
+ "gerado_em": "2026-11-27T23:01:02+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -99,7 +99,7 @@
    "preco": 101.93,
    "var_dia_pct": -3.88,
    "max_dia": 106.95,
-   "min_dia": 101.51
+   "min_dia": 101.55
   },
   {
    "ticker": "ENEV3",
@@ -251,7 +251,7 @@
    "data": "2026-11-27",
    "preco": 17.81,
    "var_dia_pct": 7.68,
-   "max_dia": 18.06,
+   "max_dia": 18.07,
    "min_dia": 16.98
   },
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-27",
-   "preco": 59691.8906,
-   "var_dia_pct": -1.33,
+   "preco": 59772.5,
+   "var_dia_pct": -1.19,
    "max_dia": 62085.707,
    "min_dia": 59007.8906
   },
@@ -276,10 +276,19 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-27",
-   "preco": 1657.3101,
-   "var_dia_pct": -1.8,
+   "preco": 1658.1801,
+   "var_dia_pct": -1.75,
    "max_dia": 1744.0771,
    "min_dia": 1640.9602
+  },
+  {
+   "ticker": "AAOI",
+   "mercado": "eua",
+   "data": "2026-11-27",
+   "preco": 40.9,
+   "var_dia_pct": 10.48,
+   "max_dia": 40.93,
+   "min_dia": 37.5
   },
   {
    "ticker": "AAPL",
@@ -323,7 +332,7 @@
    "data": "2026-11-27",
    "preco": 424.54,
    "var_dia_pct": 4.56,
-   "max_dia": 426.88,
+   "max_dia": 426.81,
    "min_dia": 398.5901
   },
   {
@@ -386,7 +395,7 @@
    "data": "2026-11-27",
    "preco": 121.96,
    "var_dia_pct": 2.53,
-   "max_dia": 122.19,
+   "max_dia": 122.21,
    "min_dia": 120.1
   },
   {
@@ -702,7 +711,7 @@
    "preco": 228.64,
    "var_dia_pct": 3.53,
    "max_dia": 229.3499,
-   "min_dia": 216.02
+   "min_dia": 215.7209
   },
   {
    "ticker": "MSTR",
@@ -962,7 +971,7 @@
    "data": "2026-11-27",
    "preco": 3668.5,
    "var_dia_pct": 3.75,
-   "max_dia": 3711.8999,
+   "max_dia": 3712.8,
    "min_dia": 3578.8
   },
   {
