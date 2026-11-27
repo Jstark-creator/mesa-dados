@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-27T10:59:12+00:00",
+ "gerado_em": "2026-11-27T13:06:43+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,8 +267,8 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-27",
-   "preco": 61594.4883,
-   "var_dia_pct": 1.82,
+   "preco": 61446.6914,
+   "var_dia_pct": 1.57,
    "max_dia": 62085.707,
    "min_dia": 60440.9453
   },
@@ -276,8 +276,8 @@
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-27",
-   "preco": 1728.0,
-   "var_dia_pct": 2.39,
+   "preco": 1719.2,
+   "var_dia_pct": 1.86,
    "max_dia": 1744.0771,
    "min_dia": 1686.5598
   },
@@ -406,6 +406,15 @@
    "var_dia_pct": -0.46,
    "max_dia": 113.97,
    "min_dia": 109.99
+  },
+  {
+   "ticker": "CAT",
+   "mercado": "eua",
+   "data": "2026-11-25",
+   "preco": 543.69,
+   "var_dia_pct": 0.57,
+   "max_dia": 545.72,
+   "min_dia": 512.51
   },
   {
    "ticker": "CHTR",
@@ -924,8 +933,8 @@
    "ticker": "DXY",
    "mercado": "mercado",
    "data": "2026-11-27",
-   "preco": 103.821,
-   "var_dia_pct": 0.15,
+   "preco": 103.801,
+   "var_dia_pct": 0.13,
    "max_dia": 103.877,
    "min_dia": 103.639
   },
@@ -960,8 +969,8 @@
    "ticker": "Ouro",
    "mercado": "mercado",
    "data": "2026-11-27",
-   "preco": 3706.5,
-   "var_dia_pct": 4.83,
+   "preco": 3695.2,
+   "var_dia_pct": 4.51,
    "max_dia": 3711.8999,
    "min_dia": 3578.8
   },
@@ -969,8 +978,8 @@
    "ticker": "Petróleo WTI",
    "mercado": "mercado",
    "data": "2026-11-27",
-   "preco": 85.64,
-   "var_dia_pct": 2.34,
+   "preco": 85.1,
+   "var_dia_pct": 1.7,
    "max_dia": 86.6,
    "min_dia": 83.16
   },
@@ -1005,18 +1014,18 @@
    "ticker": "USD/BRL",
    "mercado": "mercado",
    "data": "2026-11-27",
-   "preco": 5.6525,
-   "var_dia_pct": -2.91,
+   "preco": 5.5,
+   "var_dia_pct": -5.53,
    "max_dia": 5.6525,
-   "min_dia": 5.6513
+   "min_dia": 5.4762
   },
   {
    "ticker": "VIX",
    "mercado": "mercado",
    "data": "2026-11-27",
-   "preco": 24.61,
-   "var_dia_pct": -8.17,
-   "max_dia": 25.01,
+   "preco": 25.47,
+   "var_dia_pct": -4.96,
+   "max_dia": 25.74,
    "min_dia": 24.52
   }
  ]
