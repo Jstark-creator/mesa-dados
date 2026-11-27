@@ -1,7 +1,9 @@
 {
- "gerado_em": "2026-11-26T23:07:49+00:00",
- "ativos_ok": 103,
+ "gerado_em": "2026-11-27T23:06:49+00:00",
+ "ativos_ok": 102,
  "ativos_total": 103,
- "falhas": [],
- "sinais": 1
+ "falhas": [
+  "AAPL"
+ ],
+ "sinais": 0
 }
