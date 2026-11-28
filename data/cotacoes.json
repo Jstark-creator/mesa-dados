@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-28T05:05:44+00:00",
+ "gerado_em": "2026-11-28T07:17:41+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,19 +267,19 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-28",
-   "preco": 59846.6016,
-   "var_dia_pct": -1.07,
+   "preco": 59570.1094,
+   "var_dia_pct": -0.49,
    "max_dia": 60164.1914,
-   "min_dia": 59838.6523
+   "min_dia": 59494.8828
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-28",
-   "preco": 1658.09,
-   "var_dia_pct": -1.76,
+   "preco": 1652.5,
+   "var_dia_pct": -0.52,
    "max_dia": 1669.1559,
-   "min_dia": 1659.1681
+   "min_dia": 1648.5504
   },
   {
    "ticker": "AAOI",
