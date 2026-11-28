@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-11-28T08:57:04+00:00",
+ "gerado_em": "2026-11-28T10:55:26+00:00",
  "obs": "preços do Yahoo Finance via yfinance, com atraso de até ~15 minutos",
  "itens": [
   {
@@ -267,19 +267,19 @@
    "ticker": "BTC",
    "mercado": "cripto",
    "data": "2026-11-28",
-   "preco": 59522.2383,
-   "var_dia_pct": -0.57,
+   "preco": 59172.4688,
+   "var_dia_pct": -1.16,
    "max_dia": 60164.1914,
-   "min_dia": 59489.918
+   "min_dia": 59167.7031
   },
   {
    "ticker": "ETH",
    "mercado": "cripto",
    "data": "2026-11-28",
-   "preco": 1651.5,
-   "var_dia_pct": -0.58,
+   "preco": 1644.1899,
+   "var_dia_pct": -1.02,
    "max_dia": 1669.1559,
-   "min_dia": 1648.5504
+   "min_dia": 1644.5471
   },
   {
    "ticker": "AAOI",
@@ -478,6 +478,15 @@
    "var_dia_pct": 3.3,
    "max_dia": 70.97,
    "min_dia": 68.47
+  },
+  {
+   "ticker": "DAL",
+   "mercado": "eua",
+   "data": "2026-11-27",
+   "preco": 84.82,
+   "var_dia_pct": 2.25,
+   "max_dia": 85.32,
+   "min_dia": 83.11
   },
   {
    "ticker": "DELL",
